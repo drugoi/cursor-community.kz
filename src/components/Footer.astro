@@ -1,0 +1,80 @@
+---
+interface Props {
+  dict: any;
+}
+
+const { dict } = Astro.props;
+
+const socialLinks = [
+  { label: "Telegram", href: "https://t.me/cursor_kz", icon: "✈️" },
+  { label: "Luma", href: "https://lu.ma/cursorcommunity", icon: "📅" },
+  { label: "Forum", href: "https://forum.cursor.com", icon: "💻" },
+];
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="social-links">
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+          >
+            {link.icon} {link.label}
+          </a>
+        ))}
+      </div>
+      <div class="signature">
+        <span class="prompt">&gt;</span> cursor_kz<span class="cursor-blink"></span>
+      </div>
+      <p class="copyright">{dict.footer.copyright}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 0;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .social-link {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .social-link:hover {
+    color: var(--text-primary);
+  }
+
+  .signature {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+  }
+
+  .copyright {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin: 0;
+  }
+</style>
