@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Cursor Community Kazakhstan — Developer Community",
+    "description": "Kazakhstan developer community using Cursor — the fastest-growing AI tool for software development. Meetups, workshops, and events in Almaty and Astana."
+  },
+  "nav": {
+    "events": "Events",
+    "community": "Community",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Cursor Community Kazakhstan",
+    "subtitle": "Uniting developers in Kazakhstan who use Cursor — the fastest-growing AI tool for software development.",
+    "typewriter": "building the future with AI",
+    "cta_join": "Join Us",
+    "cta_events": "Upcoming Events"
+  },
+  "events": {
+    "heading": "Upcoming Events",
+    "register": "Register",
+    "past": "Completed",
+    "upcoming": "Coming Soon",
+    "no_upcoming": "New events coming soon — follow us on Telegram"
+  },
+  "community": {
+    "heading": "Community",
+    "telegram_desc": "Main community chat",
+    "luma_desc": "Events calendar",
+    "forum_desc": "Cursor global forum",
+    "discord_desc": "Cursor global Discord"
+  },
+  "about": {
+    "heading": "About Us",
+    "description": "Cursor Community Kazakhstan is a local developer community built around Cursor, an AI-powered software development platform valued at $29.3B with millions of users worldwide.",
+    "ambassador": "The community is organized with support from the Cursor Ambassador program — a global network of ambassadors who host meetups, hackathons, and workshops in their cities.",
+    "faq_title": "Frequently Asked Questions",
+    "faq": [
+      {
+        "q": "What is Cursor?",
+        "a": "Cursor is an AI-powered software development platform based in San Francisco. In 2025, the company raised $2.3B at a $29.3B valuation. Millions of developers worldwide use Cursor."
+      },
+      {
+        "q": "How do I join the community?",
+        "a": "Join our Telegram channel at t.me/cursor_kz — we post event announcements, share useful resources, and chat there."
+      },
+      {
+        "q": "Where do events take place?",
+        "a": "We host Cafe Cursor meetups and workshops in Almaty and Astana. Follow announcements on Telegram and Luma."
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© 2025 Cursor Community Kazakhstan"
+  }
+}
