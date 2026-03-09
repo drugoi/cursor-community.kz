@@ -1,0 +1,46 @@
+src/i18n/ru.json
+  64909bef4e0726d0 14-30,36,40-41,45,53,64,73
+src/i18n/en.json
+  64909bef4e0726d0 14-30,36,40-41,64
+src/components/Community.astro
+  64909bef4e0726d0 9,18-19,48,70,72
+src/components/Hero.astro
+  64909bef4e0726d0 7,23,27,44-70,73-74,93-94,138,140-141,164,166,170,175-176,180
+src/components/Footer.astro
+  64909bef4e0726d0 9
+src/layouts/Base.astro
+  64909bef4e0726d0 34
+public/llms.txt
+  64909bef4e0726d0 19
+src/styles/global.css
+  64909bef4e0726d0 14-17,75,83,88-94,97-104
+src/i18n/kk.json
+  64909bef4e0726d0 14-30,36,40-41,45,53,64,73
+src/components/About.astro
+  64909bef4e0726d0 12-13,53,89,107
+src/components/Events.astro
+  64909bef4e0726d0 9,14,80-81,84-95,141,151-191,207,209,250-251,257-258,265,268
+src/components/Header.astro
+  64909bef4e0726d0 89,135
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "b4aeeecbf4842058c4dcde3b51d06b09a456ede9",
+  "prompts": {
+    "64909bef4e0726d0": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1f8c11ee-dba5-4384-a653-1f0a4697d3a2",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 243,
+      "total_deletions": 87,
+      "accepted_lines": 227,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/095d48501aeb538e96bbe94c8cb258aab4c3f08aebe315ff4fe22855f81fa761"
+    }
+  }
+}
