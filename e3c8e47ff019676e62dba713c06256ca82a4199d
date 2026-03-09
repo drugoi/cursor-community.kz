@@ -1,0 +1,26 @@
+.github/workflows/ftp-deploy.yml
+  64909bef4e0726d0 1-34
+README.md
+  64909bef4e0726d0 38-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "e3c8e47ff019676e62dba713c06256ca82a4199d",
+  "prompts": {
+    "64909bef4e0726d0": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1f8c11ee-dba5-4384-a653-1f0a4697d3a2",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 54,
+      "total_deletions": 5,
+      "accepted_lines": 49,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/7d2ede764a71776d3712e18ab565ef0c0b83f70a57499f9525dc08ec0c778471"
+    }
+  }
+}
