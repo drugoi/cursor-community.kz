@@ -41,7 +41,13 @@ const { dict } = Astro.props;
 <script>
   const el = document.getElementById('typewriter');
   if (el) {
-    const phrases = JSON.parse(el.dataset.phrases || '[]');
+    const raw = JSON.parse(el.dataset.phrases || '[]');
+    // Fisher–Yates shuffle for random order on each page load
+    const phrases = [...raw];
+    for (let i = phrases.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [phrases[i], phrases[j]] = [phrases[j], phrases[i]];
+    }
     let current = 0;
     let charIdx = 0;
     let isDeleting = false;
