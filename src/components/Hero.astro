@@ -1,0 +1,164 @@
+---
+interface Props {
+  dict: {
+    hero: {
+      title: string;
+      subtitle: string;
+      typewriter: string;
+      cta_join: string;
+      cta_events: string;
+    };
+  };
+}
+
+const { dict } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">{dict.hero.title}</h1>
+    <p class="hero-subtitle">{dict.hero.subtitle}</p>
+    <div class="hero-typewriter">
+      <span class="prompt">></span>
+      <span id="typewriter" data-text={dict.hero.typewriter}></span>
+      <span class="cursor-blink"></span>
+    </div>
+    <div class="hero-ctas">
+      <a
+        href="https://t.me/cursor_kz"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary"
+      >
+        {dict.hero.cta_join}
+      </a>
+      <a href="#events" class="btn btn-secondary">
+        {dict.hero.cta_events}
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const el = document.getElementById('typewriter');
+  if (el) {
+    const text = el.dataset.text || '';
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 80);
+      }
+    }
+    type();
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(0, 255, 65, 0.03) 0%, transparent 50%),
+      var(--bg-primary);
+    animation: gradient-mesh 12s ease-in-out infinite;
+  }
+
+  @keyframes gradient-mesh {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: var(--container-max);
+    padding: 0 var(--container-padding);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-typewriter {
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    margin-bottom: 2rem;
+    min-height: 1.5em;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: var(--accent-green);
+    color: var(--bg-primary);
+    border: 2px solid var(--accent-green);
+  }
+
+  .btn-primary:hover {
+    background-color: #33ff66;
+    border-color: #33ff66;
+    color: var(--bg-primary);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--accent-green);
+    border: 2px solid var(--accent-green);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--accent-green);
+    color: var(--bg-primary);
+  }
+</style>
