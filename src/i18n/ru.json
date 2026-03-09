@@ -37,6 +37,8 @@
     "register": "Регистрация",
     "past": "Завершено",
     "upcoming": "Скоро",
+    "past_heading": "Предыдущие события",
+    "upcoming_heading": "Ближайшие",
     "no_upcoming": "Новые события скоро — следите в Telegram",
     "no_upcoming_cta": "Следить в Telegram"
   },

@@ -37,6 +37,8 @@
     "register": "Тіркелу",
     "past": "Аяқталды",
     "upcoming": "Жақында",
+    "past_heading": "Өткен оқиғалар",
+    "upcoming_heading": "Жақындағы",
     "no_upcoming": "Жаңа оқиғалар жақында — Telegram-да қадағалаңыз",
     "no_upcoming_cta": "Telegram-да қадағалау"
   },

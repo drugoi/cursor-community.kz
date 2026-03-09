@@ -37,6 +37,8 @@
     "register": "Register",
     "past": "Completed",
     "upcoming": "Coming Soon",
+    "past_heading": "Past Events",
+    "upcoming_heading": "Upcoming",
     "no_upcoming": "New events coming soon — follow us on Telegram",
     "no_upcoming_cta": "Follow on Telegram"
   },

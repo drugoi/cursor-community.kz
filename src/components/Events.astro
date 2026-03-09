@@ -10,6 +10,8 @@ interface Props {
       register: string;
       past: string;
       upcoming: string;
+      past_heading: string;
+      upcoming_heading: string;
       no_upcoming: string;
       no_upcoming_cta: string;
     };
@@ -18,22 +20,27 @@ interface Props {
 
 const { locale, dict } = Astro.props;
 const allEvents = await getCollection('events');
-const events = allEvents
-  .filter((e) => e.data.lang === locale || e.data.lang === 'ru')
-  .sort((a, b) => {
-    if (a.data.status === 'upcoming' && b.data.status === 'past') return -1;
-    if (a.data.status === 'past' && b.data.status === 'upcoming') return 1;
-    return 0;
-  });
-
-const hasUpcoming = events.some((e) => e.data.status === 'upcoming');
+const filtered = allEvents.filter((e) => e.data.lang === locale || e.data.lang === 'ru');
+const upcomingEvents = filtered
+  .filter((e) => e.data.status === 'upcoming')
+  .sort(() => 0);
+const pastEvents = filtered
+  .filter((e) => e.data.status === 'past')
+  .sort((a, b) => (b.data.date < a.data.date ? -1 : b.data.date > a.data.date ? 1 : 0));
+const hasUpcoming = upcomingEvents.length > 0;
 
 const cityNameMap: Record<string, string> = {
   almaty: 'Алматы',
   astana: 'Астана',
 };
 
-const eventsJsonLd = events.map((event) => {
+function formatEventDate(isoDate: string): string {
+  if (isoDate === 'TBD') return isoDate;
+  const [y, m, d] = isoDate.split('-');
+  return d && m && y ? `${d}.${m}.${y}` : isoDate;
+}
+
+const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
   const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -53,7 +60,10 @@ const eventsJsonLd = events.map((event) => {
       name: 'Cursor Community Kazakhstan',
       url: 'https://cursor-community.kz',
     },
-    eventStatus: 'https://schema.org/EventScheduled',
+    eventStatus:
+      event.data.status === 'past'
+        ? 'https://schema.org/EventCompleted'
+        : 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   };
 
@@ -95,31 +105,48 @@ const eventsJsonLd = events.map((event) => {
       </div>
     )}
 
-    <div class="events-grid">
-      {events.map((event) => (
-        <article
-          class:list={['event-card', { 'event-card--past': event.data.status === 'past' }]}
-        >
-          <h3>{event.data.title}</h3>
-          <p class="event-location">📍 {event.data.location}</p>
-          <p class="event-date">{event.data.date}</p>
-          <p class="event-format">{event.data.format}</p>
+    {upcomingEvents.length > 0 && (
+      <>
+        <h3 class="events-subheading">{dict.events.upcoming_heading}</h3>
+        <div class="events-grid">
+          {upcomingEvents.map((event) => (
+            <article class="event-card">
+              <h3>{event.data.title}</h3>
+              <p class="event-location">📍 {event.data.location}</p>
+              <p class="event-date">{formatEventDate(event.data.date)}</p>
+              <p class="event-format">{event.data.format}</p>
+              {event.data.registrationUrl ? (
+                <a
+                  href={event.data.registrationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-register"
+                >
+                  {dict.events.register}
+                </a>
+              ) : null}
+            </article>
+          ))}
+        </div>
+      </>
+    )}
 
-          {event.data.status === 'upcoming' && event.data.registrationUrl ? (
-            <a
-              href={event.data.registrationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-register"
-            >
-              {dict.events.register}
-            </a>
-          ) : event.data.status === 'past' ? (
-            <span class="badge-past">{dict.events.past}</span>
-          ) : null}
-        </article>
-      ))}
-    </div>
+    {pastEvents.length > 0 && (
+      <>
+        <h3 class="events-subheading">{dict.events.past_heading}</h3>
+        <div class="events-grid">
+          {pastEvents.map((event) => (
+            <article class:list={['event-card', 'event-card--past']}>
+              <h3>{event.data.title}</h3>
+              <p class="event-location">📍 {event.data.location}</p>
+              <p class="event-date">{formatEventDate(event.data.date)}</p>
+              <p class="event-format">{event.data.format}</p>
+              <span class="badge-past">{dict.events.past}</span>
+            </article>
+          ))}
+        </div>
+      </>
+    )}
   </div>
 
     {eventsJsonLd.map((jsonLd) => (
@@ -187,6 +214,13 @@ const eventsJsonLd = events.map((event) => {
   .empty-state-cta:hover {
     background: var(--accent-brand-glow);
     border-color: var(--accent-brand);
+  }
+
+  .events-subheading {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 
   .events-grid {

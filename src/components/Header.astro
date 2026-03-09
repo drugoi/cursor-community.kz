@@ -58,6 +58,7 @@ const langLinks = [
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
+    padding-top: env(safe-area-inset-top, 0);
   }
 
   .header-inner {
@@ -167,7 +168,7 @@ const langLinks = [
   @media (max-width: 640px) {
     .header-inner {
       gap: 1rem;
-      padding-top: 0.75rem;
+      padding-top: 0;
       padding-bottom: 0.75rem;
     }
 
