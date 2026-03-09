@@ -63,7 +63,15 @@ const { dict } = Astro.props;
         charIdx--;
         if (charIdx <= 0) {
           isDeleting = false;
-          current = (current + 1) % phrases.length;
+          if (phrases.length > 1) {
+            let next;
+            do {
+              next = Math.floor(Math.random() * phrases.length);
+            } while (next === current);
+            current = next;
+          } else {
+            current = 0;
+          }
           setTimeout(tick, 400);
           return;
         }
