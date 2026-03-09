@@ -35,6 +35,22 @@ npm run build
 
 После загрузки сайт должен открываться по домену. Обновление контента: правите исходники, снова `npm run build` и заливаете обновлённые файлы из `dist/`.
 
+## Деплой через GitHub Actions (FTP)
+
+При пуше в `main` (или по кнопке Run workflow) запускается workflow, который собирает проект и заливает содержимое `dist/` на FTP через [FTP-Deploy-Action](https://github.com/SamKirkland/FTP-Deploy-Action).
+
+**Секреты репозитория (Settings → Secrets and variables → Actions):**
+
+| Секрет | Описание |
+|--------|----------|
+| `FTP_SERVER` | Адрес FTP-сервера (например `ftp.example.com` без протокола) |
+| `FTP_USERNAME` | Логин FTP |
+| `FTP_PASSWORD` | Пароль FTP |
+
+Содержимое `dist/` заливается в корень сервера (`server-dir: /`). После загрузки выполняется скрипт прав: каталоги 755, файлы (html, css, js, png, jpg, svg, ico, txt, xml) 644.
+
+Файл workflow: [.github/workflows/ftp-deploy.yml](.github/workflows/ftp-deploy.yml).
+
 ## Бренд-ассеты Cursor
 
 Логотипы и иконки Cursor лежат в `public/brand/` (скопированы из официального набора Cursor Brand Assets):

@@ -1,0 +1,66 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+      - name: Generate permission fix script
+        run: |
+          # Generate FTP commands from built files
+          echo "open ${{ secrets.FTP_SERVER }}" > fix_permissions.ftp
+          echo "user ${{ secrets.FTP_USERNAME }} ${{ secrets.FTP_PASSWORD }}" >> fix_permissions.ftp
+          echo "binary" >> fix_permissions.ftp
+          
+          # Fix directory permissions
+          echo "quote site chmod 755 ." >> fix_permissions.ftp
+          find dist -type d | sed 's|dist/||' | while read dir; do
+            if [ -n "$dir" ]; then
+              echo "quote site chmod 755 $dir" >> fix_permissions.ftp
+            fi
+          done
+          
+          # Fix file permissions
+          find dist -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.png" -o -name "*.jpg" -o -name "*.svg" -o -name "*.ico" -o -name "*.txt" -o -name "*.xml" \) | sed 's|dist/||' | while read file; do
+            echo "quote site chmod 644 $file" >> fix_permissions.ftp
+          done
+          
+          echo "quit" >> fix_permissions.ftp
+          
+      - name: Execute FTP permission fix
+        run: |
+          # Execute FTP script (ignore errors for non-existent files)
+          ftp -n < fix_permissions.ftp || true
+          rm fix_permissions.ftp
