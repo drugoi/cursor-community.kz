@@ -11,19 +11,38 @@
   "hero": {
     "title": "Cursor Community Kazakhstan",
     "subtitle": "Cursor қолданатын Қазақстан әзірлеушілерін біріктіреміз — бағдарламалауға арналған ең жылдам дамып келе жатқан AI құралы.",
-    "typewriter": "building the future with AI",
+    "typewriter": [
+      "building the future with AI",
+      "shipping faster with Cursor",
+      "vibe coding in Kazakhstan",
+      "from idea to production in minutes",
+      "the AI-native way to code",
+      "connecting developers across KZ",
+      "tab tab tab ship",
+      "where coffee meets Cursor credits",
+      "AI pair programming, IRL",
+      "pls fix this no bugs pls",
+      "it works on my machine",
+      "cursor wrote this, I just mass vibed",
+      "sudo make me a startup",
+      "404 sleep not found",
+      "git push --force and pray"
+    ],
     "cta_join": "Қосылу",
     "cta_events": "Жақын оқиғалар"
   },
   "events": {
     "heading": "Жақын оқиғалар",
+    "command": "$ ls ./events --upcoming",
     "register": "Тіркелу",
     "past": "Аяқталды",
     "upcoming": "Жақында",
-    "no_upcoming": "Жаңа оқиғалар жақында — Telegram-да қадағалаңыз"
+    "no_upcoming": "Жаңа оқиғалар жақында — Telegram-да қадағалаңыз",
+    "no_upcoming_cta": "Telegram-да қадағалау"
   },
   "community": {
     "heading": "Қауымдастық",
+    "command": "$ cat ./community/links",
     "telegram_desc": "Негізгі қауымдастық чаты",
     "luma_desc": "Оқиғалар күнтізбесі",
     "forum_desc": "Cursor глобалды форумы",
@@ -31,6 +50,7 @@
   },
   "about": {
     "heading": "Біз туралы",
+    "command": "$ cat ./about.md",
     "description": "Cursor Community Kazakhstan — Cursor айналасында біріккен жергілікті әзірлеушілер қауымдастығы. Cursor — бағдарламалық қамтамасыз ету жасауға арналған AI платформасы, бағалауы $29.3 млрд, бүкіл әлемде миллиондаған пайдаланушылары бар.",
     "ambassador": "Қауымдастық Cursor Ambassador бағдарламасының қолдауымен ұйымдастырылған — бұл өз қалаларында кездесулер, хакатондар және семинарлар өткізетін амбассадорлардың жаһандық желісі.",
     "faq_title": "Жиі қойылатын сұрақтар",
@@ -41,7 +61,7 @@
       },
       {
         "q": "Қауымдастыққа қалай қосылуға болады?",
-        "a": "t.me/cursor_kz Telegram арнамызға қосылыңыз — онда біз оқиғалар туралы хабарламалар жариялаймыз, пайдалы материалдармен бөлісеміз және сөйлесеміз."
+        "a": "Telegram арнамызға қосылыңыз — онда біз оқиғалар туралы хабарламалар жариялаймыз, пайдалы материалдармен бөлісеміз және сөйлесеміз."
       },
       {
         "q": "Оқиғалар қайда өтеді?",
@@ -50,6 +70,6 @@
     ]
   },
   "footer": {
-    "copyright": "© 2025 Cursor Community Kazakhstan"
+    "copyright": "© 2026 Cursor Community Kazakhstan"
   }
 }

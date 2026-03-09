@@ -4,7 +4,7 @@ interface Props {
     hero: {
       title: string;
       subtitle: string;
-      typewriter: string;
+      typewriter: string[];
       cta_join: string;
       cta_events: string;
     };
@@ -20,13 +20,11 @@ const { dict } = Astro.props;
     <h1 class="hero-title">{dict.hero.title}</h1>
     <p class="hero-subtitle">{dict.hero.subtitle}</p>
     <div class="hero-typewriter">
-      <span class="prompt">></span>
-      <span id="typewriter" data-text={dict.hero.typewriter}></span>
-      <span class="cursor-blink"></span>
+      <span class="prompt">&gt;&nbsp;</span><span id="typewriter" data-phrases={JSON.stringify(dict.hero.typewriter)}></span><span class="cursor-blink"></span>
     </div>
     <div class="hero-ctas">
       <a
-        href="https://t.me/cursor_kz"
+        href="https://t.me/+IQDkySGNoCVkMTUy"
         target="_blank"
         rel="noopener noreferrer"
         class="btn btn-primary"
@@ -43,16 +41,37 @@ const { dict } = Astro.props;
 <script>
   const el = document.getElementById('typewriter');
   if (el) {
-    const text = el.dataset.text || '';
-    let i = 0;
-    function type() {
-      if (i < text.length) {
-        el.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, 80);
+    const phrases = JSON.parse(el.dataset.phrases || '[]');
+    let current = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    function tick() {
+      const text = phrases[current] || '';
+
+      if (!isDeleting) {
+        el.textContent = text.slice(0, charIdx + 1);
+        charIdx++;
+        if (charIdx >= text.length) {
+          isDeleting = true;
+          setTimeout(tick, 2000);
+          return;
+        }
+        setTimeout(tick, 80);
+      } else {
+        el.textContent = text.slice(0, charIdx - 1);
+        charIdx--;
+        if (charIdx <= 0) {
+          isDeleting = false;
+          current = (current + 1) % phrases.length;
+          setTimeout(tick, 400);
+          return;
+        }
+        setTimeout(tick, 40);
       }
     }
-    type();
+
+    if (phrases.length) tick();
   }
 </script>
 
@@ -71,8 +90,8 @@ const { dict } = Astro.props;
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(0, 255, 65, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 50%, rgba(237, 236, 236, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(237, 236, 236, 0.03) 0%, transparent 50%),
       var(--bg-primary);
     animation: gradient-mesh 12s ease-in-out infinite;
   }
@@ -116,8 +135,10 @@ const { dict } = Astro.props;
   .hero-typewriter {
     font-family: var(--font-mono);
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
     min-height: 1.5em;
+    max-width: 500px;
+    text-align: left;
   }
 
   .hero-ctas {
@@ -140,25 +161,23 @@ const { dict } = Astro.props;
   }
 
   .btn-primary {
-    background-color: var(--accent-green);
+    background-color: var(--accent-brand);
     color: var(--bg-primary);
-    border: 2px solid var(--accent-green);
+    border: 2px solid var(--accent-brand);
   }
 
   .btn-primary:hover {
-    background-color: #33ff66;
-    border-color: #33ff66;
-    color: var(--bg-primary);
+    filter: brightness(1.1);
   }
 
   .btn-secondary {
     background-color: transparent;
-    color: var(--accent-green);
-    border: 2px solid var(--accent-green);
+    color: var(--accent-brand);
+    border: 2px solid var(--accent-brand);
   }
 
   .btn-secondary:hover {
-    background-color: var(--accent-green);
+    background-color: var(--accent-brand);
     color: var(--bg-primary);
   }
 </style>

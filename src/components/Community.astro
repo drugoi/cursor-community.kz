@@ -6,7 +6,7 @@ interface Props {
 const { dict } = Astro.props;
 
 const links = [
-  { href: "https://t.me/cursor_kz", name: "Telegram", emoji: "✈️", descKey: "telegram_desc" },
+  { href: "https://t.me/+IQDkySGNoCVkMTUy", name: "Telegram", emoji: "✈️", descKey: "telegram_desc" },
   { href: "https://lu.ma/cursorcommunity", name: "Luma", emoji: "📅", descKey: "luma_desc" },
   { href: "https://forum.cursor.com", name: "Cursor Forum", emoji: "💻", descKey: "forum_desc" },
   { href: "https://discord.gg/cursor", name: "Discord", emoji: "🎮", descKey: "discord_desc" },
@@ -15,7 +15,8 @@ const links = [
 
 <section id="community" class="section">
   <div class="container">
-    <h2><span class="prompt">></span> {dict.community.heading}</h2>
+    <h2 class="heading-command">{dict.community.command}</h2>
+    <p class="heading-sub">{dict.community.heading}</p>
     <div class="grid">
       {links.map((link) => (
         <a
@@ -44,7 +45,7 @@ const links = [
     padding: 0 var(--container-padding);
   }
 
-  h2 {
+  h2:not(.heading-command) {
     font-family: var(--font-heading);
     font-size: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: 1.5rem;
@@ -66,9 +67,9 @@ const links = [
   }
 
   .card:hover {
-    border-color: var(--accent-green-dim);
+    border-color: var(--accent-brand-dim);
     background: var(--bg-card-hover);
-    box-shadow: 0 0 20px var(--accent-green-glow);
+    box-shadow: 0 0 20px var(--accent-brand-glow);
   }
 
   .card-emoji {

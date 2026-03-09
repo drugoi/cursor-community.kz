@@ -11,9 +11,10 @@
   --text-primary: #E5E5E5;
   --text-secondary: #888888;
   --text-muted: #555555;
-  --accent-green: #00FF41;
-  --accent-green-dim: #00CC33;
-  --accent-green-glow: rgba(0, 255, 65, 0.15);
+  /* Cursor brand (from dark assets: #edecec) */
+  --accent-brand: #edecec;
+  --accent-brand-dim: #c9c8c8;
+  --accent-brand-glow: rgba(237, 236, 236, 0.12);
   --border: #222222;
   --border-hover: #333333;
 
@@ -71,7 +72,7 @@ a {
 
 .prompt {
   font-family: var(--font-mono);
-  color: var(--accent-green);
+  color: var(--accent-brand);
   margin-right: 0.5rem;
 }
 
@@ -79,9 +80,26 @@ a {
   display: inline-block;
   width: 0.6em;
   height: 1.1em;
-  background-color: var(--accent-green);
+  background-color: var(--accent-brand);
   vertical-align: text-bottom;
   animation: blink 1s step-end infinite;
+}
+
+.heading-command {
+  font-family: var(--font-mono);
+  font-size: clamp(1.15rem, 4vw, 1.6rem);
+  color: var(--accent-brand);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.heading-sub {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
 }
 
 @keyframes blink {

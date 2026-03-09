@@ -11,19 +11,38 @@
   "hero": {
     "title": "Cursor Community Kazakhstan",
     "subtitle": "Объединяем разработчиков Казахстана, использующих Cursor — самый быстрорастущий AI-инструмент для программирования.",
-    "typewriter": "building the future with AI",
+    "typewriter": [
+      "building the future with AI",
+      "shipping faster with Cursor",
+      "vibe coding in Kazakhstan",
+      "from idea to production in minutes",
+      "the AI-native way to code",
+      "connecting developers across KZ",
+      "tab tab tab ship",
+      "where coffee meets Cursor credits",
+      "AI pair programming, IRL",
+      "pls fix this no bugs pls",
+      "it works on my machine",
+      "cursor wrote this, I just mass vibed",
+      "sudo make me a startup",
+      "404 sleep not found",
+      "git push --force and pray"
+    ],
     "cta_join": "Присоединиться",
     "cta_events": "Ближайшие события"
   },
   "events": {
     "heading": "Ближайшие события",
+    "command": "$ ls ./events --upcoming",
     "register": "Регистрация",
     "past": "Завершено",
     "upcoming": "Скоро",
-    "no_upcoming": "Новые события скоро — следите в Telegram"
+    "no_upcoming": "Новые события скоро — следите в Telegram",
+    "no_upcoming_cta": "Следить в Telegram"
   },
   "community": {
     "heading": "Сообщество",
+    "command": "$ cat ./community/links",
     "telegram_desc": "Основной чат сообщества",
     "luma_desc": "Календарь событий",
     "forum_desc": "Глобальный форум Cursor",
@@ -31,6 +50,7 @@
   },
   "about": {
     "heading": "О нас",
+    "command": "$ cat ./about.md",
     "description": "Cursor Community Kazakhstan — локальное сообщество разработчиков, объединённых вокруг Cursor, AI-платформы для создания программного обеспечения с оценкой $29.3 млрд и миллионами пользователей по всему миру.",
     "ambassador": "Сообщество организовано при поддержке программы Cursor Ambassador — глобальной сети амбассадоров, которые проводят митапы, хакатоны и воркшопы в своих городах.",
     "faq_title": "Часто задаваемые вопросы",
@@ -41,7 +61,7 @@
       },
       {
         "q": "Как присоединиться к сообществу?",
-        "a": "Присоединяйтесь к нашему Telegram-каналу t.me/cursor_kz — там мы публикуем анонсы событий, делимся полезными материалами и общаемся."
+        "a": "Присоединяйтесь к нашему Telegram-каналу — там мы публикуем анонсы событий, делимся полезными материалами и общаемся."
       },
       {
         "q": "Где проходят события?",
@@ -50,6 +70,6 @@
     ]
   },
   "footer": {
-    "copyright": "© 2025 Cursor Community Kazakhstan"
+    "copyright": "© 2026 Cursor Community Kazakhstan"
   }
 }

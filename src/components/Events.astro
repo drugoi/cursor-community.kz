@@ -6,10 +6,12 @@ interface Props {
   dict: {
     events: {
       heading: string;
+      command: string;
       register: string;
       past: string;
       upcoming: string;
       no_upcoming: string;
+      no_upcoming_cta: string;
     };
   };
 }
@@ -75,10 +77,22 @@ const eventsJsonLd = events.map((event) => {
 
 <section id="events" class="section">
   <div class="container">
-    <h2><span class="prompt">></span> {dict.events.heading}</h2>
+    <h2 class="heading-command">{dict.events.command}</h2>
+    <p class="heading-sub">{dict.events.heading}</p>
 
     {!hasUpcoming && (
-      <p class="no-upcoming">{dict.events.no_upcoming}</p>
+      <div class="empty-state">
+        <p class="empty-state-mono">// next event: TBD</p>
+        <p class="empty-state-message">{dict.events.no_upcoming}</p>
+        <a
+          href="https://t.me/+IQDkySGNoCVkMTUy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="empty-state-cta"
+        >
+          {dict.events.no_upcoming_cta}
+        </a>
+      </div>
     )}
 
     <div class="events-grid">
@@ -124,7 +138,7 @@ const eventsJsonLd = events.map((event) => {
     padding: 0 var(--container-padding);
   }
 
-  h2 {
+  h2:not(.heading-command) {
     font-family: var(--font-heading);
     margin-bottom: 2rem;
   }
@@ -132,6 +146,47 @@ const eventsJsonLd = events.map((event) => {
   .no-upcoming {
     color: var(--text-secondary);
     margin-bottom: 2rem;
+  }
+
+  .empty-state {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .empty-state-mono {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent-brand-dim);
+    margin-bottom: 1rem;
+  }
+
+  .empty-state-message {
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .empty-state-cta {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-brand);
+    border: 1px solid var(--accent-brand-dim);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .empty-state-cta:hover {
+    background: var(--accent-brand-glow);
+    border-color: var(--accent-brand);
   }
 
   .events-grid {
@@ -149,9 +204,9 @@ const eventsJsonLd = events.map((event) => {
   }
 
   .event-card:hover {
-    border-color: var(--accent-green-dim);
+    border-color: var(--accent-brand-dim);
     background: var(--bg-card-hover);
-    box-shadow: 0 0 20px var(--accent-green-glow);
+    box-shadow: 0 0 20px var(--accent-brand-glow);
   }
 
   .event-card--past {
@@ -192,24 +247,24 @@ const eventsJsonLd = events.map((event) => {
     font-family: var(--font-body);
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--accent-green);
-    border: 1px solid var(--accent-green-dim);
+    color: var(--accent-brand);
+    border: 1px solid var(--accent-brand-dim);
     border-radius: 0.5rem;
     transition: all 0.2s ease;
   }
 
   .btn-register:hover {
-    background: rgba(0, 255, 65, 0.1);
-    border-color: var(--accent-green);
+    background: var(--accent-brand-glow);
+    border-color: var(--accent-brand);
   }
 
   .badge-past {
     display: inline-block;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--accent-green-dim);
+    color: var(--accent-brand-dim);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
-    background: rgba(0, 204, 51, 0.1);
+    background: var(--accent-brand-glow);
   }
 </style>
