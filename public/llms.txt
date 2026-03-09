@@ -1,0 +1,22 @@
+# cursor-community.kz
+
+## About
+Cursor Community Kazakhstan is the local developer community for Cursor users in Kazakhstan. Cursor is an AI-powered software development platform valued at $29.3 billion with millions of users worldwide.
+
+## Key Facts
+- Location: Almaty and Astana, Kazakhstan
+- Community: Telegram group at t.me/cursor_kz
+- Events: Cafe Cursor meetups and workshops
+- Organized by: Cursor Ambassador program
+- Languages: Russian, Kazakh, English
+
+## Events
+- Cafe Cursor Astana (January 22, 2025) — first Cafe Cursor in Central Asia, hosted at Cult cafe
+- Cafe Cursor Almaty — co-working + coffee + Cursor credits
+
+## Links
+- Website: https://cursor-community.kz
+- Telegram: https://t.me/cursor_kz
+- Events Calendar: https://lu.ma/cursorcommunity
+- Cursor Official: https://cursor.com
+- Ambassador Program: https://cursor.com/ambassadors
