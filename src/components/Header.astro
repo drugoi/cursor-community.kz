@@ -21,6 +21,7 @@ const langLinks = [
 <header class="header">
   <div class="header-inner container">
     <a href={locale === "ru" ? "/" : `/${locale}/`} class="logo" aria-label="Cursor Community Kazakhstan">
+      <img src="/brand/cube.svg" alt="" class="logo-icon" width="24" height="24" />
       <span class="logo-prompt">&gt;</span>
       <span class="logo-text">cursor_kz</span>
     </a>
@@ -76,6 +77,12 @@ const langLinks = [
     font-weight: 500;
     text-decoration: none;
     color: inherit;
+    gap: 0.5rem;
+  }
+
+  .logo-icon {
+    flex-shrink: 0;
+    display: block;
   }
 
   .logo-prompt {

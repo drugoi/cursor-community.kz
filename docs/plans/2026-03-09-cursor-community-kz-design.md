@@ -6,7 +6,7 @@
 
 ## Overview
 
-One-page landing site for the Cursor developer community in Kazakhstan. Built on Astro with static content in Markdown/MDX. Hosted on Vercel. Modern dark UI with subtle terminal/hacker accents. Trilingual: Russian (default), Kazakh, English.
+One-page landing site for the Cursor developer community in Kazakhstan. Built on Astro with static content in Markdown/MDX. Static hosting (FTP or any web server). Modern dark UI with subtle terminal/hacker accents. Trilingual: Russian (default), Kazakh, English.
 
 ## Goals
 
@@ -24,7 +24,7 @@ One-page landing site for the Cursor developer community in Kazakhstan. Built on
 - **Styling:** CSS with custom properties (no Tailwind, no UI framework)
 - **Animations:** CSS + vanilla JS (typewriter effect only, ~1KB inline)
 - **i18n:** File-based routing + JSON dictionaries
-- **Hosting:** Vercel (auto-deploy from GitHub)
+- **Hosting:** Static (FTP or any web server serving the `dist/` output)
 
 ### Why pure Astro (no React/Svelte)
 

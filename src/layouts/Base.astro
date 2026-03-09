@@ -63,6 +63,9 @@ const websiteSchema = {
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <!-- Favicon (Cursor brand) -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
     <!-- Canonical -->
     <link rel="canonical" href={canonicalUrl} />
 
@@ -79,11 +82,13 @@ const websiteSchema = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={locale} />
     <meta property="og:site_name" content="Cursor Community Kazakhstan" />
+    <meta property="og:image" content={`${siteUrl}/brand/lockup-horizontal-dark.png`} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/brand/lockup-horizontal-dark.png`} />
 
     <!-- Geo meta -->
     <meta name="geo.region" content="KZ" />
