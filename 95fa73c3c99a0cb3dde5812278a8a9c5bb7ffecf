@@ -1,0 +1,34 @@
+src/components/Events.astro
+  c766c2a46fe760e1 80-81,141
+src/components/Community.astro
+  c766c2a46fe760e1 18-19,48
+src/components/About.astro
+  c766c2a46fe760e1 12-13,53
+src/i18n/kk.json
+  c766c2a46fe760e1 4
+README.md
+  c766c2a46fe760e1 77-85
+src/layouts/Base.astro
+  c766c2a46fe760e1 28,32-39,47-54,103-105,120-122
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "95fa73c3c99a0cb3dde5812278a8a9c5bb7ffecf",
+  "prompts": {
+    "c766c2a46fe760e1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "856908a8-f416-4b27-a0ae-279e9ee52569",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 50,
+      "total_deletions": 18,
+      "accepted_lines": 45,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/563a5aa1d30bbcffa83209c827f20ad126e2290d06e9f1a0900cf77c1ce8c3d2"
+    }
+  }
+}
