@@ -1,0 +1,24 @@
+docs/plans/2026-03-09-cursor-community-kz-design.md
+  64909bef4e0726d0 1-253
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "c22ab14ec246adbad7cde71b6539285890429868",
+  "prompts": {
+    "64909bef4e0726d0": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1f8c11ee-dba5-4384-a653-1f0a4697d3a2",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 253,
+      "total_deletions": 0,
+      "accepted_lines": 253,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/54630094e77e14c73266aec581cd82554e09e4ef5d2974d1b082e7775e413cd8"
+    }
+  }
+}
