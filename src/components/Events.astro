@@ -1,0 +1,165 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  locale: 'ru' | 'kk' | 'en';
+  dict: {
+    events: {
+      heading: string;
+      register: string;
+      past: string;
+      upcoming: string;
+      no_upcoming: string;
+    };
+  };
+}
+
+const { locale, dict } = Astro.props;
+const allEvents = await getCollection('events');
+const events = allEvents
+  .filter((e) => e.data.lang === locale || e.data.lang === 'ru')
+  .sort((a, b) => {
+    if (a.data.status === 'upcoming' && b.data.status === 'past') return -1;
+    if (a.data.status === 'past' && b.data.status === 'upcoming') return 1;
+    return 0;
+  });
+
+const hasUpcoming = events.some((e) => e.data.status === 'upcoming');
+---
+
+<section id="events" class="section">
+  <div class="container">
+    <h2><span class="prompt">></span> {dict.events.heading}</h2>
+
+    {!hasUpcoming && (
+      <p class="no-upcoming">{dict.events.no_upcoming}</p>
+    )}
+
+    <div class="events-grid">
+      {events.map((event) => (
+        <article
+          class:list={['event-card', { 'event-card--past': event.data.status === 'past' }]}
+        >
+          <h3>{event.data.title}</h3>
+          <p class="event-location">📍 {event.data.location}</p>
+          <p class="event-date">{event.data.date}</p>
+          <p class="event-format">{event.data.format}</p>
+
+          {event.data.status === 'upcoming' && event.data.registrationUrl ? (
+            <a
+              href={event.data.registrationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-register"
+            >
+              {dict.events.register}
+            </a>
+          ) : event.data.status === 'past' ? (
+            <span class="badge-past">{dict.events.past}</span>
+          ) : null}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--section-padding) 0;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    margin-bottom: 2rem;
+  }
+
+  .no-upcoming {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .event-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .event-card:hover {
+    border-color: var(--accent-green-dim);
+    background: var(--bg-card-hover);
+    box-shadow: 0 0 20px var(--accent-green-glow);
+  }
+
+  .event-card--past {
+    opacity: 0.6;
+  }
+
+  .event-card--past:hover {
+    opacity: 0.75;
+  }
+
+  .event-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .event-location {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .event-date {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .event-format {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-register {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-green);
+    border: 1px solid var(--accent-green-dim);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .btn-register:hover {
+    background: rgba(0, 255, 65, 0.1);
+    border-color: var(--accent-green);
+  }
+
+  .badge-past {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-green-dim);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(0, 204, 51, 0.1);
+  }
+</style>
