@@ -25,6 +25,52 @@ const events = allEvents
   });
 
 const hasUpcoming = events.some((e) => e.data.status === 'upcoming');
+
+const cityNameMap: Record<string, string> = {
+  almaty: 'Алматы',
+  astana: 'Астана',
+};
+
+const eventsJsonLd = events.map((event) => {
+  const jsonLd: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: event.data.title,
+    description: event.data.description,
+    location: {
+      '@type': 'Place',
+      name: event.data.location,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: cityNameMap[event.data.city] ?? event.data.city,
+        addressCountry: 'KZ',
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'Cursor Community Kazakhstan',
+      url: 'https://cursor-community.kz',
+    },
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  };
+
+  if (event.data.date !== 'TBD') {
+    jsonLd.startDate = event.data.date;
+  }
+
+  if (event.data.registrationUrl) {
+    jsonLd.offers = {
+      '@type': 'Offer',
+      url: event.data.registrationUrl,
+      price: '0',
+      priceCurrency: 'KZT',
+      availability: 'https://schema.org/InStock',
+    };
+  }
+
+  return jsonLd;
+});
 ---
 
 <section id="events" class="section">
@@ -61,6 +107,10 @@ const hasUpcoming = events.some((e) => e.data.status === 'upcoming');
       ))}
     </div>
   </div>
+
+    {eventsJsonLd.map((jsonLd) => (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    ))}
 </section>
 
 <style>
