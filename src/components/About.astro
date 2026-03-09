@@ -9,8 +9,8 @@ const faq = dict.about.faq ?? [];
 
 <section id="about" class="section">
   <div class="container">
-    <h2 class="heading-command">{dict.about.command}</h2>
-    <p class="heading-sub">{dict.about.heading}</p>
+    <p class="heading-command" aria-hidden="true">{dict.about.command}</p>
+    <h2 class="heading-sub">{dict.about.heading}</h2>
     <p class="body-text">{dict.about.description}</p>
     <p class="body-text ambassador">{dict.about.ambassador}</p>
 
@@ -50,7 +50,7 @@ const faq = dict.about.faq ?? [];
     padding: 0 var(--container-padding);
   }
 
-  h2:not(.heading-command) {
+  h2:not(.heading-command):not(.heading-sub) {
     font-family: var(--font-heading);
     font-size: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: 1.5rem;

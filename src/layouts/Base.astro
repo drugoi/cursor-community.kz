@@ -25,16 +25,33 @@ const description = dict.meta.description;
 
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'LocalOrganization',
   name: 'Cursor Community Kazakhstan',
   url: siteUrl,
   description: 'Developer community in Kazakhstan for Cursor users',
-  areaServed: 'KZ',
+  areaServed: {
+    '@type': 'Country',
+    name: 'Kazakhstan',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'KZ',
+  },
   sameAs: [
     'https://t.me/+IQDkySGNoCVkMTUy',
     'https://lu.ma/cursorcommunity',
     'https://forum.cursor.com',
   ],
+};
+
+const placeSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  name: 'Kazakhstan',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'KZ',
+  },
 };
 
 const websiteSchema = {
@@ -83,6 +100,9 @@ const websiteSchema = {
     <meta property="og:locale" content={locale} />
     <meta property="og:site_name" content="Cursor Community Kazakhstan" />
     <meta property="og:image" content={`${siteUrl}/brand/lockup-horizontal-dark.png`} />
+    <meta property="og:image:width" content="6717" />
+    <meta property="og:image:height" content="1597" />
+    <meta property="og:image:alt" content="Cursor Community Kazakhstan" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -96,6 +116,9 @@ const websiteSchema = {
 
     <!-- Structured data: Organization -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+    <!-- Structured data: Place -->
+    <script type="application/ld+json" set:html={JSON.stringify(placeSchema)} />
 
     <!-- Structured data: WebSite -->
     <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

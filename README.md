@@ -74,3 +74,12 @@ npm run build
 
 - [Дизайн-документ](docs/plans/2026-03-09-cursor-community-kz-design.md)
 - [План реализации](docs/plans/2026-03-09-cursor-community-kz-implementation.md)
+
+## SEO (после деплоя)
+
+После выкладки сайта проверьте:
+
+1. **Sitemap:** откройте https://cursor-community.kz/sitemap-index.xml — в индексе должны быть ссылки на `/`, `/kk/`, `/en/`.
+2. **Google Search Console:** добавьте ресурс cursor-community.kz и отправьте sitemap (URL уже указан в `robots.txt`).
+3. **Индексация:** в поиске выполните `site:cursor-community.kz` — все три языковые версии в индексе, без дублей.
+4. При необходимости проверьте отчёт «Покрытие» и Core Web Vitals в GSC.

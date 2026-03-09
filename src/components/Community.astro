@@ -15,8 +15,8 @@ const links = [
 
 <section id="community" class="section">
   <div class="container">
-    <h2 class="heading-command">{dict.community.command}</h2>
-    <p class="heading-sub">{dict.community.heading}</p>
+    <p class="heading-command" aria-hidden="true">{dict.community.command}</p>
+    <h2 class="heading-sub">{dict.community.heading}</h2>
     <div class="grid">
       {links.map((link) => (
         <a
@@ -45,7 +45,7 @@ const links = [
     padding: 0 var(--container-padding);
   }
 
-  h2:not(.heading-command) {
+  h2:not(.heading-command):not(.heading-sub) {
     font-family: var(--font-heading);
     font-size: clamp(1.5rem, 4vw, 2rem);
     margin-bottom: 1.5rem;

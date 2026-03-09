@@ -77,8 +77,8 @@ const eventsJsonLd = events.map((event) => {
 
 <section id="events" class="section">
   <div class="container">
-    <h2 class="heading-command">{dict.events.command}</h2>
-    <p class="heading-sub">{dict.events.heading}</p>
+    <p class="heading-command" aria-hidden="true">{dict.events.command}</p>
+    <h2 class="heading-sub">{dict.events.heading}</h2>
 
     {!hasUpcoming && (
       <div class="empty-state">
@@ -138,7 +138,7 @@ const eventsJsonLd = events.map((event) => {
     padding: 0 var(--container-padding);
   }
 
-  h2:not(.heading-command) {
+  h2:not(.heading-command):not(.heading-sub) {
     font-family: var(--font-heading);
     margin-bottom: 2rem;
   }
