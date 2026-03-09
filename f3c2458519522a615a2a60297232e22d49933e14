@@ -1,0 +1,24 @@
+docs/plans/2026-03-09-cursor-community-kz-implementation.md
+  64909bef4e0726d0 1-941
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "f3c2458519522a615a2a60297232e22d49933e14",
+  "prompts": {
+    "64909bef4e0726d0": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "1f8c11ee-dba5-4384-a653-1f0a4697d3a2",
+        "model": "claude-4.6-opus-high-thinking"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 941,
+      "total_deletions": 0,
+      "accepted_lines": 941,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/c80702941371477c7ce7bc8cd0d983a54744a0eeca4bf2335fb85556776f52c6"
+    }
+  }
+}
