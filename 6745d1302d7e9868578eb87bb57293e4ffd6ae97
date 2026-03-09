@@ -1,0 +1,38 @@
+src/i18n/ru.json
+  56cce290bc817fbc 40-41
+src/layouts/Base.astro
+  56cce290bc817fbc 69
+src/content/events/cafe-cursor-almaty.mdx
+  56cce290bc817fbc 3-4,7
+src/i18n/kk.json
+  56cce290bc817fbc 40-41
+src/content/events/cafe-cursor-astana.mdx
+  56cce290bc817fbc 3,14
+src/components/Events.astro
+  56cce290bc817fbc 13-14,23-30,37-43,64-66,108-110,112-113,116-132,134-143,148-149,219-225
+src/i18n/en.json
+  56cce290bc817fbc 40-41
+src/components/Header.astro
+  56cce290bc817fbc 61,171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.8",
+  "base_commit_sha": "6745d1302d7e9868578eb87bb57293e4ffd6ae97",
+  "prompts": {
+    "56cce290bc817fbc": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "7390f24c-0f1e-429f-836b-cb0e34f4d647",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 85,
+      "total_deletions": 44,
+      "accepted_lines": 75,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/046b90db6c60c66b36c93c35282c5324b2664e76219849dc830695910936f471"
+    }
+  }
+}
