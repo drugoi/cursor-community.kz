@@ -5,7 +5,7 @@
   },
   "nav": {
     "events": "Оқиғалар",
-    "buildwithcursor": "#buildwithcursor",
+    "buildwithcursor": "Жобалар",
     "community": "Қауымдастық",
     "about": "Біз туралы"
   },
@@ -33,12 +33,15 @@
     "cta_events": "Жақын оқиғалар"
   },
   "buildwithcursor": {
-    "heading": "#buildwithcursor",
+    "heading": "#builtwithcursor",
     "command": "$ cat ./projects --built-with-cursor",
     "submit_cta": "Жобаны қосу",
     "submit_description": "Cursor-мен бірдеңе жасадыңыз ба? Қауымдастықпен бөлісіңіз.",
     "view_project": "Жобаны қарау",
-    "no_projects": "Әзірге жобалар жоқ. Бірінші болыңыз!"
+    "no_projects": "Әзірге жобалар жоқ. Бірінші болыңыз!",
+    "summary": "Cursor көмегімен жасалған қауымдастық жобаларының витринасы: өнімдер, құралдар және эксперименттер.",
+    "projects_added": "жоба қосылды",
+    "view_all_cta": "Барлық жобаларды көру"
   },
   "events": {
     "heading": "Жақын оқиғалар",

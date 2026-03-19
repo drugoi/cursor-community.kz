@@ -12,6 +12,8 @@ interface Props {
 }
 
 const { locale, dict } = Astro.props;
+const homeHref = locale === 'ru' ? '/' : `/${locale}/`;
+const projectsHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`;
 
 const langLinks = [
   { code: 'ru' as const, label: 'RU', href: '/' },
@@ -28,10 +30,10 @@ const langLinks = [
     </a>
 
     <nav class="nav">
-      <a href="#events" class="nav-link">{dict.nav.events}</a>
-      <a href="#buildwithcursor" class="nav-link">{dict.nav.buildwithcursor}</a>
-      <a href="#community" class="nav-link">{dict.nav.community}</a>
-      <a href="#about" class="nav-link">{dict.nav.about}</a>
+      <a href={`${homeHref}#events`} class="nav-link">{dict.nav.events}</a>
+      <a href={projectsHref} class="nav-link">{dict.nav.buildwithcursor}</a>
+      <a href={`${homeHref}#community`} class="nav-link">{dict.nav.community}</a>
+      <a href={`${homeHref}#about`} class="nav-link">{dict.nav.about}</a>
     </nav>
 
     <div class="lang-switcher">
