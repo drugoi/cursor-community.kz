@@ -6,7 +6,10 @@ interface Project {
   title: string;
   description: string;
   url: string;
-  image: string;
+  author: string;
+  startingDate: string;
+  builtWithTools?: string[];
+  image?: string;
 }
 
 interface Props {
@@ -17,13 +20,26 @@ interface Props {
       submit_cta: string;
       submit_description: string;
       view_project: string;
+      share_project: string;
+      share_copied: string;
       no_projects: string;
     };
   };
 }
 
 const { dict } = Astro.props;
-const projects = projectsData as Project[];
+const FILE_LINK_RE = /^(https?:\/\/|\/)[^\s]+\.[a-zA-Z0-9]{2,5}([?#].*)?$/;
+const projects = (projectsData as Project[]).map((project) => {
+  if (project.image && !FILE_LINK_RE.test(project.image)) {
+    throw new Error(
+      `Invalid image link for project "${project.id}". "image" must be a file URL/path (e.g. .png, .jpg, .webp).`
+    );
+  }
+  return {
+    ...project,
+    builtWithTools: Array.isArray(project.builtWithTools) ? project.builtWithTools : [],
+  };
+});
 const hasProjects = projects.length > 0;
 
 const GITHUB_ISSUE_URL =
@@ -54,28 +70,47 @@ const GITHUB_ISSUE_URL =
       <>
         <div class="projects-grid">
           {projects.map((project) => (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
               class="project-card"
+              data-project-id={project.id}
+              data-project-title={project.title}
+              data-project-author={project.author}
+              data-project-starting-date={project.startingDate}
+              data-project-description={project.description}
+              data-project-url={project.url}
+              data-project-image={project.image || ''}
+              data-project-tools={project.builtWithTools.join(',')}
             >
-              <div class="project-image-wrapper">
-                <img
-                  src={project.image}
-                  alt=""
-                  class="project-image"
-                  width="400"
-                  height="225"
-                  loading="lazy"
-                />
-              </div>
+              {project.image && (
+                <div class="project-image-wrapper">
+                  <img
+                    src={project.image}
+                    alt=""
+                    class="project-image"
+                    width="400"
+                    height="225"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <div class="project-content">
                 <h3 class="project-title">{project.title}</h3>
+                <p class="project-author">@{project.author}</p>
                 <p class="project-description">{project.description}</p>
-                <span class="project-link">{dict.buildwithcursor.view_project} →</span>
+                {project.builtWithTools.length > 0 && (
+                  <div class="project-tools">
+                    {project.builtWithTools.slice(0, 3).map((tool) => (
+                      <span
+                        class={`tool-chip${tool.toLowerCase() === 'cursor' ? ' tool-chip--cursor' : ''}`}
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            </a>
+            </button>
           ))}
         </div>
         <div class="submit-block">
@@ -92,6 +127,198 @@ const GITHUB_ISSUE_URL =
       </>
     )}
   </div>
+
+  {hasProjects && (
+    <>
+      <div class="modal-backdrop" id="project-modal-backdrop" hidden></div>
+      <div
+        class="modal"
+        id="project-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        hidden
+      >
+        <div class="modal-inner">
+          <button type="button" class="modal-close" id="project-modal-close" aria-label="Close">
+            ×
+          </button>
+          <div class="modal-body">
+            <div class="modal-image-wrapper" id="project-modal-image-wrapper" hidden>
+              <img
+                src=""
+                alt=""
+                class="modal-image"
+                id="project-modal-image"
+                loading="lazy"
+              />
+            </div>
+            <h3 class="modal-title" id="project-modal-title"></h3>
+            <div class="modal-meta-group">
+              <p class="modal-meta" id="project-modal-author"></p>
+              <p class="modal-meta" id="project-modal-starting-date"></p>
+              <div class="modal-tools" id="project-modal-tools"></div>
+            </div>
+            <p class="modal-description" id="project-modal-description"></p>
+            <div class="modal-actions">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="modal-link modal-link--primary"
+                id="project-modal-link"
+              >
+                {dict.buildwithcursor.view_project} →
+              </a>
+              <button
+                type="button"
+                class="modal-link modal-link--secondary"
+                id="project-modal-share"
+                data-default-label={dict.buildwithcursor.share_project}
+                data-copied-label={dict.buildwithcursor.share_copied}
+              >
+                <span aria-hidden="true">🔗</span>
+                <span id="project-modal-share-label">{dict.buildwithcursor.share_project}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+          const backdrop = document.getElementById('project-modal-backdrop');
+          const modal = document.getElementById('project-modal');
+          const closeBtn = document.getElementById('project-modal-close');
+          const imgWrapper = document.getElementById('project-modal-image-wrapper');
+          const img = document.getElementById('project-modal-image');
+          const titleEl = document.getElementById('project-modal-title');
+          const authorEl = document.getElementById('project-modal-author');
+          const startingDateEl = document.getElementById('project-modal-starting-date');
+          const toolsEl = document.getElementById('project-modal-tools');
+          const descEl = document.getElementById('project-modal-description');
+          const linkEl = document.getElementById('project-modal-link');
+          const shareBtn = document.getElementById('project-modal-share');
+          const shareLabel = document.getElementById('project-modal-share-label');
+          let activeProjectId = null;
+
+          const closeModal = (clearHash = true) => {
+            if (modal) modal.hidden = true;
+            if (backdrop) backdrop.hidden = true;
+            activeProjectId = null;
+            if (clearHash && window.location.hash) {
+              history.replaceState(
+                null,
+                '',
+                `${window.location.pathname}${window.location.search}`
+              );
+            }
+          };
+
+          const openModalFromCard = (card) => {
+            if (!modal || !backdrop) return;
+            const projectId = card.getAttribute('data-project-id') || '';
+            activeProjectId = projectId;
+
+            if (titleEl) titleEl.textContent = card.getAttribute('data-project-title') || '';
+            if (authorEl) {
+              authorEl.textContent = `Author: ${card.getAttribute('data-project-author') || '-'}`;
+            }
+            if (startingDateEl) {
+              startingDateEl.textContent = `Starting date: ${card.getAttribute('data-project-starting-date') || '-'}`;
+            }
+            if (descEl) {
+              descEl.textContent = card.getAttribute('data-project-description') || '';
+            }
+            if (linkEl) {
+              linkEl.href = card.getAttribute('data-project-url') || '#';
+            }
+
+            if (toolsEl) {
+              const toolsRaw = card.getAttribute('data-project-tools') || '';
+              const tools = toolsRaw.split(',').map((t) => t.trim()).filter(Boolean);
+              toolsEl.innerHTML = tools
+                .map((tool) => {
+                  const isCursor = tool.toLowerCase() === 'cursor';
+                  return `<span class="tool-chip${isCursor ? ' tool-chip--cursor' : ''}">${tool}</span>`;
+                })
+                .join('');
+            }
+
+            const image = card.getAttribute('data-project-image');
+            if (image && img && imgWrapper) {
+              img.src = image;
+              imgWrapper.hidden = false;
+            } else if (imgWrapper) {
+              imgWrapper.hidden = true;
+            }
+
+            backdrop.hidden = false;
+            modal.hidden = false;
+
+            if (projectId && window.location.hash !== `#${projectId}`) {
+              history.replaceState(
+                null,
+                '',
+                `${window.location.pathname}${window.location.search}#${projectId}`
+              );
+            }
+
+            if (shareLabel && shareBtn) {
+              shareLabel.textContent = shareBtn.getAttribute('data-default-label') || '';
+            }
+          };
+
+          const openModalFromHash = () => {
+            const hash = window.location.hash.replace('#', '').trim();
+            if (!hash) {
+              closeModal(false);
+              return;
+            }
+
+            const card = document.querySelector(`[data-project-id="${hash}"]`);
+            if (card) {
+              openModalFromCard(card);
+            } else if (activeProjectId) {
+              closeModal(false);
+            }
+          };
+
+          document.addEventListener('click', (event) => {
+            const card = event.target instanceof Element ? event.target.closest('[data-project-id]') : null;
+            if (!card) return;
+            event.preventDefault();
+            openModalFromCard(card);
+          });
+
+          if (closeBtn) closeBtn.addEventListener('click', closeModal);
+          if (backdrop) backdrop.addEventListener('click', closeModal);
+          if (shareBtn) {
+            shareBtn.addEventListener('click', async () => {
+              const urlToShare = activeProjectId
+                ? `${window.location.origin}${window.location.pathname}${window.location.search}#${activeProjectId}`
+                : window.location.href;
+              try {
+                await navigator.clipboard.writeText(urlToShare);
+                if (shareLabel) {
+                  shareLabel.textContent = shareBtn.getAttribute('data-copied-label') || '';
+                }
+              } catch {
+                if (shareLabel && shareBtn) {
+                  shareLabel.textContent = shareBtn.getAttribute('data-default-label') || '';
+                }
+              }
+            });
+          }
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+          });
+          window.addEventListener('hashchange', openModalFromHash);
+          openModalFromHash();
+        });
+      </script>
+    </>
+  )}
 </section>
 
 <style>
@@ -155,11 +382,14 @@ const GITHUB_ISSUE_URL =
 
   .project-card {
     display: block;
+    width: 100%;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.2s ease;
+    cursor: pointer;
+    text-align: left;
   }
 
   .project-card:hover {
@@ -199,10 +429,42 @@ const GITHUB_ISSUE_URL =
     margin-bottom: 0.75rem;
   }
 
-  .project-link {
-    font-family: var(--font-mono);
+  .project-author {
+    color: var(--text-secondary);
     font-size: 0.85rem;
+    margin: 0 0 0.5rem;
+  }
+
+  .project-tools,
+  .modal-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.tool-chip) {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+
+  :global(.tool-chip--cursor) {
+    border-color: var(--accent-brand-dim);
     color: var(--accent-brand);
+    background: var(--accent-brand-glow);
+    box-shadow: 0 0 12px var(--accent-brand-glow);
+  }
+
+  .modal-tools :global(.tool-chip--cursor) {
+    border-color: var(--accent-brand);
+    color: #031b12;
+    background: #00ff9d;
+    box-shadow: 0 0 0 1px rgba(0, 255, 157, 0.35), 0 0 16px rgba(0, 255, 157, 0.35);
+    font-weight: 700;
   }
 
   .submit-block {
@@ -239,6 +501,148 @@ const GITHUB_ISSUE_URL =
   .submit-cta:hover {
     background: var(--accent-brand-glow);
     border-color: var(--accent-brand);
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 40;
+  }
+
+  .modal-backdrop[hidden] {
+    display: none !important;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 50;
+  }
+
+  .modal[hidden] {
+    display: none !important;
+  }
+
+  .modal-inner {
+    max-width: 640px;
+    width: 100%;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding: 1.5rem 2rem;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .modal-meta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .modal-image-wrapper {
+    width: 100%;
+    max-height: 260px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: var(--bg-primary);
+  }
+
+  .modal-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+  }
+
+  .modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .modal-meta {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .modal-description {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .modal-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid transparent;
+  }
+
+  .modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .modal-link--primary {
+    color: var(--accent-brand);
+    border-color: var(--accent-brand-dim);
+    background: var(--accent-brand-glow);
+  }
+
+  .modal-link--primary:hover {
+    border-color: var(--accent-brand);
+  }
+
+  .modal-link--secondary {
+    color: var(--text-secondary);
+    border-color: var(--border);
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .modal-link--secondary:hover {
+    color: var(--text-primary);
+    border-color: var(--text-secondary);
+  }
+
+  .modal-link--primary:hover,
+  .modal-link--secondary:hover {
+    text-decoration: underline;
   }
 
   @media (max-width: 640px) {
