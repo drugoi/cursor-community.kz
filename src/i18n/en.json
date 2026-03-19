@@ -43,7 +43,9 @@
     "projects_added": "projects added",
     "view_all_cta": "View all projects",
     "share_project": "Share",
-    "share_copied": "Copied"
+    "share_copied": "Copied",
+    "author_label": "Author",
+    "starting_date_label": "Starting date"
   },
   "events": {
     "heading": "Upcoming Events",

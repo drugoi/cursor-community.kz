@@ -2,19 +2,10 @@
   {
     "id": "cursor-community-kz",
     "title": "cursor-community.kz",
-    "description": "Community website for Cursor users in Kazakhstan (events, links, and project showcase).",
+    "description": "Сам вебсайт сообщества был разработан с использованием Cursor. Разработка ведется с помощью фреймворка Astro.",
     "url": "https://github.com/drugoi/cursor-community.kz",
-    "author": "Cursor Community Kazakhstan",
-    "startingDate": "2026-03-19",
-    "builtWithTools": ["cursor", "codex", "claude"],
-    "image": "https://dummyimage.com/1200x675/111827/00ff9d.png?text=cursor-community.kz"
-  },
-  {
-    "id": "demo-no-tools-no-image",
-    "title": "Demo Project Without Tools and Image",
-    "description": "This is a demo project entry with no tools list and no image to verify fallback rendering.",
-    "url": "https://example.com/demo-project",
-    "author": "Demo Author",
-    "startingDate": "2026-03-20"
+    "author": "drugoi",
+    "startingDate": "2026-03-09",
+    "builtWithTools": ["cursor"]
   }
 ]

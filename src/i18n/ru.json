@@ -43,7 +43,9 @@
     "projects_added": "проектов добавлено",
     "view_all_cta": "Смотреть все проекты",
     "share_project": "Поделиться",
-    "share_copied": "Скопировано"
+    "share_copied": "Скопировано",
+    "author_label": "Автор",
+    "starting_date_label": "Дата начала"
   },
   "events": {
     "heading": "Ближайшие события",

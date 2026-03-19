@@ -41,13 +41,36 @@ body:
       required: true
 
   - type: input
-    id: image
+    id: author
     attributes:
-      label: Image URL
-      description: URL to a screenshot or preview image of your project (recommended 16:9 aspect ratio, min 640×360px)
-      placeholder: "https://example.com/screenshot.png"
+      label: Author
+      description: Your name, team name, or GitHub handle
+      placeholder: "Jane Doe"
     validations:
       required: true
+
+  - type: input
+    id: startingDate
+    attributes:
+      label: Starting Date
+      description: When the project was started (YYYY-MM-DD)
+      placeholder: "2026-01-15"
+    validations:
+      required: true
+
+  - type: input
+    id: builtWithTools
+    attributes:
+      label: Built With Tools
+      description: Comma-separated list of tools used to build the project (optional)
+      placeholder: "cursor, claude, copilot"
+
+  - type: input
+    id: image
+    attributes:
+      label: Image URL (optional)
+      description: URL to a screenshot or preview image of your project (recommended 16:9 aspect ratio, min 640×360px). Must be a direct link to an image file (.png, .jpg, .webp, etc.)
+      placeholder: "https://example.com/screenshot.png"
 
   - type: markdown
     attributes:

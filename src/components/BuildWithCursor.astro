@@ -23,12 +23,14 @@ interface Props {
       share_project: string;
       share_copied: string;
       no_projects: string;
+      author_label: string;
+      starting_date_label: string;
     };
   };
 }
 
 const { dict } = Astro.props;
-const FILE_LINK_RE = /^(https?:\/\/|\/)[^\s]+\.[a-zA-Z0-9]{2,5}([?#].*)?$/;
+const FILE_LINK_RE = /^(https?:\/\/|\/)[^\s]+\.(png|jpe?g|gif|webp|svg|avif)([?#].*)?$/i;
 const projects = (projectsData as Project[]).map((project) => {
   if (project.image && !FILE_LINK_RE.test(project.image)) {
     throw new Error(
@@ -86,7 +88,7 @@ const GITHUB_ISSUE_URL =
                 <div class="project-image-wrapper">
                   <img
                     src={project.image}
-                    alt=""
+                    alt={project.title}
                     class="project-image"
                     width="400"
                     height="225"
@@ -155,8 +157,8 @@ const GITHUB_ISSUE_URL =
             </div>
             <h3 class="modal-title" id="project-modal-title"></h3>
             <div class="modal-meta-group">
-              <p class="modal-meta" id="project-modal-author"></p>
-              <p class="modal-meta" id="project-modal-starting-date"></p>
+              <p class="modal-meta" id="project-modal-author" data-label={dict.buildwithcursor.author_label}></p>
+              <p class="modal-meta" id="project-modal-starting-date" data-label={dict.buildwithcursor.starting_date_label}></p>
               <div class="modal-tools" id="project-modal-tools"></div>
             </div>
             <p class="modal-description" id="project-modal-description"></p>
@@ -201,10 +203,15 @@ const GITHUB_ISSUE_URL =
           const shareBtn = document.getElementById('project-modal-share');
           const shareLabel = document.getElementById('project-modal-share-label');
           let activeProjectId = null;
+          let triggerElement = null;
 
           const closeModal = (clearHash = true) => {
             if (modal) modal.hidden = true;
             if (backdrop) backdrop.hidden = true;
+            if (triggerElement) {
+              triggerElement.focus();
+              triggerElement = null;
+            }
             activeProjectId = null;
             if (clearHash && window.location.hash) {
               history.replaceState(
@@ -215,17 +222,37 @@ const GITHUB_ISSUE_URL =
             }
           };
 
+          const trapFocus = (event) => {
+            if (!modal || modal.hidden) return;
+            const focusable = modal.querySelectorAll(
+              'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            );
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+              event.preventDefault();
+              last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+              event.preventDefault();
+              first.focus();
+            }
+          };
+
           const openModalFromCard = (card) => {
             if (!modal || !backdrop) return;
             const projectId = card.getAttribute('data-project-id') || '';
             activeProjectId = projectId;
 
-            if (titleEl) titleEl.textContent = card.getAttribute('data-project-title') || '';
+            const title = card.getAttribute('data-project-title') || '';
+            if (titleEl) titleEl.textContent = title;
             if (authorEl) {
-              authorEl.textContent = `Author: ${card.getAttribute('data-project-author') || '-'}`;
+              const label = authorEl.getAttribute('data-label') || 'Author';
+              authorEl.textContent = `${label}: ${card.getAttribute('data-project-author') || '-'}`;
             }
             if (startingDateEl) {
-              startingDateEl.textContent = `Starting date: ${card.getAttribute('data-project-starting-date') || '-'}`;
+              const label = startingDateEl.getAttribute('data-label') || 'Starting date';
+              startingDateEl.textContent = `${label}: ${card.getAttribute('data-project-starting-date') || '-'}`;
             }
             if (descEl) {
               descEl.textContent = card.getAttribute('data-project-description') || '';
@@ -237,17 +264,19 @@ const GITHUB_ISSUE_URL =
             if (toolsEl) {
               const toolsRaw = card.getAttribute('data-project-tools') || '';
               const tools = toolsRaw.split(',').map((t) => t.trim()).filter(Boolean);
-              toolsEl.innerHTML = tools
-                .map((tool) => {
-                  const isCursor = tool.toLowerCase() === 'cursor';
-                  return `<span class="tool-chip${isCursor ? ' tool-chip--cursor' : ''}">${tool}</span>`;
-                })
-                .join('');
+              toolsEl.replaceChildren();
+              tools.forEach((tool) => {
+                const span = document.createElement('span');
+                span.className = `tool-chip${tool.toLowerCase() === 'cursor' ? ' tool-chip--cursor' : ''}`;
+                span.textContent = tool;
+                toolsEl.appendChild(span);
+              });
             }
 
             const image = card.getAttribute('data-project-image');
             if (image && img && imgWrapper) {
               img.src = image;
+              img.alt = title;
               imgWrapper.hidden = false;
             } else if (imgWrapper) {
               imgWrapper.hidden = true;
@@ -255,6 +284,8 @@ const GITHUB_ISSUE_URL =
 
             backdrop.hidden = false;
             modal.hidden = false;
+
+            if (closeBtn) closeBtn.focus();
 
             if (projectId && window.location.hash !== `#${projectId}`) {
               history.replaceState(
@@ -276,7 +307,7 @@ const GITHUB_ISSUE_URL =
               return;
             }
 
-            const card = document.querySelector(`[data-project-id="${hash}"]`);
+            const card = document.querySelector(`[data-project-id="${CSS.escape(hash)}"]`);
             if (card) {
               openModalFromCard(card);
             } else if (activeProjectId) {
@@ -288,6 +319,7 @@ const GITHUB_ISSUE_URL =
             const card = event.target instanceof Element ? event.target.closest('[data-project-id]') : null;
             if (!card) return;
             event.preventDefault();
+            triggerElement = card;
             openModalFromCard(card);
           });
 
@@ -312,6 +344,7 @@ const GITHUB_ISSUE_URL =
           }
           document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') closeModal();
+            if (event.key === 'Tab') trapFocus(event);
           });
           window.addEventListener('hashchange', openModalFromHash);
           openModalFromHash();

@@ -43,7 +43,9 @@
     "projects_added": "жоба қосылды",
     "view_all_cta": "Барлық жобаларды көру",
     "share_project": "Бөлісу",
-    "share_copied": "Көшірілді"
+    "share_copied": "Көшірілді",
+    "author_label": "Автор",
+    "starting_date_label": "Басталу күні"
   },
   "events": {
     "heading": "Жақын оқиғалар",
