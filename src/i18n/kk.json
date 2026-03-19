@@ -5,6 +5,7 @@
   },
   "nav": {
     "events": "Оқиғалар",
+    "buildwithcursor": "#buildwithcursor",
     "community": "Қауымдастық",
     "about": "Біз туралы"
   },
@@ -30,6 +31,14 @@
     ],
     "cta_join": "Қосылу",
     "cta_events": "Жақын оқиғалар"
+  },
+  "buildwithcursor": {
+    "heading": "#buildwithcursor",
+    "command": "$ cat ./projects --built-with-cursor",
+    "submit_cta": "Жобаны қосу",
+    "submit_description": "Cursor-мен бірдеңе жасадыңыз ба? Қауымдастықпен бөлісіңіз.",
+    "view_project": "Жобаны қарау",
+    "no_projects": "Әзірге жобалар жоқ. Бірінші болыңыз!"
   },
   "events": {
     "heading": "Жақын оқиғалар",

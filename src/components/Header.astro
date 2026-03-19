@@ -4,6 +4,7 @@ interface Props {
   dict: {
     nav: {
       events: string;
+      buildwithcursor: string;
       community: string;
       about: string;
     };
@@ -28,6 +29,7 @@ const langLinks = [
 
     <nav class="nav">
       <a href="#events" class="nav-link">{dict.nav.events}</a>
+      <a href="#buildwithcursor" class="nav-link">{dict.nav.buildwithcursor}</a>
       <a href="#community" class="nav-link">{dict.nav.community}</a>
       <a href="#about" class="nav-link">{dict.nav.about}</a>
     </nav>

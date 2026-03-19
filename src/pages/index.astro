@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Events from '../components/Events.astro';
+import BuildWithCursor from '../components/BuildWithCursor.astro';
 import Community from '../components/Community.astro';
 import About from '../components/About.astro';
 import Footer from '../components/Footer.astro';
@@ -17,6 +18,7 @@ const dict = getDict(locale);
   <main>
     <Hero dict={dict} />
     <Events locale={locale} dict={dict} />
+    <BuildWithCursor dict={dict} />
     <Community dict={dict} />
     <About dict={dict} />
   </main>

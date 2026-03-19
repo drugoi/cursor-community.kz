@@ -1,0 +1,259 @@
+---
+import projectsData from '../data/buildwithcursor.json';
+
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  image: string;
+}
+
+interface Props {
+  dict: {
+    buildwithcursor: {
+      heading: string;
+      command: string;
+      submit_cta: string;
+      submit_description: string;
+      view_project: string;
+      no_projects: string;
+    };
+  };
+}
+
+const { dict } = Astro.props;
+const projects = projectsData as Project[];
+const hasProjects = projects.length > 0;
+
+const GITHUB_ISSUE_URL =
+  'https://github.com/drugoi/cursor-community.kz/issues/new?template=buildwithcursor-project.yml';
+---
+
+<section id="buildwithcursor" class="section">
+  <div class="container">
+    <p class="heading-command" aria-hidden="true">{dict.buildwithcursor.command}</p>
+    <h2 class="heading-sub">{dict.buildwithcursor.heading}</h2>
+
+    {!hasProjects && (
+      <div class="empty-state">
+        <p class="empty-state-mono">// projects: []</p>
+        <p class="empty-state-message">{dict.buildwithcursor.no_projects}</p>
+        <a
+          href={GITHUB_ISSUE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="empty-state-cta"
+        >
+          {dict.buildwithcursor.submit_cta}
+        </a>
+      </div>
+    )}
+
+    {hasProjects && (
+      <>
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="project-card"
+            >
+              <div class="project-image-wrapper">
+                <img
+                  src={project.image}
+                  alt=""
+                  class="project-image"
+                  width="400"
+                  height="225"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-content">
+                <h3 class="project-title">{project.title}</h3>
+                <p class="project-description">{project.description}</p>
+                <span class="project-link">{dict.buildwithcursor.view_project} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="submit-block">
+          <p class="submit-description">{dict.buildwithcursor.submit_description}</p>
+          <a
+            href={GITHUB_ISSUE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="submit-cta"
+          >
+            {dict.buildwithcursor.submit_cta}
+          </a>
+        </div>
+      </>
+    )}
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: var(--section-padding) 0;
+  }
+
+  .container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+  }
+
+  .empty-state {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .empty-state-mono {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent-brand-dim);
+    margin-bottom: 1rem;
+  }
+
+  .empty-state-message {
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .empty-state-cta {
+    display: inline-block;
+    padding: 0.6rem 1.25rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--accent-brand);
+    border: 1px solid var(--accent-brand-dim);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .empty-state-cta:hover {
+    background: var(--accent-brand-glow);
+    border-color: var(--accent-brand);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent-brand-dim);
+    background: var(--bg-card-hover);
+    box-shadow: 0 0 20px var(--accent-brand-glow);
+  }
+
+  .project-image-wrapper {
+    aspect-ratio: 16 / 9;
+    background: var(--bg-primary);
+    overflow: hidden;
+  }
+
+  .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-content {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .project-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .project-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-brand);
+  }
+
+  .submit-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .submit-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .submit-cta {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-brand);
+    border: 1px solid var(--accent-brand-dim);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .submit-cta:hover {
+    background: var(--accent-brand-glow);
+    border-color: var(--accent-brand);
+  }
+
+  @media (max-width: 640px) {
+    .empty-state {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .submit-block {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .submit-cta {
+      align-self: center;
+    }
+  }
+</style>

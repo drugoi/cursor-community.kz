@@ -5,6 +5,7 @@
   },
   "nav": {
     "events": "События",
+    "buildwithcursor": "#buildwithcursor",
     "community": "Сообщество",
     "about": "О нас"
   },
@@ -30,6 +31,14 @@
     ],
     "cta_join": "Присоединиться",
     "cta_events": "Ближайшие события"
+  },
+  "buildwithcursor": {
+    "heading": "#buildwithcursor",
+    "command": "$ cat ./projects --built-with-cursor",
+    "submit_cta": "Добавить проект",
+    "submit_description": "Сделали что-то с Cursor? Поделитесь с сообществом.",
+    "view_project": "Смотреть проект",
+    "no_projects": "Пока нет проектов. Станьте первым!"
   },
   "events": {
     "heading": "Ближайшие события",

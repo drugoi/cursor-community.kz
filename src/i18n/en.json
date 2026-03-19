@@ -5,6 +5,7 @@
   },
   "nav": {
     "events": "Events",
+    "buildwithcursor": "#buildwithcursor",
     "community": "Community",
     "about": "About"
   },
@@ -30,6 +31,14 @@
     ],
     "cta_join": "Join Us",
     "cta_events": "Upcoming Events"
+  },
+  "buildwithcursor": {
+    "heading": "#buildwithcursor",
+    "command": "$ cat ./projects --built-with-cursor",
+    "submit_cta": "Submit your project",
+    "submit_description": "Built something with Cursor? Share it with the community.",
+    "view_project": "View project",
+    "no_projects": "No projects yet. Be the first to showcase yours!"
   },
   "events": {
     "heading": "Upcoming Events",
