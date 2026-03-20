@@ -4,7 +4,7 @@ import { getShowcaseProjectsCount } from '../data/showcase-projects';
 interface Props {
   locale: 'ru' | 'kk' | 'en';
   dict: {
-    buildwithcursor: {
+    builtwithcursor: {
       heading: string;
       command: string;
       submit_cta: string;
@@ -22,18 +22,18 @@ const projectsCount = getShowcaseProjectsCount();
 const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`;
 ---
 
-<section id="buildwithcursor" class="section">
+<section id="builtwithcursor" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.buildwithcursor.command}</p>
-    <h2 class="heading-sub">{dict.buildwithcursor.heading}</h2>
+    <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
+    <h2 class="heading-sub">{dict.builtwithcursor.heading}</h2>
     <div class="summary-card">
-      <p class="summary-text">{dict.buildwithcursor.summary}</p>
+      <p class="summary-text">{dict.builtwithcursor.summary}</p>
       <p class="summary-count">
         <span class="summary-count-number">{projectsCount}</span>
-        <span class="summary-count-label">{dict.buildwithcursor.projects_added}</span>
+        <span class="summary-count-label">{dict.builtwithcursor.projects_added}</span>
       </p>
       <div class="summary-actions">
-        <a href={projectsPageHref} class="summary-link">{dict.buildwithcursor.view_all_cta}</a>
+        <a href={projectsPageHref} class="summary-link">{dict.builtwithcursor.view_all_cta}</a>
       </div>
     </div>
   </div>

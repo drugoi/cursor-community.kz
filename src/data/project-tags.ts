@@ -1,5 +1,5 @@
 /**
- * Pre-defined tags for #buildwithcursor projects.
+ * Pre-defined tags for #builtwithcursor projects.
  * Used in JSON data, UI, and GitHub issue template.
  */
 export const PROJECT_TAGS = [

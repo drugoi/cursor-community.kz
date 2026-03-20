@@ -67,22 +67,22 @@ npm run build
 - `src/pages/` — страницы (/, /kk/, /en/)
 - `src/components/` — секции (Header, Hero, Events, Community, About, Footer)
 - `src/content/events/` — события в MDX
-- `src/data/buildwithcursor.json` — проекты #buildwithcursor
+- `src/data/builtwithcursor.json` — проекты #builtwithcursor
 - `src/data/project-tags.ts` — предопределённые теги
 - `src/data/showcase-projects.ts` — загрузка и нормализация проектов
 - `src/scripts/project-modal.ts` — клиентская логика модального окна
-- `src/styles/buildwithcursor.css` — стили секции и модалки
-- `src/components/ProjectCard.astro`, `ProjectModal.astro` — подкомпоненты showcase
+- `src/styles/builtwithcursor.css` — стили секции и модалки
+- `src/components/BuiltWithCursor.astro`, `BuiltWithCursorSummary.astro`, `ProjectCard.astro`, `ProjectModal.astro` — showcase
 - `src/i18n/` — словари переводов (ru, kk, en)
 - `public/` — статические файлы (favicon, brand, robots.txt, llms.txt)
-- `.github/ISSUE_TEMPLATE/buildwithcursor-project.yml` — шаблон для подачи проектов
+- `.github/ISSUE_TEMPLATE/builtwithcursor-project.yml` — шаблон для подачи проектов
 
-## #buildwithcursor
+## #builtwithcursor
 
 Секция для демонстрации проектов, созданных с Cursor. Чтобы добавить проект:
 
-1. Пользователь создаёт issue по [шаблону](https://github.com/drugoi/cursor-community.kz/issues/new?template=buildwithcursor-project.yml) (title, description, url, image, tags).
-2. Мейнтейнер добавляет проект в `src/data/buildwithcursor.json`.
+1. Пользователь создаёт issue по [шаблону](https://github.com/drugoi/cursor-community.kz/issues/new?template=builtwithcursor-project.yml) (title, description, url, image, tags).
+2. Мейнтейнер добавляет проект в `src/data/builtwithcursor.json`.
 3. После деплоя проект появляется на сайте.
 
 ## Документация

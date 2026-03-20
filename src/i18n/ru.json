@@ -5,7 +5,7 @@
   },
   "nav": {
     "events": "События",
-    "buildwithcursor": "Проекты",
+    "builtwithcursor": "Проекты",
     "community": "Сообщество",
     "about": "О нас"
   },
@@ -32,7 +32,7 @@
     "cta_join": "Присоединиться",
     "cta_events": "Ближайшие события"
   },
-  "buildwithcursor": {
+  "builtwithcursor": {
     "heading": "#builtwithcursor",
     "command": "$ cat ./projects --built-with-cursor",
     "submit_cta": "Добавить проект",

@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
-import BuildWithCursor from '../../components/BuildWithCursor.astro';
+import BuiltWithCursor from '../../components/BuiltWithCursor.astro';
 import Footer from '../../components/Footer.astro';
 import { getDict } from '../../i18n/utils';
 
@@ -12,7 +12,7 @@ const dict = getDict(locale);
 <Base locale={locale} dict={dict}>
   <Header locale={locale} dict={dict} />
   <main>
-    <BuildWithCursor dict={dict} />
+    <BuiltWithCursor dict={dict} />
   </main>
   <Footer dict={dict} />
 </Base>

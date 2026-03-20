@@ -1,12 +1,12 @@
 ---
-import '../styles/buildwithcursor.css';
+import '../styles/builtwithcursor.css';
 import { loadShowcaseProjects } from '../data/showcase-projects';
 import ProjectCard from './ProjectCard.astro';
 import ProjectModal from './ProjectModal.astro';
 
 interface Props {
   dict: {
-    buildwithcursor: {
+    builtwithcursor: {
       heading: string;
       command: string;
       submit_cta: string;
@@ -26,25 +26,25 @@ const projects = loadShowcaseProjects();
 const hasProjects = projects.length > 0;
 
 const GITHUB_ISSUE_URL =
-  'https://github.com/drugoi/cursor-community.kz/issues/new?template=buildwithcursor-project.yml';
+  'https://github.com/drugoi/cursor-community.kz/issues/new?template=builtwithcursor-project.yml';
 ---
 
-<section id="buildwithcursor" class="section">
+<section id="builtwithcursor" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.buildwithcursor.command}</p>
-    <h2 class="heading-sub">{dict.buildwithcursor.heading}</h2>
+    <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
+    <h2 class="heading-sub">{dict.builtwithcursor.heading}</h2>
 
     {!hasProjects && (
       <div class="empty-state">
         <p class="empty-state-mono">// projects: []</p>
-        <p class="empty-state-message">{dict.buildwithcursor.no_projects}</p>
+        <p class="empty-state-message">{dict.builtwithcursor.no_projects}</p>
         <a
           href={GITHUB_ISSUE_URL}
           target="_blank"
           rel="noopener noreferrer"
           class="empty-state-cta"
         >
-          {dict.buildwithcursor.submit_cta}
+          {dict.builtwithcursor.submit_cta}
         </a>
       </div>
     )}
@@ -55,14 +55,14 @@ const GITHUB_ISSUE_URL =
           {projects.map((project) => <ProjectCard project={project} />)}
         </div>
         <div class="submit-block">
-          <p class="submit-description">{dict.buildwithcursor.submit_description}</p>
+          <p class="submit-description">{dict.builtwithcursor.submit_description}</p>
           <a
             href={GITHUB_ISSUE_URL}
             target="_blank"
             rel="noopener noreferrer"
             class="submit-cta"
           >
-            {dict.buildwithcursor.submit_cta}
+            {dict.builtwithcursor.submit_cta}
           </a>
         </div>
       </>
@@ -71,11 +71,11 @@ const GITHUB_ISSUE_URL =
 
   {hasProjects && (
     <ProjectModal
-      authorLabel={dict.buildwithcursor.author_label}
-      startingDateLabel={dict.buildwithcursor.starting_date_label}
-      viewProject={dict.buildwithcursor.view_project}
-      shareProject={dict.buildwithcursor.share_project}
-      shareCopied={dict.buildwithcursor.share_copied}
+      authorLabel={dict.builtwithcursor.author_label}
+      startingDateLabel={dict.builtwithcursor.starting_date_label}
+      viewProject={dict.builtwithcursor.view_project}
+      shareProject={dict.builtwithcursor.share_project}
+      shareCopied={dict.builtwithcursor.share_copied}
     />
   )}
 </section>

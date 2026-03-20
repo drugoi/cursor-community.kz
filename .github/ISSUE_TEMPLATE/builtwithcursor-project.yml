@@ -1,12 +1,12 @@
-name: "#buildwithcursor Project Submission"
-description: Submit a project to the #buildwithcursor showcase (Kazakhstan)
-title: "[#buildwithcursor] "
-labels: ["buildwithcursor"]
+name: "#builtwithcursor Project Submission"
+description: Submit a project to the #builtwithcursor showcase (Kazakhstan)
+title: "[#builtwithcursor] "
+labels: ["builtwithcursor"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for submitting your project to the **#buildwithcursor** showcase! 🚀
+        Thanks for submitting your project to the **#builtwithcursor** showcase! 🚀
         Projects built with Cursor by developers in Kazakhstan will be featured on [cursor-community.kz](https://cursor-community.kz).
 
         Please fill in all fields below. After review, your project will be added to the showcase.

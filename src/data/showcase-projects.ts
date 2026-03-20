@@ -1,4 +1,4 @@
-import projectsData from './buildwithcursor.json';
+import projectsData from './builtwithcursor.json';
 import { PROJECT_TAGS, TAG_LABELS, type ProjectTag } from './project-tags';
 
 export { TAG_LABELS, type ProjectTag };

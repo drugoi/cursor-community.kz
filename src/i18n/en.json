@@ -5,7 +5,7 @@
   },
   "nav": {
     "events": "Events",
-    "buildwithcursor": "Projects",
+    "builtwithcursor": "Projects",
     "community": "Community",
     "about": "About"
   },
@@ -32,7 +32,7 @@
     "cta_join": "Join Us",
     "cta_events": "Upcoming Events"
   },
-  "buildwithcursor": {
+  "builtwithcursor": {
     "heading": "#builtwithcursor",
     "command": "$ cat ./projects --built-with-cursor",
     "submit_cta": "Submit your project",

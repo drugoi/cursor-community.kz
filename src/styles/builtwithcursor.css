@@ -1,14 +1,14 @@
-#buildwithcursor.section {
+#builtwithcursor.section {
   padding: var(--section-padding) 0;
 }
 
-#buildwithcursor .container {
+#builtwithcursor .container {
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
 
-#buildwithcursor .empty-state {
+#builtwithcursor .empty-state {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -17,14 +17,14 @@
   text-align: center;
 }
 
-#buildwithcursor .empty-state-mono {
+#builtwithcursor .empty-state-mono {
   font-family: var(--font-mono);
   font-size: 0.9rem;
   color: var(--accent-brand-dim);
   margin-bottom: 1rem;
 }
 
-#buildwithcursor .empty-state-message {
+#builtwithcursor .empty-state-message {
   color: var(--text-secondary);
   margin-bottom: 1.25rem;
   max-width: 400px;
@@ -32,7 +32,7 @@
   margin-right: auto;
 }
 
-#buildwithcursor .empty-state-cta {
+#builtwithcursor .empty-state-cta {
   display: inline-block;
   padding: 0.6rem 1.25rem;
   font-family: var(--font-body);
@@ -44,19 +44,19 @@
   transition: all 0.2s ease;
 }
 
-#buildwithcursor .empty-state-cta:hover {
+#builtwithcursor .empty-state-cta:hover {
   background: var(--accent-brand-glow);
   border-color: var(--accent-brand);
 }
 
-#buildwithcursor .projects-grid {
+#builtwithcursor .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
 }
 
-#buildwithcursor .project-card {
+#builtwithcursor .project-card {
   display: block;
   width: 100%;
   background: var(--bg-card);
@@ -68,68 +68,68 @@
   text-align: left;
 }
 
-#buildwithcursor .project-card:hover {
+#builtwithcursor .project-card:hover {
   border-color: var(--accent-brand-dim);
   background: var(--bg-card-hover);
   box-shadow: 0 0 20px var(--accent-brand-glow);
 }
 
-#buildwithcursor .project-image-wrapper {
+#builtwithcursor .project-image-wrapper {
   aspect-ratio: 16 / 9;
   background: var(--bg-primary);
   overflow: hidden;
 }
 
-#buildwithcursor .project-image {
+#builtwithcursor .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-#buildwithcursor .project-content {
+#builtwithcursor .project-content {
   padding: 1.25rem 1.5rem;
 }
 
-#buildwithcursor .project-title {
+#builtwithcursor .project-title {
   font-family: var(--font-heading);
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
 
-#buildwithcursor .project-description {
+#builtwithcursor .project-description {
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.5;
   margin-bottom: 0.75rem;
 }
 
-#buildwithcursor .project-author {
+#builtwithcursor .project-author {
   color: var(--text-secondary);
   font-size: 0.85rem;
   margin: 0 0 0.5rem;
 }
 
-#buildwithcursor .project-chips,
-#buildwithcursor .modal-chips {
+#builtwithcursor .project-chips,
+#builtwithcursor .modal-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-#buildwithcursor .modal-chips {
+#builtwithcursor .modal-chips {
   flex-direction: column;
   align-items: flex-start;
 }
 
-#buildwithcursor .modal-tags {
+#builtwithcursor .modal-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-#buildwithcursor .tag-chip {
+#builtwithcursor .tag-chip {
   display: inline-block;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
@@ -140,7 +140,7 @@
   background: var(--bg-primary);
 }
 
-#buildwithcursor .tool-chip {
+#builtwithcursor .tool-chip {
   display: inline-block;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
@@ -150,14 +150,14 @@
   line-height: 1.2;
 }
 
-#buildwithcursor .tool-chip--cursor {
+#builtwithcursor .tool-chip--cursor {
   border-color: var(--accent-brand-dim);
   color: var(--accent-brand);
   background: var(--accent-brand-glow);
   box-shadow: 0 0 12px var(--accent-brand-glow);
 }
 
-#buildwithcursor .modal-tools .tool-chip--cursor {
+#builtwithcursor .modal-tools .tool-chip--cursor {
   border-color: var(--accent-brand);
   color: #031b12;
   background: #00ff9d;
@@ -165,7 +165,7 @@
   font-weight: 700;
 }
 
-#buildwithcursor .submit-block {
+#builtwithcursor .submit-block {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -177,13 +177,13 @@
   gap: 1rem;
 }
 
-#buildwithcursor .submit-description {
+#builtwithcursor .submit-description {
   color: var(--text-secondary);
   font-size: 0.95rem;
   margin: 0;
 }
 
-#buildwithcursor .submit-cta {
+#builtwithcursor .submit-cta {
   display: inline-block;
   padding: 0.5rem 1rem;
   font-family: var(--font-body);
@@ -196,23 +196,23 @@
   flex-shrink: 0;
 }
 
-#buildwithcursor .submit-cta:hover {
+#builtwithcursor .submit-cta:hover {
   background: var(--accent-brand-glow);
   border-color: var(--accent-brand);
 }
 
-#buildwithcursor .modal-backdrop {
+#builtwithcursor .modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
   z-index: 40;
 }
 
-#buildwithcursor .modal-backdrop[hidden] {
+#builtwithcursor .modal-backdrop[hidden] {
   display: none !important;
 }
 
-#buildwithcursor .modal {
+#builtwithcursor .modal {
   position: fixed;
   inset: 0;
   display: flex;
@@ -222,11 +222,11 @@
   z-index: 50;
 }
 
-#buildwithcursor .modal[hidden] {
+#builtwithcursor .modal[hidden] {
   display: none !important;
 }
 
-#buildwithcursor .modal-inner {
+#builtwithcursor .modal-inner {
   max-width: 640px;
   width: 100%;
   background: var(--bg-card);
@@ -237,7 +237,7 @@
   padding: 1.5rem 2rem;
 }
 
-#buildwithcursor .modal-close {
+#builtwithcursor .modal-close {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
@@ -249,19 +249,19 @@
   cursor: pointer;
 }
 
-#buildwithcursor .modal-body {
+#builtwithcursor .modal-body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-#buildwithcursor .modal-meta-group {
+#builtwithcursor .modal-meta-group {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
 }
 
-#buildwithcursor .modal-image-wrapper {
+#builtwithcursor .modal-image-wrapper {
   width: 100%;
   max-height: 260px;
   overflow: hidden;
@@ -269,34 +269,34 @@
   background: var(--bg-primary);
 }
 
-#buildwithcursor .modal-image {
+#builtwithcursor .modal-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
 
-#buildwithcursor .modal-title {
+#builtwithcursor .modal-title {
   font-family: var(--font-heading);
   font-size: 1.25rem;
   color: var(--text-primary);
   margin: 0;
 }
 
-#buildwithcursor .modal-meta {
+#builtwithcursor .modal-meta {
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
-#buildwithcursor .modal-description {
+#builtwithcursor .modal-description {
   color: var(--text-primary);
   font-size: 1.05rem;
   line-height: 1.6;
   margin: 0;
 }
 
-#buildwithcursor .modal-link {
+#builtwithcursor .modal-link {
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.9rem;
@@ -306,24 +306,24 @@
   border: 1px solid transparent;
 }
 
-#buildwithcursor .modal-actions {
+#builtwithcursor .modal-actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
 
-#buildwithcursor .modal-link--primary {
+#builtwithcursor .modal-link--primary {
   color: var(--accent-brand);
   border-color: var(--accent-brand-dim);
   background: var(--accent-brand-glow);
 }
 
-#buildwithcursor .modal-link--primary:hover {
+#builtwithcursor .modal-link--primary:hover {
   border-color: var(--accent-brand);
 }
 
-#buildwithcursor .modal-link--secondary {
+#builtwithcursor .modal-link--secondary {
   color: var(--text-secondary);
   border-color: var(--border);
   background: transparent;
@@ -333,28 +333,28 @@
   gap: 0.4rem;
 }
 
-#buildwithcursor .modal-link--secondary:hover {
+#builtwithcursor .modal-link--secondary:hover {
   color: var(--text-primary);
   border-color: var(--text-secondary);
 }
 
-#buildwithcursor .modal-link--primary:hover,
-#buildwithcursor .modal-link--secondary:hover {
+#builtwithcursor .modal-link--primary:hover,
+#builtwithcursor .modal-link--secondary:hover {
   text-decoration: underline;
 }
 
 @media (max-width: 640px) {
-  #buildwithcursor .empty-state {
+  #builtwithcursor .empty-state {
     padding: 1.5rem 1.25rem;
   }
 
-  #buildwithcursor .submit-block {
+  #builtwithcursor .submit-block {
     flex-direction: column;
     align-items: stretch;
     text-align: center;
   }
 
-  #buildwithcursor .submit-cta {
+  #builtwithcursor .submit-cta {
     align-self: center;
   }
 }

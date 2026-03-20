@@ -5,7 +5,7 @@
   },
   "nav": {
     "events": "Оқиғалар",
-    "buildwithcursor": "Жобалар",
+    "builtwithcursor": "Жобалар",
     "community": "Қауымдастық",
     "about": "Біз туралы"
   },
@@ -32,7 +32,7 @@
     "cta_join": "Қосылу",
     "cta_events": "Жақын оқиғалар"
   },
-  "buildwithcursor": {
+  "builtwithcursor": {
     "heading": "#builtwithcursor",
     "command": "$ cat ./projects --built-with-cursor",
     "submit_cta": "Жобаны қосу",
