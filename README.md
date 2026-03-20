@@ -67,7 +67,8 @@ npm run build
 - `src/pages/` — страницы (/, /kk/, /en/)
 - `src/components/` — секции (Header, Hero, Events, Community, About, Footer)
 - `src/content/events/` — события в MDX
-- `src/data/buildwithcursor.json` — проекты #buildwithcursor (title, description, url, image)
+- `src/data/buildwithcursor.json` — проекты #buildwithcursor (title, description, url, image, tags)
+- `src/data/project-tags.ts` — предопределённые теги (tooling, dx, saas, open-source, ai, productivity, prototype, hackathon)
 - `src/i18n/` — словари переводов (ru, kk, en)
 - `public/` — статические файлы (favicon, brand, robots.txt, llms.txt)
 - `.github/ISSUE_TEMPLATE/buildwithcursor-project.yml` — шаблон для подачи проектов
@@ -76,7 +77,7 @@ npm run build
 
 Секция для демонстрации проектов, созданных с Cursor. Чтобы добавить проект:
 
-1. Пользователь создаёт issue по [шаблону](https://github.com/drugoi/cursor-community.kz/issues/new?template=buildwithcursor-project.yml) (title, description, url, image).
+1. Пользователь создаёт issue по [шаблону](https://github.com/drugoi/cursor-community.kz/issues/new?template=buildwithcursor-project.yml) (title, description, url, image, tags).
 2. Мейнтейнер добавляет проект в `src/data/buildwithcursor.json`.
 3. После деплоя проект появляется на сайте.
 

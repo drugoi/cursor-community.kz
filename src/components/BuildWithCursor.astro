@@ -1,5 +1,6 @@
 ---
 import projectsData from '../data/buildwithcursor.json';
+import { PROJECT_TAGS, TAG_LABELS, type ProjectTag } from '../data/project-tags';
 
 interface Project {
   id: string;
@@ -9,6 +10,7 @@ interface Project {
   author: string;
   startingDate: string;
   builtWithTools?: string[];
+  tags?: string[];
   image?: string;
 }
 
@@ -37,15 +39,25 @@ const projects = (projectsData as Project[]).map((project) => {
       `Invalid image link for project "${project.id}". "image" must be a file URL/path (e.g. .png, .jpg, .webp).`
     );
   }
+  const tags = Array.isArray(project.tags)
+    ? project.tags.filter((t): t is ProjectTag => PROJECT_TAGS.includes(t as ProjectTag))
+    : [];
   return {
     ...project,
     builtWithTools: Array.isArray(project.builtWithTools) ? project.builtWithTools : [],
+    tags,
   };
 });
+
+function getTagLabel(tag: string): string {
+  return TAG_LABELS[tag as ProjectTag] ?? tag;
+}
 const hasProjects = projects.length > 0;
 
 const GITHUB_ISSUE_URL =
   'https://github.com/drugoi/cursor-community.kz/issues/new?template=buildwithcursor-project.yml';
+
+const tagLabelsJson = JSON.stringify(TAG_LABELS);
 ---
 
 <section id="buildwithcursor" class="section">
@@ -83,6 +95,7 @@ const GITHUB_ISSUE_URL =
               data-project-url={project.url}
               data-project-image={project.image || ''}
               data-project-tools={project.builtWithTools.join(',')}
+              data-project-tags={project.tags.join(',')}
             >
               {project.image && (
                 <div class="project-image-wrapper">
@@ -100,17 +113,19 @@ const GITHUB_ISSUE_URL =
                 <h3 class="project-title">{project.title}</h3>
                 <p class="project-author">@{project.author}</p>
                 <p class="project-description">{project.description}</p>
-                {project.builtWithTools.length > 0 && (
-                  <div class="project-tools">
-                    {project.builtWithTools.slice(0, 3).map((tool) => (
-                      <span
-                        class={`tool-chip${tool.toLowerCase() === 'cursor' ? ' tool-chip--cursor' : ''}`}
-                      >
-                        {tool}
-                      </span>
+                <div class="project-chips">
+                  {project.tags.length > 0 &&
+                    project.tags.slice(0, 3).map((tag) => (
+                      <span class="tag-chip">{getTagLabel(tag)}</span>
                     ))}
-                  </div>
-                )}
+                  {project.builtWithTools.slice(0, 3).map((tool) => (
+                    <span
+                      class={`tool-chip${tool.toLowerCase() === 'cursor' ? ' tool-chip--cursor' : ''}`}
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
               </div>
             </button>
           ))}
@@ -159,7 +174,10 @@ const GITHUB_ISSUE_URL =
             <div class="modal-meta-group">
               <p class="modal-meta" id="project-modal-author" data-label={dict.buildwithcursor.author_label}></p>
               <p class="modal-meta" id="project-modal-starting-date" data-label={dict.buildwithcursor.starting_date_label}></p>
-              <div class="modal-tools" id="project-modal-tools"></div>
+              <div class="modal-chips">
+                <div class="modal-tags" id="project-modal-tags"></div>
+                <div class="modal-tools" id="project-modal-tools"></div>
+              </div>
             </div>
             <p class="modal-description" id="project-modal-description"></p>
             <div class="modal-actions">
@@ -187,7 +205,8 @@ const GITHUB_ISSUE_URL =
         </div>
       </div>
 
-      <script is:inline>
+      <script is:inline define:vars={{ tagLabelsJson }}>
+        const TAG_LABELS = JSON.parse(tagLabelsJson);
         document.addEventListener('DOMContentLoaded', () => {
           const backdrop = document.getElementById('project-modal-backdrop');
           const modal = document.getElementById('project-modal');
@@ -197,6 +216,7 @@ const GITHUB_ISSUE_URL =
           const titleEl = document.getElementById('project-modal-title');
           const authorEl = document.getElementById('project-modal-author');
           const startingDateEl = document.getElementById('project-modal-starting-date');
+          const tagsEl = document.getElementById('project-modal-tags');
           const toolsEl = document.getElementById('project-modal-tools');
           const descEl = document.getElementById('project-modal-description');
           const linkEl = document.getElementById('project-modal-link');
@@ -261,6 +281,17 @@ const GITHUB_ISSUE_URL =
               linkEl.href = card.getAttribute('data-project-url') || '#';
             }
 
+            if (tagsEl) {
+              const tagsRaw = card.getAttribute('data-project-tags') || '';
+              const tags = tagsRaw.split(',').map((t) => t.trim()).filter(Boolean);
+              tagsEl.replaceChildren();
+              tags.forEach((tag) => {
+                const span = document.createElement('span');
+                span.className = 'tag-chip';
+                span.textContent = TAG_LABELS[tag] || tag;
+                tagsEl.appendChild(span);
+              });
+            }
             if (toolsEl) {
               const toolsRaw = card.getAttribute('data-project-tools') || '';
               const tools = toolsRaw.split(',').map((t) => t.trim()).filter(Boolean);
@@ -468,11 +499,33 @@ const GITHUB_ISSUE_URL =
     margin: 0 0 0.5rem;
   }
 
-  .project-tools,
-  .modal-tools {
+  .project-chips,
+  .modal-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+  }
+
+  .modal-chips {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.tag-chip) {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.2;
+    background: var(--bg-primary);
   }
 
   :global(.tool-chip) {

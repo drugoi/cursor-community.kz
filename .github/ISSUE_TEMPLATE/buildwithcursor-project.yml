@@ -58,6 +58,29 @@ body:
     validations:
       required: true
 
+  - type: checkboxes
+    id: tags
+    attributes:
+      label: Tags
+      description: Select one or more tags that describe your project
+      options:
+        - label: tooling
+          required: false
+        - label: dx
+          required: false
+        - label: saas
+          required: false
+        - label: open-source
+          required: false
+        - label: ai
+          required: false
+        - label: productivity
+          required: false
+        - label: prototype
+          required: false
+        - label: hackathon
+          required: false
+
   - type: input
     id: builtWithTools
     attributes:
@@ -77,3 +100,5 @@ body:
       value: |
         ---
         **Note:** Image can be hosted on your repo (e.g. `https://raw.githubusercontent.com/user/repo/main/screenshot.png`), Imgur, or any public URL. The image will be displayed in the showcase.
+
+        **Tags:** Choose tags that best describe your project (tooling, dx, saas, open-source, ai, productivity, prototype, hackathon).
