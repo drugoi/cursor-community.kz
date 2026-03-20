@@ -1,0 +1,68 @@
+---
+interface Props {
+  authorLabel: string;
+  startingDateLabel: string;
+  viewProject: string;
+  shareProject: string;
+  shareCopied: string;
+}
+
+const { authorLabel, startingDateLabel, viewProject, shareProject, shareCopied } = Astro.props;
+---
+
+<div class="modal-backdrop" id="project-modal-backdrop" hidden></div>
+<div
+  class="modal"
+  id="project-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="project-modal-title"
+  hidden
+>
+  <div class="modal-inner">
+    <button type="button" class="modal-close" id="project-modal-close" aria-label="Close">×</button>
+    <div class="modal-body">
+      <div class="modal-image-wrapper" id="project-modal-image-wrapper" hidden>
+        <img src="" alt="" class="modal-image" id="project-modal-image" loading="lazy" />
+      </div>
+      <h3 class="modal-title" id="project-modal-title"></h3>
+      <div class="modal-meta-group">
+        <p class="modal-meta" id="project-modal-author" data-label={authorLabel}></p>
+        <p class="modal-meta" id="project-modal-starting-date" data-label={startingDateLabel}></p>
+        <div class="modal-chips">
+          <div class="modal-tags" id="project-modal-tags"></div>
+          <div class="modal-tools" id="project-modal-tools"></div>
+        </div>
+      </div>
+      <p class="modal-description" id="project-modal-description"></p>
+      <div class="modal-actions">
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="modal-link modal-link--primary"
+          id="project-modal-link"
+        >
+          {viewProject} →
+        </a>
+        <button
+          type="button"
+          class="modal-link modal-link--secondary"
+          id="project-modal-share"
+          data-default-label={shareProject}
+          data-copied-label={shareCopied}
+        >
+          <span aria-hidden="true">🔗</span>
+          <span id="project-modal-share-label">{shareProject}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { TAG_LABELS } from '../data/project-tags';
+  import { initProjectModal } from '../scripts/project-modal';
+
+  initProjectModal(TAG_LABELS);
+</script>

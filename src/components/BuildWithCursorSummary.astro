@@ -1,17 +1,5 @@
 ---
-import projectsData from '../data/buildwithcursor.json';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  url: string;
-  author: string;
-  startingDate: string;
-  builtWithTools?: string[];
-  tags?: string[];
-  image?: string;
-}
+import { getShowcaseProjectsCount } from '../data/showcase-projects';
 
 interface Props {
   locale: 'ru' | 'kk' | 'en';
@@ -30,8 +18,7 @@ interface Props {
 }
 
 const { locale, dict } = Astro.props;
-const projects = projectsData as Project[];
-const projectsCount = projects.length;
+const projectsCount = getShowcaseProjectsCount();
 const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`;
 ---
 

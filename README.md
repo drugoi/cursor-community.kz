@@ -67,8 +67,12 @@ npm run build
 - `src/pages/` — страницы (/, /kk/, /en/)
 - `src/components/` — секции (Header, Hero, Events, Community, About, Footer)
 - `src/content/events/` — события в MDX
-- `src/data/buildwithcursor.json` — проекты #buildwithcursor (title, description, url, image, tags)
-- `src/data/project-tags.ts` — предопределённые теги (tooling, dx, saas, open-source, ai, productivity, prototype, hackathon)
+- `src/data/buildwithcursor.json` — проекты #buildwithcursor
+- `src/data/project-tags.ts` — предопределённые теги
+- `src/data/showcase-projects.ts` — загрузка и нормализация проектов
+- `src/scripts/project-modal.ts` — клиентская логика модального окна
+- `src/styles/buildwithcursor.css` — стили секции и модалки
+- `src/components/ProjectCard.astro`, `ProjectModal.astro` — подкомпоненты showcase
 - `src/i18n/` — словари переводов (ru, kk, en)
 - `public/` — статические файлы (favicon, brand, robots.txt, llms.txt)
 - `.github/ISSUE_TEMPLATE/buildwithcursor-project.yml` — шаблон для подачи проектов

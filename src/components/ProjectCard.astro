@@ -1,0 +1,51 @@
+---
+import { getTagLabel, type ShowcaseProject } from '../data/showcase-projects';
+
+interface Props {
+  project: ShowcaseProject;
+}
+
+const { project } = Astro.props;
+
+function toolChipClass(tool: string): string {
+  return tool.toLowerCase() === 'cursor' ? 'tool-chip tool-chip--cursor' : 'tool-chip';
+}
+---
+
+<button
+  type="button"
+  class="project-card"
+  data-project-id={project.id}
+  data-project-title={project.title}
+  data-project-author={project.author}
+  data-project-starting-date={project.startingDate}
+  data-project-description={project.description}
+  data-project-url={project.url}
+  data-project-image={project.image || ''}
+  data-project-tools={project.builtWithTools.join(',')}
+  data-project-tags={project.tags.join(',')}
+>
+  {project.image && (
+    <div class="project-image-wrapper">
+      <img
+        src={project.image}
+        alt={project.title}
+        class="project-image"
+        width="400"
+        height="225"
+        loading="lazy"
+      />
+    </div>
+  )}
+  <div class="project-content">
+    <h3 class="project-title">{project.title}</h3>
+    <p class="project-author">@{project.author}</p>
+    <p class="project-description">{project.description}</p>
+    <div class="project-chips">
+      {project.tags.slice(0, 3).map((tag) => <span class="tag-chip">{getTagLabel(tag)}</span>)}
+      {project.builtWithTools.slice(0, 3).map((tool) => (
+        <span class={toolChipClass(tool)}>{tool}</span>
+      ))}
+    </div>
+  </div>
+</button>
