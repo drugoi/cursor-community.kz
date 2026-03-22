@@ -1,5 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const events = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/content/events' }),
@@ -10,8 +11,8 @@ const events = defineCollection({
     city: z.enum(['almaty', 'astana']),
     format: z.string(),
     status: z.enum(['upcoming', 'past']),
-    registrationUrl: z.string().url().optional(),
-    lumaUrl: z.string().url().optional(),
+    registrationUrl: z.url().optional(),
+    lumaUrl: z.url().optional(),
     description: z.string(),
     lang: z.enum(['ru', 'kk', 'en']).default('ru'),
   }),

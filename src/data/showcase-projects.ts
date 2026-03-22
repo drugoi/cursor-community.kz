@@ -45,5 +45,5 @@ export function loadShowcaseProjects(): ShowcaseProject[] {
 }
 
 export function getShowcaseProjectsCount(): number {
-  return (projectsData as unknown[]).length;
+  return (projectsData as ShowcaseProjectInput[]).length;
 }
