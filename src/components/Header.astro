@@ -58,7 +58,7 @@ const langLinks = [
             class={`lang-link${locale === code ? ' lang-link--active' : ''}`}
             aria-current={locale === code ? 'page' : undefined}
           >
-            {label}
+            <span class="lang-link__label">{label}</span>
           </a>
         ))}
       </div>
@@ -252,6 +252,9 @@ const langLinks = [
   .lang-link--active {
     color: var(--text-primary);
     font-weight: 600;
+  }
+
+  .lang-link--active .lang-link__label {
     text-decoration: underline;
     text-decoration-color: var(--accent-brand);
     text-underline-offset: 0.2em;
