@@ -38,6 +38,7 @@ const socialLinks = [
   .footer {
     border-top: 1px solid var(--border);
     padding: 2rem 0;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
   }
 
   .footer-content {
@@ -59,7 +60,7 @@ const socialLinks = [
     font-size: 0.875rem;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s var(--ease-standard);
   }
 
   @media (max-width: 640px) {
@@ -83,7 +84,7 @@ const socialLinks = [
 
   .copyright {
     font-size: 0.8125rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin: 0;
   }
 </style>

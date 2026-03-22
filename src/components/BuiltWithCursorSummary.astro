@@ -59,8 +59,9 @@ const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`
   .summary-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 1.5rem 2rem;
+    box-shadow: var(--shadow-card);
   }
 
   .summary-text {
@@ -78,7 +79,7 @@ const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`
   .summary-count-number {
     font-family: var(--font-mono);
     font-size: 1.5rem;
-    color: var(--accent-brand);
+    color: var(--accent-ink);
   }
 
   .summary-count-label {
@@ -92,10 +93,12 @@ const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`
     font-family: var(--font-body);
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--accent-brand);
-    border: 1px solid var(--accent-brand-dim);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    color: var(--text-primary);
+    border: 1px solid var(--accent-brand);
+    border-radius: var(--radius-md);
+    transition:
+      background-color 0.2s var(--ease-standard),
+      border-color 0.2s var(--ease-standard);
   }
 
   .summary-link:hover {

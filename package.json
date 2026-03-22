@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "a11y": "bash scripts/a11y.sh"
   },
   "author": "Nikita Bayev <nikita@bayev.kz> (https://bayev.kz/)",
   "license": "MIT",

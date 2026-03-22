@@ -62,6 +62,8 @@ pnpm build
 
 Использование в соответствии с [Cursor Brand Guidelines](https://cursor.com/brand).
 
+Светлая/тёмная тема и палитра: `src/styles/global.css`.
+
 ## Структура проекта
 
 - `src/pages/` — страницы (/, /kk/, /en/)

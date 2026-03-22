@@ -1,35 +1,124 @@
-/* src/styles/global.css */
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
-  /* Colors */
-  --bg-primary: #0A0A0A;
-  --bg-card: #111111;
-  --bg-card-hover: #1A1A1A;
-  --bg-header: rgba(10, 10, 10, 0.85);
-  --text-primary: #E5E5E5;
-  --text-secondary: #888888;
-  --text-muted: #555555;
-  /* Cursor brand (from dark assets: #edecec) */
-  --accent-brand: #edecec;
-  --accent-brand-dim: #c9c8c8;
-  --accent-brand-glow: rgba(237, 236, 236, 0.12);
-  --border: #222222;
-  --border-hover: #333333;
+  color-scheme: light;
 
-  /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --bg-primary: #f7f7f4;
+  --bg-header: rgba(247, 247, 244, 0.88);
+  --bg-card: #f2f1ed;
+  --bg-card-01: #f0efeb;
+  --bg-card-hover: #ebeae5;
+  --bg-card-elevated: #e6e5e0;
 
-  /* Spacing */
+  --text-primary: #26251e;
+  --text-secondary: color-mix(in srgb, #26251e 76%, transparent);
+  --text-muted: color-mix(in srgb, #26251e 52%, transparent);
+
+  --accent-brand: #f54e00;
+  --accent-ink: color-mix(in srgb, var(--accent-brand) 78%, #26251e);
+  --accent-brand-strong: color-mix(in srgb, var(--accent-brand) 78%, #26251e);
+  --accent-brand-dim: color-mix(in srgb, #f54e00 72%, #26251e);
+  --accent-brand-glow: color-mix(in srgb, #f54e00 14%, transparent);
+  --accent-on-accent: #ffffff;
+
+  --border: #e1e0db;
+  --border-hover: #d5d4cf;
+
+  --noise-opacity: 0.018;
+  --hero-mesh-a: color-mix(in srgb, #f54e00 10%, transparent);
+  --hero-mesh-b: color-mix(in srgb, #26251e 06%, transparent);
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-card: 0 1px 2px rgba(38, 37, 30, 0.045), 0 6px 20px rgba(38, 37, 30, 0.055);
+  --shadow-card-hover: 0 0 0 1px color-mix(in srgb, var(--accent-brand) 14%, transparent),
+    0 10px 32px rgba(38, 37, 30, 0.1);
+  --shadow-modal: 0 4px 12px rgba(38, 37, 30, 0.06), 0 24px 48px rgba(38, 37, 30, 0.12);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-primary: #14120b;
+  --bg-header: rgba(20, 18, 11, 0.88);
+  --bg-card: #1b1913;
+  --bg-card-01: #1d1b15;
+  --bg-card-hover: #201e18;
+  --bg-card-elevated: #26241e;
+
+  --text-primary: #edecec;
+  --text-secondary: color-mix(in srgb, #edecec 80%, transparent);
+  --text-muted: color-mix(in srgb, #edecec 46%, transparent);
+
+  --accent-brand: #f54e00;
+  --accent-ink: color-mix(in srgb, var(--accent-brand) 82%, #fff);
+  --accent-brand-strong: color-mix(in srgb, var(--accent-brand) 90%, #000);
+  --accent-brand-dim: color-mix(in srgb, #f54e00 75%, #edecec);
+  --accent-brand-glow: color-mix(in srgb, #f54e00 16%, transparent);
+  --accent-on-accent: #ffffff;
+
+  --border: #2b2923;
+  --border-hover: #383630;
+
+  --noise-opacity: 0.035;
+  --hero-mesh-a: color-mix(in srgb, #f54e00 12%, transparent);
+  --hero-mesh-b: color-mix(in srgb, #edecec 05%, transparent);
+
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.05), 0 8px 28px rgba(0, 0, 0, 0.38);
+  --shadow-card-hover: 0 0 0 1px color-mix(in srgb, var(--accent-brand) 22%, transparent),
+    0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-modal: 0 24px 56px rgba(0, 0, 0, 0.55);
+}
+
+:root {
+  --font-heading: 'Cursor Gothic', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
   --section-padding: clamp(4rem, 10vh, 8rem);
   --container-max: 1100px;
   --container-padding: clamp(1rem, 5vw, 2rem);
+
+  --focus-ring: 2px solid color-mix(in srgb, var(--accent-brand) 55%, transparent);
+  --focus-offset: 2px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -49,15 +138,28 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3, h4 {
+main {
+  padding-bottom: max(0px, env(safe-area-inset-bottom, 0px));
+}
+
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .container {
@@ -72,7 +174,7 @@ a {
 
 .prompt {
   font-family: var(--font-mono);
-  color: var(--accent-brand);
+  color: var(--accent-ink);
   margin-right: 0.5rem;
 }
 
@@ -88,7 +190,7 @@ a {
 .heading-command {
   font-family: var(--font-mono);
   font-size: clamp(1.15rem, 4vw, 1.6rem);
-  color: var(--accent-brand);
+  color: var(--accent-ink);
   font-weight: 500;
   margin-bottom: 1.5rem;
   letter-spacing: 0.02em;
@@ -103,7 +205,9 @@ a {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 body::before {
@@ -112,6 +216,26 @@ body::before {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: var(--noise-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent-brand) 24%, transparent);
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::before {
+    opacity: 0 !important;
+  }
+
+  .cursor-blink {
+    animation: none;
+    opacity: 1;
+  }
 }

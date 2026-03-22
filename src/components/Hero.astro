@@ -86,7 +86,7 @@ const { dict } = Astro.props;
 <style>
   .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: min(100vh, 100dvh);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,8 +104,8 @@ const { dict } = Astro.props;
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(237, 236, 236, 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(237, 236, 236, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 50%, var(--hero-mesh-a) 0%, transparent 52%),
+      radial-gradient(ellipse at 80% 20%, var(--hero-mesh-b) 0%, transparent 48%),
       var(--bg-primary);
     animation: gradient-mesh 12s ease-in-out infinite;
   }
@@ -121,6 +121,12 @@ const { dict } = Astro.props;
     }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg {
+      animation: none;
+    }
+  }
+
   .hero-content {
     position: relative;
     z-index: 1;
@@ -133,7 +139,7 @@ const { dict } = Astro.props;
     font-family: var(--font-heading);
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 1rem;
     line-height: 1.2;
   }
@@ -149,6 +155,7 @@ const { dict } = Astro.props;
   .hero-typewriter {
     font-family: var(--font-mono);
     font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-primary);
     margin: 0 auto 2rem;
     min-height: 1.5em;
     max-width: 500px;
@@ -166,32 +173,59 @@ const { dict } = Astro.props;
     display: inline-block;
     padding: 0.75rem 1.5rem;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 1.125rem;
     font-weight: 700;
     text-decoration: none;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-md);
+    transition:
+      background-color 0.2s var(--ease-out),
+      color 0.2s var(--ease-out),
+      border-color 0.2s var(--ease-out),
+      box-shadow 0.2s var(--ease-out),
+      transform 0.2s var(--ease-out),
+      filter 0.2s var(--ease-out);
     cursor: pointer;
   }
 
   .btn-primary {
-    background-color: var(--accent-brand);
-    color: var(--bg-primary);
-    border: 2px solid var(--accent-brand);
+    background-color: var(--accent-brand-strong);
+    color: var(--accent-on-accent);
+    border: 2px solid var(--accent-brand-strong);
+    box-shadow: 0 1px 2px color-mix(in srgb, var(--accent-brand-strong) 40%, transparent);
   }
 
   .btn-primary:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--accent-brand-strong) 40%, transparent);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    filter: brightness(0.98);
   }
 
   .btn-secondary {
     background-color: transparent;
-    color: var(--accent-brand);
+    color: var(--accent-ink);
     border: 2px solid var(--accent-brand);
   }
 
   .btn-secondary:hover {
     background-color: var(--accent-brand);
-    color: var(--bg-primary);
+    color: var(--accent-on-accent);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn:hover,
+    .btn:active {
+      transform: none;
+    }
   }
 </style>

@@ -61,15 +61,32 @@ const links = [
     display: block;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-card);
+    transition:
+      border-color 0.2s var(--ease-standard),
+      background-color 0.2s var(--ease-standard),
+      box-shadow 0.25s var(--ease-out),
+      transform 0.2s var(--ease-out);
   }
 
   .card:hover {
     border-color: var(--accent-brand-dim);
     background: var(--bg-card-hover);
-    box-shadow: 0 0 20px var(--accent-brand-glow);
+    box-shadow: var(--shadow-card-hover), 0 0 28px var(--accent-brand-glow);
+    transform: translateY(-2px);
+  }
+
+  .card:active {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover,
+    .card:active {
+      transform: none;
+    }
   }
 
   .card-emoji {

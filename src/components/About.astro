@@ -79,10 +79,10 @@ const faq = dict.about.faq ?? [];
 
   .faq-item {
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     margin-bottom: 0.75rem;
     overflow: hidden;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s var(--ease-standard);
   }
 
   .faq-item[open] {
@@ -94,7 +94,7 @@ const faq = dict.about.faq ?? [];
     padding: 1rem 1.25rem;
     cursor: pointer;
     list-style: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s var(--ease-standard);
   }
 
   .faq-item summary::-webkit-details-marker {
@@ -104,7 +104,7 @@ const faq = dict.about.faq ?? [];
   .faq-item summary::after {
     content: '+';
     float: right;
-    color: var(--accent-brand);
+    color: var(--accent-ink);
   }
 
   .faq-item[open] summary::after {
