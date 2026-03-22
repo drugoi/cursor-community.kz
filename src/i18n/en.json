@@ -5,6 +5,7 @@
   },
   "nav": {
     "events": "Events",
+    "builtwithcursor": "Projects",
     "community": "Community",
     "about": "About"
   },
@@ -30,6 +31,24 @@
     ],
     "cta_join": "Join Us",
     "cta_events": "Upcoming Events"
+  },
+  "builtwithcursor": {
+    "heading": "#builtwithcursor",
+    "command": "$ cat ./projects --built-with-cursor",
+    "submit_cta": "Submit your project",
+    "submit_description": "Built something with Cursor? Share it with the community.",
+    "view_project": "View project",
+    "no_projects": "No projects yet. Be the first to showcase yours!",
+    "summary": "A community showcase of products, tools, and experiments built with Cursor.",
+    "projects_added": {
+      "one": "project added",
+      "other": "projects added"
+    },
+    "view_all_cta": "View all projects",
+    "share_project": "Share",
+    "share_copied": "Copied",
+    "author_label": "Author",
+    "starting_date_label": "Starting date"
   },
   "events": {
     "heading": "Upcoming Events",

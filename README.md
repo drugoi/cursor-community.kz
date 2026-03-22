@@ -5,8 +5,8 @@
 ## Разработка
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Сайт откроется на [http://localhost:4321](http://localhost:4321).
@@ -14,7 +14,7 @@ npm run dev
 ## Сборка
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Статические файлы попадают в папку `dist/`.
@@ -23,7 +23,7 @@ npm run build
 
 Сайт — статический: после сборки нужно загрузить **содержимое** папки `dist/` на сервер по FTP (или через панель хостинга).
 
-1. Выполните `npm run build`.
+1. Выполните `pnpm build`.
 2. Подключитесь к хостингу по FTP (FileZilla, WinSCP или встроенный менеджер файлов).
 3. Откройте корневую директорию сайта (например `public_html`, `www` или `httpdocs`).
 4. Загрузите **все файлы и папки из `dist/`** в корень сайта, сохраняя структуру:
@@ -33,7 +33,7 @@ npm run build
    - папка `brand/` — логотипы и изображения
    - папки `_astro/`, `sitemap-*.xml` и т.п. — как есть
 
-После загрузки сайт должен открываться по домену. Обновление контента: правите исходники, снова `npm run build` и заливаете обновлённые файлы из `dist/`.
+После загрузки сайт должен открываться по домену. Обновление контента: правите исходники, снова `pnpm build` и заливаете обновлённые файлы из `dist/`.
 
 ## Деплой через GitHub Actions (FTP)
 
@@ -67,8 +67,23 @@ npm run build
 - `src/pages/` — страницы (/, /kk/, /en/)
 - `src/components/` — секции (Header, Hero, Events, Community, About, Footer)
 - `src/content/events/` — события в MDX
+- `src/data/builtwithcursor.json` — проекты #builtwithcursor
+- `src/data/project-tags.ts` — предопределённые теги
+- `src/data/showcase-projects.ts` — загрузка и нормализация проектов
+- `src/scripts/project-modal.ts` — клиентская логика модального окна
+- `src/styles/builtwithcursor.css` — стили секции и модалки
+- `src/components/BuiltWithCursor.astro`, `BuiltWithCursorSummary.astro`, `ProjectCard.astro`, `ProjectModal.astro` — showcase
 - `src/i18n/` — словари переводов (ru, kk, en)
 - `public/` — статические файлы (favicon, brand, robots.txt, llms.txt)
+- `.github/ISSUE_TEMPLATE/builtwithcursor-project.yml` — шаблон для подачи проектов
+
+## #builtwithcursor
+
+Секция для демонстрации проектов, созданных с Cursor. Чтобы добавить проект:
+
+1. Пользователь создаёт issue по [шаблону](https://github.com/drugoi/cursor-community.kz/issues/new?template=builtwithcursor-project.yml) (title, description, url, image, tags).
+2. Мейнтейнер добавляет проект в `src/data/builtwithcursor.json`.
+3. После деплоя проект появляется на сайте.
 
 ## Документация
 

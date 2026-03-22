@@ -4,6 +4,7 @@ interface Props {
   dict: {
     nav: {
       events: string;
+      builtwithcursor: string;
       community: string;
       about: string;
     };
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const { locale, dict } = Astro.props;
+const homeHref = locale === 'ru' ? '/' : `/${locale}/`;
+const projectsHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`;
 
 const langLinks = [
   { code: 'ru' as const, label: 'RU', href: '/' },
@@ -20,16 +23,17 @@ const langLinks = [
 ---
 <header class="header">
   <div class="header-inner container">
-    <a href={locale === "ru" ? "/" : `/${locale}/`} class="logo" aria-label="Cursor Community Kazakhstan">
+    <a href={homeHref} class="logo" aria-label="Cursor Community Kazakhstan">
       <img src="/brand/cube.svg" alt="" class="logo-icon" width="24" height="24" />
       <span class="logo-prompt">&gt;</span>
       <span class="logo-text">cursor_kz</span>
     </a>
 
     <nav class="nav">
-      <a href="#events" class="nav-link">{dict.nav.events}</a>
-      <a href="#community" class="nav-link">{dict.nav.community}</a>
-      <a href="#about" class="nav-link">{dict.nav.about}</a>
+      <a href={`${homeHref}#events`} class="nav-link">{dict.nav.events}</a>
+      <a href={projectsHref} class="nav-link">{dict.nav.builtwithcursor}</a>
+      <a href={`${homeHref}#community`} class="nav-link">{dict.nav.community}</a>
+      <a href={`${homeHref}#about`} class="nav-link">{dict.nav.about}</a>
     </nav>
 
     <div class="lang-switcher">

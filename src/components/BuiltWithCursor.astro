@@ -1,0 +1,81 @@
+---
+import '../styles/builtwithcursor.css';
+import { loadShowcaseProjects } from '../data/showcase-projects';
+import ProjectCard from './ProjectCard.astro';
+import ProjectModal from './ProjectModal.astro';
+
+interface Props {
+  dict: {
+    builtwithcursor: {
+      heading: string;
+      command: string;
+      submit_cta: string;
+      submit_description: string;
+      view_project: string;
+      share_project: string;
+      share_copied: string;
+      no_projects: string;
+      author_label: string;
+      starting_date_label: string;
+    };
+  };
+}
+
+const { dict } = Astro.props;
+const projects = loadShowcaseProjects();
+const hasProjects = projects.length > 0;
+
+const GITHUB_ISSUE_URL =
+  'https://github.com/drugoi/cursor-community.kz/issues/new?template=builtwithcursor-project.yml';
+---
+
+<section id="builtwithcursor" class="section">
+  <div class="container">
+    <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
+    <h2 class="heading-sub">{dict.builtwithcursor.heading}</h2>
+
+    {!hasProjects && (
+      <div class="empty-state">
+        <p class="empty-state-mono">// projects: []</p>
+        <p class="empty-state-message">{dict.builtwithcursor.no_projects}</p>
+        <a
+          href={GITHUB_ISSUE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="empty-state-cta"
+        >
+          {dict.builtwithcursor.submit_cta}
+        </a>
+      </div>
+    )}
+
+    {hasProjects && (
+      <>
+        <div class="projects-grid">
+          {projects.map((project) => <ProjectCard project={project} />)}
+        </div>
+        <div class="submit-block">
+          <p class="submit-description">{dict.builtwithcursor.submit_description}</p>
+          <a
+            href={GITHUB_ISSUE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="submit-cta"
+          >
+            {dict.builtwithcursor.submit_cta}
+          </a>
+        </div>
+      </>
+    )}
+  </div>
+
+  {hasProjects && (
+    <ProjectModal
+      authorLabel={dict.builtwithcursor.author_label}
+      startingDateLabel={dict.builtwithcursor.starting_date_label}
+      viewProject={dict.builtwithcursor.view_project}
+      shareProject={dict.builtwithcursor.share_project}
+      shareCopied={dict.builtwithcursor.share_copied}
+    />
+  )}
+</section>

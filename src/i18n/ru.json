@@ -5,6 +5,7 @@
   },
   "nav": {
     "events": "События",
+    "builtwithcursor": "Проекты",
     "community": "Сообщество",
     "about": "О нас"
   },
@@ -30,6 +31,26 @@
     ],
     "cta_join": "Присоединиться",
     "cta_events": "Ближайшие события"
+  },
+  "builtwithcursor": {
+    "heading": "#builtwithcursor",
+    "command": "$ cat ./projects --built-with-cursor",
+    "submit_cta": "Добавить проект",
+    "submit_description": "Сделали что-то с Cursor? Поделитесь с сообществом.",
+    "view_project": "Смотреть проект",
+    "no_projects": "Пока нет проектов. Станьте первым!",
+    "summary": "Витрина проектов сообщества: продукты, инструменты и эксперименты, сделанные с Cursor.",
+    "projects_added": {
+      "one": "проект",
+      "few": "проекта",
+      "many": "проектов",
+      "other": "проектов"
+    },
+    "view_all_cta": "Смотреть все проекты",
+    "share_project": "Поделиться",
+    "share_copied": "Скопировано",
+    "author_label": "Автор",
+    "starting_date_label": "Дата начала"
   },
   "events": {
     "heading": "Ближайшие события",

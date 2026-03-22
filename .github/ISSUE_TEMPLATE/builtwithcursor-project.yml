@@ -1,0 +1,104 @@
+name: "#builtwithcursor Project Submission"
+description: Submit a project to the #builtwithcursor showcase (Kazakhstan)
+title: "[#builtwithcursor] "
+labels: ["builtwithcursor"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting your project to the **#builtwithcursor** showcase! 🚀
+        Projects built with Cursor by developers in Kazakhstan will be featured on [cursor-community.kz](https://cursor-community.kz).
+
+        Please fill in all fields below. After review, your project will be added to the showcase.
+
+  - type: input
+    id: title
+    attributes:
+      label: Project Title
+      description: The name of your project
+      placeholder: "My Awesome App"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Brief description of your project (what it does, tech stack, etc.)
+      placeholder: |
+        A web app that helps developers...
+        Built with Next.js, TypeScript, and Cursor.
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Project URL
+      description: Link to your project (live demo, repository, or landing page)
+      placeholder: "https://myproject.com"
+    validations:
+      required: true
+
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      description: Your name, team name, or GitHub handle
+      placeholder: "Jane Doe"
+    validations:
+      required: true
+
+  - type: input
+    id: startingDate
+    attributes:
+      label: Starting Date
+      description: When the project was started (YYYY-MM-DD)
+      placeholder: "2026-01-15"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: tags
+    attributes:
+      label: Tags
+      description: Select one or more tags that describe your project
+      options:
+        - label: tooling
+          required: false
+        - label: dx
+          required: false
+        - label: saas
+          required: false
+        - label: open-source
+          required: false
+        - label: ai
+          required: false
+        - label: productivity
+          required: false
+        - label: prototype
+          required: false
+        - label: hackathon
+          required: false
+
+  - type: input
+    id: builtWithTools
+    attributes:
+      label: Built With Tools
+      description: Comma-separated list of tools used to build the project (optional)
+      placeholder: "cursor, claude, copilot"
+
+  - type: input
+    id: image
+    attributes:
+      label: Image URL (optional)
+      description: URL to a screenshot or preview image of your project (recommended 16:9 aspect ratio, min 640×360px). Must be a direct link to an image file (.png, .jpg, .webp, etc.)
+      placeholder: "https://example.com/screenshot.png"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Note:** Image can be hosted on your repo (e.g. `https://raw.githubusercontent.com/user/repo/main/screenshot.png`), Imgur, or any public URL. The image will be displayed in the showcase.
+
+        **Tags:** Choose tags that best describe your project (tooling, dx, saas, open-source, ai, productivity, prototype, hackathon).

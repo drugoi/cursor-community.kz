@@ -1,0 +1,12 @@
+[
+  {
+    "id": "cursor-community-kz",
+    "title": "cursor-community.kz",
+    "description": "Сам вебсайт сообщества был разработан с использованием Cursor. Разработка ведется с помощью фреймворка Astro.",
+    "url": "https://github.com/drugoi/cursor-community.kz",
+    "author": "drugoi",
+    "startingDate": "2026-03-09",
+    "builtWithTools": ["cursor"],
+    "tags": ["tooling", "open-source"]
+  }
+]
