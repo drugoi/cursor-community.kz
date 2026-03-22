@@ -59,8 +59,9 @@ const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`
   .summary-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 1.5rem 2rem;
+    box-shadow: var(--shadow-card);
   }
 
   .summary-text {
@@ -94,8 +95,10 @@ const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`
     font-weight: 600;
     color: var(--accent-brand);
     border: 1px solid var(--accent-brand-dim);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-md);
+    transition:
+      background-color 0.2s var(--ease-standard),
+      border-color 0.2s var(--ease-standard);
   }
 
   .summary-link:hover {

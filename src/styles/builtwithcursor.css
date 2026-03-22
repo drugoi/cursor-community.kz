@@ -11,10 +11,11 @@
 #builtwithcursor .empty-state {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 2rem 2.5rem;
   margin-bottom: 2rem;
   text-align: center;
+  box-shadow: var(--shadow-card);
 }
 
 #builtwithcursor .empty-state-mono {
@@ -40,8 +41,10 @@
   font-weight: 600;
   color: var(--accent-brand);
   border: 1px solid var(--accent-brand-dim);
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-md);
+  transition:
+    background-color 0.2s var(--ease-standard),
+    border-color 0.2s var(--ease-standard);
 }
 
 #builtwithcursor .empty-state-cta:hover {
@@ -61,9 +64,14 @@
   width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: all 0.2s ease;
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 0.2s var(--ease-standard),
+    background-color 0.2s var(--ease-standard),
+    box-shadow 0.25s var(--ease-out),
+    transform 0.2s var(--ease-out);
   cursor: pointer;
   text-align: left;
 }
@@ -71,7 +79,14 @@
 #builtwithcursor .project-card:hover {
   border-color: var(--accent-brand-dim);
   background: var(--bg-card-hover);
-  box-shadow: 0 0 20px var(--accent-brand-glow);
+  box-shadow: var(--shadow-card-hover), 0 0 28px var(--accent-brand-glow);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #builtwithcursor .project-card:hover {
+    transform: none;
+  }
 }
 
 #builtwithcursor .project-image-wrapper {
@@ -132,7 +147,7 @@
 #builtwithcursor .tag-chip {
   display: inline-block;
   padding: 0.2rem 0.5rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   color: var(--text-secondary);
   font-size: 0.75rem;
@@ -171,8 +186,9 @@
 #builtwithcursor .submit-block {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem 2rem;
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -194,8 +210,10 @@
   font-weight: 600;
   color: var(--accent-brand);
   border: 1px solid var(--accent-brand-dim);
-  border-radius: 0.5rem;
-  transition: all 0.2s ease;
+  border-radius: var(--radius-md);
+  transition:
+    background-color 0.2s var(--ease-standard),
+    border-color 0.2s var(--ease-standard);
   flex-shrink: 0;
 }
 
@@ -233,9 +251,9 @@
   max-width: 640px;
   width: 100%;
   background: var(--bg-card-01);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-modal);
   position: relative;
   padding: 1.5rem 2rem;
 }
@@ -268,7 +286,7 @@
   width: 100%;
   max-height: 260px;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   background: var(--bg-primary);
 }
 
@@ -304,7 +322,7 @@
   font-family: var(--font-mono);
   font-size: 0.9rem;
   text-decoration: none;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-md);
   padding: 0.5rem 0.8rem;
   border: 1px solid transparent;
 }

@@ -178,10 +178,11 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
   .empty-state {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     padding: 2rem 2.5rem;
     margin-bottom: 2rem;
     text-align: center;
+    box-shadow: var(--shadow-card);
   }
 
   .empty-state-mono {
@@ -207,8 +208,10 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     font-weight: 600;
     color: var(--accent-brand);
     border: 1px solid var(--accent-brand-dim);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-md);
+    transition:
+      background-color 0.2s var(--ease-standard),
+      border-color 0.2s var(--ease-standard);
   }
 
   .empty-state-cta:hover {
@@ -231,16 +234,29 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
 
   .event-card {
     background: var(--bg-card);
-    border-radius: 12px;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border);
     padding: 1.5rem;
-    transition: all 0.2s ease;
+    box-shadow: var(--shadow-card);
+    transition:
+      border-color 0.2s var(--ease-standard),
+      background-color 0.2s var(--ease-standard),
+      box-shadow 0.25s var(--ease-out),
+      opacity 0.2s var(--ease-standard),
+      transform 0.2s var(--ease-out);
   }
 
   .event-card:hover {
     border-color: var(--accent-brand-dim);
     background: var(--bg-card-hover);
-    box-shadow: 0 0 20px var(--accent-brand-glow);
+    box-shadow: var(--shadow-card-hover), 0 0 28px var(--accent-brand-glow);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .event-card:hover {
+      transform: none;
+    }
   }
 
   .event-card--past {
@@ -283,8 +299,10 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     font-weight: 600;
     color: var(--accent-brand);
     border: 1px solid var(--accent-brand-dim);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    border-radius: var(--radius-md);
+    transition:
+      background-color 0.2s var(--ease-standard),
+      border-color 0.2s var(--ease-standard);
   }
 
   @media (max-width: 640px) {
@@ -312,7 +330,7 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     font-weight: 600;
     color: var(--accent-brand-dim);
     padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    border-radius: var(--radius-sm);
     background: var(--accent-brand-glow);
   }
 </style>

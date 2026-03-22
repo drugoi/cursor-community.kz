@@ -139,7 +139,7 @@ const langLinks = [
     font-size: 0.9375rem;
     color: var(--text-secondary);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s var(--ease-standard);
   }
 
   @media (max-width: 640px) {
@@ -165,7 +165,7 @@ const langLinks = [
   .lang-link {
     color: var(--text-muted);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s var(--ease-standard);
   }
 
   @media (max-width: 640px) {
@@ -189,14 +189,14 @@ const langLinks = [
     height: 2.5rem;
     padding: 0;
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: var(--radius-md);
     background: var(--bg-card);
     color: var(--text-secondary);
     cursor: pointer;
     transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease;
+      color 0.2s var(--ease-standard),
+      border-color 0.2s var(--ease-standard),
+      background-color 0.2s var(--ease-standard);
   }
 
   .theme-toggle:hover {
