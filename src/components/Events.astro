@@ -259,6 +259,8 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
   }
 
   .event-card--past {
+    display: flex;
+    flex-direction: column;
     background: var(--bg-card-01);
     border-style: dashed;
     border-color: var(--border-hover);
@@ -339,5 +341,10 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     border-radius: var(--radius-sm);
     background: var(--accent-brand-glow);
     border: 1px solid var(--border);
+  }
+
+  .event-card--past .badge-past {
+    margin-top: auto;
+    align-self: flex-start;
   }
 </style>
