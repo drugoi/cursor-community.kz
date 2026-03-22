@@ -8,6 +8,8 @@
   --bg-primary: #f7f7f4;
   --bg-header: rgba(247, 247, 244, 0.88);
   --bg-card: #f2f1ed;
+  /* PDF card-01 — one step from default card */
+  --bg-card-01: #f0efeb;
   --bg-card-hover: #ebeae5;
   --bg-card-elevated: #e6e5e0;
 
@@ -35,6 +37,7 @@
   --bg-primary: #14120b;
   --bg-header: rgba(20, 18, 11, 0.88);
   --bg-card: #1b1913;
+  --bg-card-01: #1d1b15;
   --bg-card-hover: #201e18;
   --bg-card-elevated: #26241e;
 

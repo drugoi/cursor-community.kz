@@ -62,6 +62,8 @@ pnpm build
 
 Использование в соответствии с [Cursor Brand Guidelines](https://cursor.com/brand).
 
+Цвета интерфейса в [`src/styles/global.css`](src/styles/global.css) согласованы с **Cursor Community Brand Guidelines** (нейтральные фоны, акцент `#f54e00`, уровни card / card-01 … card-04 в светлой и тёмной теме). Секция #builtwithcursor использует те же токены.
+
 ## Структура проекта
 
 - `src/pages/` — страницы (/, /kk/, /en/)
