@@ -14,10 +14,15 @@
   --bg-card-elevated: #e6e5e0;
 
   --text-primary: #26251e;
-  --text-secondary: color-mix(in srgb, #26251e 60%, transparent);
-  --text-muted: color-mix(in srgb, #26251e 42%, transparent);
+  /* ~WCAG AA for body-sized text on bg-primary (brand PDF suggests 60%; web uses stronger mix) */
+  --text-secondary: color-mix(in srgb, #26251e 76%, transparent);
+  --text-muted: color-mix(in srgb, #26251e 52%, transparent);
 
   --accent-brand: #f54e00;
+  /* Darker orange for small text / outlines on light surfaces (AA vs bg-primary) */
+  --accent-ink: color-mix(in srgb, var(--accent-brand) 78%, #26251e);
+  /* Solid CTA fill: white text meets AA vs this orange */
+  --accent-brand-strong: color-mix(in srgb, var(--accent-brand) 78%, #26251e);
   --accent-brand-dim: color-mix(in srgb, #f54e00 72%, #26251e);
   --accent-brand-glow: color-mix(in srgb, #f54e00 14%, transparent);
   --accent-on-accent: #ffffff;
@@ -52,10 +57,12 @@
   --bg-card-elevated: #26241e;
 
   --text-primary: #edecec;
-  --text-secondary: color-mix(in srgb, #edecec 60%, transparent);
-  --text-muted: color-mix(in srgb, #edecec 38%, transparent);
+  --text-secondary: color-mix(in srgb, #edecec 80%, transparent);
+  --text-muted: color-mix(in srgb, #edecec 46%, transparent);
 
   --accent-brand: #f54e00;
+  --accent-ink: color-mix(in srgb, var(--accent-brand) 82%, #fff);
+  --accent-brand-strong: color-mix(in srgb, var(--accent-brand) 90%, #000);
   --accent-brand-dim: color-mix(in srgb, #f54e00 75%, #edecec);
   --accent-brand-glow: color-mix(in srgb, #f54e00 16%, transparent);
   --accent-on-accent: #ffffff;
@@ -144,7 +151,7 @@ a {
 
 .prompt {
   font-family: var(--font-mono);
-  color: var(--accent-brand);
+  color: var(--accent-ink);
   margin-right: 0.5rem;
 }
 
@@ -160,7 +167,7 @@ a {
 .heading-command {
   font-family: var(--font-mono);
   font-size: clamp(1.15rem, 4vw, 1.6rem);
-  color: var(--accent-brand);
+  color: var(--accent-ink);
   font-weight: 500;
   margin-bottom: 1.5rem;
   letter-spacing: 0.02em;

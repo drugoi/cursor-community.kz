@@ -206,8 +206,8 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--accent-brand);
-    border: 1px solid var(--accent-brand-dim);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-brand);
     border-radius: var(--radius-md);
     transition:
       background-color 0.2s var(--ease-standard),
@@ -242,7 +242,6 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
       border-color 0.2s var(--ease-standard),
       background-color 0.2s var(--ease-standard),
       box-shadow 0.25s var(--ease-out),
-      opacity 0.2s var(--ease-standard),
       transform 0.2s var(--ease-out);
   }
 
@@ -259,18 +258,26 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     }
   }
 
+  /* Avoid opacity (hurts text contrast / a11y); “past” read as muted via border + surface */
   .event-card--past {
-    opacity: 0.6;
+    background: var(--bg-card-01);
+    border-style: dashed;
+    border-color: var(--border-hover);
   }
 
   .event-card--past:hover {
-    opacity: 0.75;
+    border-color: var(--accent-brand-dim);
+    border-style: solid;
+    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-card);
+    transform: translateY(-1px);
   }
 
   .event-card h3 {
     font-family: var(--font-heading);
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
+    color: var(--text-primary);
   }
 
   .event-location {
@@ -297,8 +304,8 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     font-family: var(--font-body);
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--accent-brand);
-    border: 1px solid var(--accent-brand-dim);
+    color: var(--text-primary);
+    border: 1px solid var(--accent-brand);
     border-radius: var(--radius-md);
     transition:
       background-color 0.2s var(--ease-standard),
@@ -328,9 +335,10 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     display: inline-block;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--accent-brand-dim);
+    color: var(--text-primary);
     padding: 0.25rem 0.5rem;
     border-radius: var(--radius-sm);
     background: var(--accent-brand-glow);
+    border: 1px solid var(--border);
   }
 </style>

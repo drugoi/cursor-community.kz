@@ -139,7 +139,7 @@ const langLinks = [
   }
 
   .logo-prompt {
-    color: var(--accent-brand);
+    color: var(--accent-ink);
     margin-right: 0.25rem;
   }
 
@@ -191,7 +191,7 @@ const langLinks = [
   }
 
   .lang-link {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.2s var(--ease-standard);
   }
@@ -250,8 +250,11 @@ const langLinks = [
   }
 
   .lang-link--active {
-    color: var(--accent-brand);
-    font-weight: 500;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-brand);
+    text-underline-offset: 0.2em;
   }
 
   .lang-link:not(:last-child)::after {

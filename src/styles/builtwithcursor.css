@@ -39,8 +39,8 @@
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--accent-brand);
-  border: 1px solid var(--accent-brand-dim);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-brand);
   border-radius: var(--radius-md);
   transition:
     background-color 0.2s var(--ease-standard),
@@ -160,14 +160,14 @@
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
   border: 1px solid var(--border);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-size: 0.75rem;
   line-height: 1.2;
 }
 
 #builtwithcursor .tool-chip--cursor {
   border-color: var(--accent-brand-dim);
-  color: var(--accent-brand);
+  color: var(--text-primary);
   background: var(--accent-brand-glow);
   box-shadow: 0 0 12px var(--accent-brand-glow);
 }
@@ -175,7 +175,7 @@
 /* Brand accent (#f54e00) — Community Guidelines; matches grid chip with stronger emphasis */
 #builtwithcursor .modal-tools .tool-chip--cursor {
   border-color: var(--accent-brand);
-  color: var(--accent-brand);
+  color: var(--text-primary);
   background: var(--accent-brand-glow);
   box-shadow:
     0 0 0 1px color-mix(in srgb, var(--accent-brand) 35%, transparent),
@@ -208,8 +208,8 @@
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--accent-brand);
-  border: 1px solid var(--accent-brand-dim);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-brand);
   border-radius: var(--radius-md);
   transition:
     background-color 0.2s var(--ease-standard),
@@ -335,8 +335,8 @@
 }
 
 #builtwithcursor .modal-link--primary {
-  color: var(--accent-brand);
-  border-color: var(--accent-brand-dim);
+  color: var(--text-primary);
+  border-color: var(--accent-brand);
   background: var(--accent-brand-glow);
 }
 
