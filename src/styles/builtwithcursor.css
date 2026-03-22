@@ -172,7 +172,6 @@
   box-shadow: 0 0 12px var(--accent-brand-glow);
 }
 
-/* Brand accent (#f54e00) — Community Guidelines; matches grid chip with stronger emphasis */
 #builtwithcursor .modal-tools .tool-chip--cursor {
   border-color: var(--accent-brand);
   color: var(--text-primary);

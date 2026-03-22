@@ -1,27 +1,20 @@
-/* Cursor Community brand tokens — Community Brand Guidelines (Cursor) */
-/* Typography: Cursor Gothic is the brand face; Inter is loaded in Base.astro as a web substitute. */
-
-/* --- Light theme (base; `data-theme` is set in Base.astro before paint) --- */
+/* src/styles/global.css */
 :root {
   color-scheme: light;
 
   --bg-primary: #f7f7f4;
   --bg-header: rgba(247, 247, 244, 0.88);
   --bg-card: #f2f1ed;
-  /* PDF card-01 — one step from default card */
   --bg-card-01: #f0efeb;
   --bg-card-hover: #ebeae5;
   --bg-card-elevated: #e6e5e0;
 
   --text-primary: #26251e;
-  /* ~WCAG AA for body-sized text on bg-primary (brand PDF suggests 60%; web uses stronger mix) */
   --text-secondary: color-mix(in srgb, #26251e 76%, transparent);
   --text-muted: color-mix(in srgb, #26251e 52%, transparent);
 
   --accent-brand: #f54e00;
-  /* Darker orange for small text / outlines on light surfaces (AA vs bg-primary) */
   --accent-ink: color-mix(in srgb, var(--accent-brand) 78%, #26251e);
-  /* Solid CTA fill: white text meets AA vs this orange */
   --accent-brand-strong: color-mix(in srgb, var(--accent-brand) 78%, #26251e);
   --accent-brand-dim: color-mix(in srgb, #f54e00 72%, #26251e);
   --accent-brand-glow: color-mix(in srgb, #f54e00 14%, transparent);
@@ -45,7 +38,6 @@
   --shadow-modal: 0 4px 12px rgba(38, 37, 30, 0.06), 0 24px 48px rgba(38, 37, 30, 0.12);
 }
 
-/* --- Dark theme --- */
 [data-theme='dark'] {
   color-scheme: dark;
 

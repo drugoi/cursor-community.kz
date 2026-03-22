@@ -258,7 +258,6 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     }
   }
 
-  /* Avoid opacity (hurts text contrast / a11y); “past” read as muted via border + surface */
   .event-card--past {
     background: var(--bg-card-01);
     border-style: dashed;

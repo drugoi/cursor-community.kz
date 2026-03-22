@@ -6,9 +6,7 @@ function getStoredTheme(): Theme | null {
   try {
     const v = localStorage.getItem(STORAGE_KEY);
     if (v === 'light' || v === 'dark') return v;
-  } catch {
-    /* ignore */
-  }
+  } catch {}
   return null;
 }
 
@@ -41,8 +39,7 @@ export function initTheme(): void {
 function syncToggleUi(): void {
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
-  const theme = document.documentElement.getAttribute('data-theme') as Theme | null;
-  const isDark = theme === 'dark';
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   const labelLight = btn.getAttribute('data-label-light') ?? 'Switch to light theme';
   const labelDark = btn.getAttribute('data-label-dark') ?? 'Switch to dark theme';
   btn.setAttribute('aria-label', isDark ? labelLight : labelDark);
@@ -58,9 +55,7 @@ export function bindThemeToggle(): void {
     const next: Theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     try {
       localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      /* ignore */
-    }
+    } catch {}
     applyTheme(next);
     syncToggleUi();
   });
