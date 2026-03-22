@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cursor Gothic';
+  src: url('/fonts/cursor-gothic/CursorGothic-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -72,7 +104,7 @@
 }
 
 :root {
-  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Cursor Gothic', 'Inter', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
