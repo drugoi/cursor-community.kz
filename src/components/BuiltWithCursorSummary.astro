@@ -1,5 +1,6 @@
 ---
 import { getShowcaseProjectsCount } from '../data/showcase-projects';
+import { getProjectsAddedLabel, type ProjectsAddedForms } from '../i18n/plurals';
 
 interface Props {
   locale: 'ru' | 'kk' | 'en';
@@ -11,7 +12,7 @@ interface Props {
       submit_description: string;
       no_projects: string;
       summary: string;
-      projects_added: string;
+      projects_added: ProjectsAddedForms;
       view_all_cta: string;
     };
   };
@@ -19,6 +20,11 @@ interface Props {
 
 const { locale, dict } = Astro.props;
 const projectsCount = getShowcaseProjectsCount();
+const projectsAddedLabel = getProjectsAddedLabel(
+  projectsCount,
+  locale,
+  dict.builtwithcursor.projects_added
+);
 const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`;
 ---
 
@@ -30,7 +36,7 @@ const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`
       <p class="summary-text">{dict.builtwithcursor.summary}</p>
       <p class="summary-count">
         <span class="summary-count-number">{projectsCount}</span>
-        <span class="summary-count-label">{dict.builtwithcursor.projects_added}</span>
+        <span class="summary-count-label">{projectsAddedLabel}</span>
       </p>
       <div class="summary-actions">
         <a href={projectsPageHref} class="summary-link">{dict.builtwithcursor.view_all_cta}</a>
