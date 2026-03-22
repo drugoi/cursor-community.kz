@@ -7,7 +7,9 @@
     "events": "Оқиғалар",
     "builtwithcursor": "Жобалар",
     "community": "Қауымдастық",
-    "about": "Біз туралы"
+    "about": "Біз туралы",
+    "theme_to_light": "Жарық теманы қосу",
+    "theme_to_dark": "Қараңғы теманы қосу"
   },
   "hero": {
     "title": "Cursor Community Kazakhstan",

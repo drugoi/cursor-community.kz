@@ -1,35 +1,76 @@
-/* src/styles/global.css */
+/* Cursor Community brand tokens — Community Brand Guidelines (Cursor) */
+/* Typography: Cursor Gothic is the brand face; Inter is loaded in Base.astro as a web substitute. */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+/* --- Light theme (base; `data-theme` is set in Base.astro before paint) --- */
+:root {
+  color-scheme: light;
+
+  --bg-primary: #f7f7f4;
+  --bg-header: rgba(247, 247, 244, 0.88);
+  --bg-card: #f2f1ed;
+  --bg-card-hover: #ebeae5;
+  --bg-card-elevated: #e6e5e0;
+
+  --text-primary: #26251e;
+  --text-secondary: color-mix(in srgb, #26251e 60%, transparent);
+  --text-muted: color-mix(in srgb, #26251e 42%, transparent);
+
+  --accent-brand: #f54e00;
+  --accent-brand-dim: color-mix(in srgb, #f54e00 72%, #26251e);
+  --accent-brand-glow: color-mix(in srgb, #f54e00 14%, transparent);
+  --accent-on-accent: #ffffff;
+
+  --border: #e1e0db;
+  --border-hover: #d5d4cf;
+
+  --noise-opacity: 0.018;
+  --hero-mesh-a: color-mix(in srgb, #f54e00 10%, transparent);
+  --hero-mesh-b: color-mix(in srgb, #26251e 06%, transparent);
+}
+
+/* --- Dark theme --- */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-primary: #14120b;
+  --bg-header: rgba(20, 18, 11, 0.88);
+  --bg-card: #1b1913;
+  --bg-card-hover: #201e18;
+  --bg-card-elevated: #26241e;
+
+  --text-primary: #edecec;
+  --text-secondary: color-mix(in srgb, #edecec 60%, transparent);
+  --text-muted: color-mix(in srgb, #edecec 38%, transparent);
+
+  --accent-brand: #f54e00;
+  --accent-brand-dim: color-mix(in srgb, #f54e00 75%, #edecec);
+  --accent-brand-glow: color-mix(in srgb, #f54e00 16%, transparent);
+  --accent-on-accent: #ffffff;
+
+  --border: #2b2923;
+  --border-hover: #383630;
+
+  --noise-opacity: 0.035;
+  --hero-mesh-a: color-mix(in srgb, #f54e00 12%, transparent);
+  --hero-mesh-b: color-mix(in srgb, #edecec 05%, transparent);
+}
 
 :root {
-  /* Colors */
-  --bg-primary: #0A0A0A;
-  --bg-card: #111111;
-  --bg-card-hover: #1A1A1A;
-  --bg-header: rgba(10, 10, 10, 0.85);
-  --text-primary: #E5E5E5;
-  --text-secondary: #888888;
-  --text-muted: #555555;
-  /* Cursor brand (from dark assets: #edecec) */
-  --accent-brand: #edecec;
-  --accent-brand-dim: #c9c8c8;
-  --accent-brand-glow: rgba(237, 236, 236, 0.12);
-  --border: #222222;
-  --border-hover: #333333;
+  --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* Typography */
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Spacing */
   --section-padding: clamp(4rem, 10vh, 8rem);
   --container-max: 1100px;
   --container-padding: clamp(1rem, 5vw, 2rem);
+
+  --focus-ring: 2px solid color-mix(in srgb, var(--accent-brand) 55%, transparent);
+  --focus-offset: 2px;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -49,7 +90,10 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.2;
@@ -58,6 +102,11 @@ h1, h2, h3, h4 {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .container {
@@ -103,7 +152,9 @@ a {
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 body::before {
@@ -112,6 +163,6 @@ body::before {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: var(--noise-opacity);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }

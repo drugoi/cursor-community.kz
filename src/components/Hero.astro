@@ -104,8 +104,8 @@ const { dict } = Astro.props;
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, rgba(237, 236, 236, 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(237, 236, 236, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 50%, var(--hero-mesh-a) 0%, transparent 52%),
+      radial-gradient(ellipse at 80% 20%, var(--hero-mesh-b) 0%, transparent 48%),
       var(--bg-primary);
     animation: gradient-mesh 12s ease-in-out infinite;
   }
@@ -133,7 +133,7 @@ const { dict } = Astro.props;
     font-family: var(--font-heading);
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 1rem;
     line-height: 1.2;
   }
@@ -149,6 +149,7 @@ const { dict } = Astro.props;
   .hero-typewriter {
     font-family: var(--font-mono);
     font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-primary);
     margin: 0 auto 2rem;
     min-height: 1.5em;
     max-width: 500px;
@@ -176,12 +177,12 @@ const { dict } = Astro.props;
 
   .btn-primary {
     background-color: var(--accent-brand);
-    color: var(--bg-primary);
+    color: var(--accent-on-accent);
     border: 2px solid var(--accent-brand);
   }
 
   .btn-primary:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.06);
   }
 
   .btn-secondary {
@@ -192,6 +193,6 @@ const { dict } = Astro.props;
 
   .btn-secondary:hover {
     background-color: var(--accent-brand);
-    color: var(--bg-primary);
+    color: var(--accent-on-accent);
   }
 </style>

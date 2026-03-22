@@ -7,7 +7,9 @@
     "events": "События",
     "builtwithcursor": "Проекты",
     "community": "Сообщество",
-    "about": "О нас"
+    "about": "О нас",
+    "theme_to_light": "Включить светлую тему",
+    "theme_to_dark": "Включить тёмную тему"
   },
   "hero": {
     "title": "Cursor Community Kazakhstan",
