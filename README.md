@@ -51,6 +51,13 @@ pnpm build
 
 Файл workflow: [.github/workflows/ftp-deploy.yml](.github/workflows/ftp-deploy.yml).
 
+### Безопасность при публичном репозитории
+
+- **Ветка `main`:** включена защита (без force-push и удаления ветки). При необходимости добавьте обязательные code review в Settings → Branches.
+- **После переключения репозитория в public:** в Settings → Code security включите **Secret scanning** (и при наличии — **Push protection**), чтобы GitHub предупреждал об утечках в коммитах.
+- **Секреты Actions:** значения только в Settings → Secrets and variables → Actions; в форках по умолчанию секреты в PR не передаются — так и оставляйте, если нет отдельной политики.
+- **Зависимости:** обновления предлагает [Dependabot](.github/dependabot.yml) (npm и GitHub Actions).
+
 ## Бренд-ассеты Cursor
 
 Логотипы и иконки Cursor лежат в `public/brand/` (скопированы из официального набора Cursor Brand Assets):
