@@ -35,8 +35,8 @@
     "cta_events": "Upcoming Events"
   },
   "builtwithcursor": {
-    "heading": "#builtwithcursor",
-    "command": "$ cat ./projects --built-with-cursor",
+    "heading": "Project showcase",
+    "command": "$ ls ./projects",
     "submit_cta": "Submit your project",
     "submit_description": "Built something with Cursor? Share it with the community.",
     "view_project": "View project",
@@ -54,7 +54,7 @@
   },
   "events": {
     "heading": "Upcoming Events",
-    "command": "$ ls ./events --upcoming",
+    "command": "$ ls ./events",
     "register": "Register",
     "past": "Completed",
     "upcoming": "Coming Soon",
@@ -73,7 +73,7 @@
   },
   "about": {
     "heading": "About Us",
-    "command": "$ cat ./about.md",
+    "command": "$ cat ./about",
     "description": "Cursor Community Kazakhstan is a local developer community built around Cursor, an AI-powered software development platform valued at $29.3B with millions of users worldwide.",
     "ambassador": "The community is organized with support from the Cursor Ambassador program — a global network of ambassadors who host meetups, hackathons, and workshops in their cities.",
     "faq_title": "Frequently Asked Questions",

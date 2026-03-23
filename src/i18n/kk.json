@@ -35,8 +35,8 @@
     "cta_events": "Жақын оқиғалар"
   },
   "builtwithcursor": {
-    "heading": "#builtwithcursor",
-    "command": "$ cat ./projects --built-with-cursor",
+    "heading": "Қауымдастық жобалары",
+    "command": "$ ls ./projects",
     "submit_cta": "Жобаны қосу",
     "submit_description": "Cursor-мен бірдеңе жасадыңыз ба? Қауымдастықпен бөлісіңіз.",
     "view_project": "Жобаны қарау",
@@ -54,7 +54,7 @@
   },
   "events": {
     "heading": "Жақын оқиғалар",
-    "command": "$ ls ./events --upcoming",
+    "command": "$ ls ./events",
     "register": "Тіркелу",
     "past": "Аяқталды",
     "upcoming": "Жақында",
@@ -73,7 +73,7 @@
   },
   "about": {
     "heading": "Біз туралы",
-    "command": "$ cat ./about.md",
+    "command": "$ cat ./about",
     "description": "Cursor Community Kazakhstan — Cursor айналасында біріккен жергілікті әзірлеушілер қауымдастығы. Cursor — бағдарламалық қамтамасыз ету жасауға арналған AI платформасы, бағалауы $29.3 млрд, бүкіл әлемде миллиондаған пайдаланушылары бар.",
     "ambassador": "Қауымдастық Cursor Ambassador бағдарламасының қолдауымен ұйымдастырылған — бұл өз қалаларында кездесулер, хакатондар және семинарлар өткізетін амбассадорлардың жаһандық желісі.",
     "faq_title": "Жиі қойылатын сұрақтар",
