@@ -1,0 +1,24 @@
+README.md
+  566e8068bb1d46f1 3,5,7-8,10,13-17,20,22,24,26,28,30-34,36,38,40,42-51,53,55,57,62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "c0223b6d35170fd245ba4c118aeb44a03fd75241",
+  "prompts": {
+    "566e8068bb1d46f1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d286d6b1-fcf6-47d0-8c6d-7c167c478276",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 37,
+      "total_deletions": 79,
+      "accepted_lines": 37,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/497a8a9074f4f37dcc21da6d3e3a27121ad59a557a54c7d7ea56b98030c95838"
+    }
+  }
+}
