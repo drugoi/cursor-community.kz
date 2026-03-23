@@ -17,6 +17,8 @@ pnpm preview      # локальный просмотр сборки
 pnpm run a11y     # проверка доступности (скрипт)
 ```
 
+Участие в разработке: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## #builtwithcursor
 
 Новые карточки: issue по [шаблону](https://github.com/drugoi/cursor-community.kz/issues/new?template=builtwithcursor-project.yml), затем запись в `src/data/builtwithcursor.json` и деплой.
