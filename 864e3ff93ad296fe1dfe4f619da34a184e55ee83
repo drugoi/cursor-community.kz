@@ -1,0 +1,28 @@
+README.md
+  566e8068bb1d46f1 54-60
+.github/dependabot.yml
+  566e8068bb1d46f1 1-12
+.gitignore
+  566e8068bb1d46f1 5-6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "864e3ff93ad296fe1dfe4f619da34a184e55ee83",
+  "prompts": {
+    "566e8068bb1d46f1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d286d6b1-fcf6-47d0-8c6d-7c167c478276",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 32,
+      "total_deletions": 0,
+      "accepted_lines": 32,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/74e3fe825140b65de7b856ee155ae1aa62a1d9115ab123ffa79cc7603ee5652d"
+    }
+  }
+}
