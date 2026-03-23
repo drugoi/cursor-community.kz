@@ -1,0 +1,22 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "cecc4750f580c933e07c577a30859f9490e1aba5",
+  "prompts": {
+    "566e8068bb1d46f1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d286d6b1-fcf6-47d0-8c6d-7c167c478276",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 23,
+      "accepted_lines": 0,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/14e49c5cc200ed3a7102ca6e33ea4ca797a5c1e6517b20b85f10629c17fbc027"
+    }
+  }
+}
