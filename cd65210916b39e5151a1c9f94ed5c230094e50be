@@ -1,0 +1,30 @@
+src/i18n/en.json
+  bcda0531c6d85195 38-39,57,76
+src/i18n/kk.json
+  bcda0531c6d85195 38-39,57,76
+src/i18n/ru.json
+  bcda0531c6d85195 38-39,59,78
+src/content.config.ts
+  bcda0531c6d85195 14-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "cd65210916b39e5151a1c9f94ed5c230094e50be",
+  "prompts": {
+    "bcda0531c6d85195": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "05787451-354f-48f0-8d4b-1ee1efaa3716",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 14,
+      "total_deletions": 14,
+      "accepted_lines": 14,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/e79aa5d011eaf9ce86da0cdf2600ae3b2537f32e178809e47aff1244e0a47411"
+    }
+  }
+}
