@@ -35,8 +35,8 @@
     "cta_events": "Ближайшие события"
   },
   "builtwithcursor": {
-    "heading": "#builtwithcursor",
-    "command": "$ cat ./projects --built-with-cursor",
+    "heading": "Витрина проектов",
+    "command": "$ ls ./projects",
     "submit_cta": "Добавить проект",
     "submit_description": "Сделали что-то с Cursor? Поделитесь с сообществом.",
     "view_project": "Смотреть проект",
@@ -56,7 +56,7 @@
   },
   "events": {
     "heading": "Ближайшие события",
-    "command": "$ ls ./events --upcoming",
+    "command": "$ ls ./events",
     "register": "Регистрация",
     "past": "Завершено",
     "upcoming": "Скоро",
@@ -75,7 +75,7 @@
   },
   "about": {
     "heading": "О нас",
-    "command": "$ cat ./about.md",
+    "command": "$ cat ./about",
     "description": "Cursor Community Kazakhstan — локальное сообщество разработчиков, объединённых вокруг Cursor, AI-платформы для создания программного обеспечения с оценкой $29.3 млрд и миллионами пользователей по всему миру.",
     "ambassador": "Сообщество организовано при поддержке программы Cursor Ambassador — глобальной сети амбассадоров, которые проводят митапы, хакатоны и воркшопы в своих городах.",
     "faq_title": "Часто задаваемые вопросы",
