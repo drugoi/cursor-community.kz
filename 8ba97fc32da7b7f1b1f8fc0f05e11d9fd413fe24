@@ -1,0 +1,26 @@
+README.md
+  566e8068bb1d46f1 20-21
+CONTRIBUTING.md
+  566e8068bb1d46f1 1-60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "8ba97fc32da7b7f1b1f8fc0f05e11d9fd413fe24",
+  "prompts": {
+    "566e8068bb1d46f1": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d286d6b1-fcf6-47d0-8c6d-7c167c478276",
+        "model": "default"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 62,
+      "total_deletions": 0,
+      "accepted_lines": 62,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/064f1284d34e919523da693f0c1145975a056f759b8bfc1de228b86bc54e7512"
+    }
+  }
+}
