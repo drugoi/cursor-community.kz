@@ -51,12 +51,7 @@ pnpm build
 
 Файл workflow: [.github/workflows/ftp-deploy.yml](.github/workflows/ftp-deploy.yml).
 
-### Безопасность при публичном репозитории
-
-- **Ветка `main`:** включена защита (без force-push и удаления ветки). При необходимости добавьте обязательные code review в Settings → Branches.
-- **После переключения репозитория в public:** в Settings → Code security включите **Secret scanning** (и при наличии — **Push protection**), чтобы GitHub предупреждал об утечках в коммитах.
-- **Секреты Actions:** значения только в Settings → Secrets and variables → Actions; в форках по умолчанию секреты в PR не передаются — так и оставляйте, если нет отдельной политики.
-- **Зависимости:** обновления предлагает [Dependabot](.github/dependabot.yml) (npm и GitHub Actions).
+Если репозиторий станет публичным: после переключения в public включите в Settings → Code security пункт **Secret scanning** (при появлении — и **Push protection**). Ветка `main` на GitHub защищена от force-push и удаления. Зависимости: [.github/dependabot.yml](.github/dependabot.yml).
 
 ## Бренд-ассеты Cursor
 
