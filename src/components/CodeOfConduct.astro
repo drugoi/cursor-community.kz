@@ -36,12 +36,7 @@ const { coc } = Astro.props;
       {coc.scope.paragraphs.map((p) => <p>{p}</p>)}
 
       <h2>{coc.enforcement.title}</h2>
-      <p>
-        {coc.enforcement.report_intro}{' '}
-        <a href={`mailto:${coc.enforcement.report_email}`}>{coc.enforcement.report_email}</a>.{' '}
-        {coc.enforcement.report_outro}
-      </p>
-      <p>{coc.enforcement.privacy}</p>
+      {coc.enforcement.paragraphs.map((p) => <p>{p}</p>)}
 
       <h2>{coc.guidelines.title}</h2>
       <p>{coc.guidelines.intro}</p>
