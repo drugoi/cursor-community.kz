@@ -1,79 +1,79 @@
 {
   "meta": {
     "title": "Code of Conduct — Cursor Community Kazakhstan",
-    "description": "Standards for participation in the Cursor Community Kazakhstan Telegram community, aligned with the Cursor Community Code of Conduct."
+    "description": "Standards for participation across all Cursor Community Kazakhstan spaces, aligned with the Cursor Community Code of Conduct."
   },
   "page_title": "Cursor Community Code of Conduct",
-  "page_intro": "These standards apply to the Cursor Community Kazakhstan Telegram community. They follow the Cursor Community Code of Conduct so we share the same expectations for respectful, professional collaboration.",
+  "page_intro": "These standards apply across all Cursor Community Kazakhstan spaces: Telegram, GitHub, public discussions, and online or offline events. They help us keep the community respectful, safe, and welcoming for people with different backgrounds and levels of experience.",
   "pledge": {
     "title": "Our Pledge",
     "paragraphs": [
-      "We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.",
-      "We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community."
+      "As members, contributors, and community leaders, we want participation here to be safe and free from harassment for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.",
+      "We aim to communicate and act in ways that help the community stay open, welcoming, diverse, inclusive, and healthy."
     ]
   },
   "standards": {
     "title": "Our Standards",
-    "positive_intro": "Examples of behavior that contributes to a positive environment for our community include:",
+    "positive_intro": "Here are some examples of behavior that helps create a positive community environment:",
     "positive": [
-      "Demonstrating empathy and kindness toward other people",
-      "Being respectful of differing opinions, viewpoints, and experiences",
-      "Giving and gracefully accepting constructive feedback",
-      "Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience",
-      "Focusing on what is best not just for us as individuals, but for the overall community"
+      "Showing empathy and kindness toward other people",
+      "Respecting different opinions, perspectives, and experiences",
+      "Giving constructive feedback and accepting it with grace",
+      "Taking responsibility for our mistakes, apologizing to the people affected, and learning from what happened",
+      "Paying attention to what is best not only for ourselves, but for the community as a whole"
     ],
-    "negative_intro": "Examples of unacceptable behavior include:",
+    "negative_intro": "Unacceptable behavior includes, for example:",
     "negative": [
-      "The use of sexualized language or imagery, and sexual attention or advances of any kind",
+      "Sexualized language or imagery, and any form of unwanted sexual attention or advances",
       "Trolling, insulting or derogatory comments, and personal or political attacks",
       "Public or private harassment",
-      "Publishing others’ private information, such as a physical or email address, without their explicit permission",
-      "Other conduct which could reasonably be considered inappropriate in a professional setting"
+      "Sharing someone else’s private information, such as a home address, email, or other contact details, without their explicit permission",
+      "Any other conduct that could reasonably be seen as inappropriate, aggressive, or harmful in a professional community"
     ]
   },
   "enforcement_responsibilities": {
     "title": "Enforcement Responsibilities",
     "paragraphs": [
-      "Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate, threatening, offensive, or harmful.",
-      "Community leaders have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate."
+      "Community leaders help keep these expectations clear and the community safe. If someone’s behavior is inappropriate, threatening, offensive, or harmful, they will respond calmly, consistently, and based on the situation.",
+      "Community leaders may remove, edit, or reject comments, messages, commits, code, wiki edits, issues, and other contributions that violate this Code of Conduct. When appropriate, they will also explain the reasons behind moderation decisions."
     ]
   },
   "scope": {
     "title": "Scope",
     "paragraphs": [
-      "This Code of Conduct applies within all community spaces, and also applies when an individual is officially representing the community in public spaces. Examples of representing our community include using an official email address, posting via an official social media account, or acting as an appointed representative at an online or offline event."
+      "This Code of Conduct applies in all community spaces, including Telegram, GitHub, public discussions, and online or offline events. It also applies when someone is officially representing the community in public, for example by using an official email address, posting from an official social media account, or speaking as an appointed representative at an event."
     ]
   },
   "enforcement": {
     "title": "Enforcement",
     "paragraphs": [
-      "Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community leaders responsible for enforcement in Cursor Community Kazakhstan.",
-      "All complaints will be reviewed and investigated promptly and fairly.",
-      "All community leaders are obligated to respect the privacy and security of the reporter of any incident."
+      "If you experience or witness abusive, harassing, or otherwise unacceptable behavior, you can report it to the Cursor Community Kazakhstan leaders responsible for enforcing these standards.",
+      "We aim to review and investigate all reports promptly and fairly.",
+      "We care deeply about protecting the privacy and safety of the person who reported the incident."
     ]
   },
   "guidelines": {
     "title": "Enforcement Guidelines",
-    "intro": "Community leaders will follow these Community Impact Guidelines in determining the consequences for any action they deem in violation of this Code of Conduct:",
+    "intro": "If this Code of Conduct is violated, community leaders will look at how the behavior affected people and the community as a whole before deciding what consequences are appropriate:",
     "items": [
       {
         "title": "1. Correction",
-        "community_impact": "Community Impact: Use of inappropriate language or other behavior deemed unprofessional or unwelcome in the community.",
-        "consequence": "Consequence: A private, written warning from community leaders, providing clarity around the nature of the violation and an explanation of why the behavior was inappropriate. A public apology may be requested."
+        "community_impact": "Community Impact: Inappropriate language or other behavior that is seen as unprofessional or unwelcome in the community.",
+        "consequence": "Consequence: A private written warning from community leaders explaining what was inappropriate and why. In some cases, a public apology may be requested."
       },
       {
         "title": "2. Warning",
-        "community_impact": "Community Impact: A violation through a single incident or series of actions.",
-        "consequence": "Consequence: A warning with consequences for continued behavior. No interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, for a specified period of time. This includes avoiding interactions in community spaces as well as external channels like social media. Violating these terms may lead to a temporary or permanent ban."
+        "community_impact": "Community Impact: A violation through one serious incident or a series of actions.",
+        "consequence": "Consequence: An official warning with a clear explanation of what will happen if the behavior continues. For a set period of time, interaction with the people involved may be restricted, including unwanted contact with those enforcing the Code of Conduct. This applies both in community spaces and in external channels such as social media. Breaking these terms may lead to a temporary or permanent ban."
       },
       {
         "title": "3. Temporary Ban",
-        "community_impact": "Community Impact: A serious violation of community standards, including sustained inappropriate behavior.",
-        "consequence": "Consequence: A temporary ban from any sort of interaction or public communication with the community for a specified period of time. No public or private interaction with the people involved, including unsolicited interaction with those enforcing the Code of Conduct, is allowed during this period. Violating these terms may lead to a permanent ban."
+        "community_impact": "Community Impact: A serious violation of community standards, including repeated inappropriate behavior.",
+        "consequence": "Consequence: A temporary ban from interacting or communicating publicly with the community for a specified period of time. During this period, no public or private interaction with the people involved is allowed, including unwanted contact with those enforcing the Code of Conduct. Breaking these terms may lead to a permanent ban."
       },
       {
         "title": "4. Permanent Ban",
-        "community_impact": "Community Impact: Demonstrating a pattern of violation of community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of classes of individuals.",
+        "community_impact": "Community Impact: A clear pattern of violating community standards, including sustained inappropriate behavior, harassment of an individual, or aggression toward or disparagement of groups of people.",
         "consequence": "Consequence: A permanent ban from any sort of public interaction within the community."
       }
     ]
