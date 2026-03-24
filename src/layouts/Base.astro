@@ -3,25 +3,37 @@ import '../styles/global.css';
 
 import type { Locale } from '../i18n/utils';
 
+interface PageMeta {
+  title: string;
+  description: string;
+}
+
 interface Props {
   locale: Locale;
   dict: any;
+  pageMeta?: PageMeta;
+  canonicalPath?: string;
+  /** When set, overrides default homepage hreflang paths (e.g. for /conduct/ localized routes). */
+  hreflangPaths?: Record<Locale, string>;
 }
 
-const { locale, dict } = Astro.props;
+const { locale, dict, pageMeta, canonicalPath, hreflangPaths } = Astro.props;
 
 const siteUrl = 'https://cursor-community.kz';
 
-const canonicalPaths: Record<Locale, string> = {
+const defaultCanonicalPaths: Record<Locale, string> = {
   ru: '/',
   kk: '/kk/',
   en: '/en/',
 };
 
-const canonicalUrl = `${siteUrl}${canonicalPaths[locale]}`;
+const pathForLocale = canonicalPath ?? defaultCanonicalPaths[locale];
+const canonicalUrl = `${siteUrl}${pathForLocale}`;
 
-const title = dict.meta.title;
-const description = dict.meta.description;
+const title = pageMeta?.title ?? dict.meta.title;
+const description = pageMeta?.description ?? dict.meta.description;
+
+const alternatePaths = hreflangPaths ?? defaultCanonicalPaths;
 
 const organizationSchema = {
   '@context': 'https://schema.org',
@@ -121,10 +133,10 @@ const websiteSchema = {
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Hreflang alternates -->
-    <link rel="alternate" hreflang="ru" href={`${siteUrl}/`} />
-    <link rel="alternate" hreflang="kk" href={`${siteUrl}/kk/`} />
-    <link rel="alternate" hreflang="en" href={`${siteUrl}/en/`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteUrl}/`} />
+    <link rel="alternate" hreflang="ru" href={`${siteUrl}${alternatePaths.ru}`} />
+    <link rel="alternate" hreflang="kk" href={`${siteUrl}${alternatePaths.kk}`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}${alternatePaths.en}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${alternatePaths.ru}`} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
