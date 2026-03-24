@@ -1,0 +1,28 @@
+src/data/code-of-conduct/ru.json
+  3c1a4e9765274f07 4,7,11-12,17,19-23,25,27-28,30-31,37-38,44,50-52,57,61-62,66-67,71-72,76
+src/data/code-of-conduct/en.json
+  3c1a4e9765274f07 4,7,11-12,17,19-23,25,27,30-31,37-38,44,50-52,57,61-62,66-67,71-72,76
+src/data/code-of-conduct/kk.json
+  3c1a4e9765274f07 3-4,6-7,11-12,17,19,21-23,25,27-28,30-31,35,37-38,44,48,50-52,56-57,60-62,65-67,71-72,76-77
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.15",
+  "base_commit_sha": "929c7e4492985daeecbd1a950246e76bc2819869",
+  "prompts": {
+    "3c1a4e9765274f07": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d1a95d8d-0e9f-471d-9ad2-03142a7dbc3f",
+        "model": "gpt-5.4"
+      },
+      "human_author": "Nikita Bayev <nikita@bayev.kz>",
+      "messages": [],
+      "total_additions": 111,
+      "total_deletions": 111,
+      "accepted_lines": 93,
+      "overriden_lines": 0,
+      "messages_url": "https://usegitai.com/cas/5a46ee711ad75a46b862899a0b7eb06edf931d03a7b473d01a85eb46aa463868"
+    }
+  }
+}
