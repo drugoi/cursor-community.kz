@@ -1,0 +1,54 @@
+---
+import '../styles/code-of-conduct.css';
+import type { CodeOfConductData } from '../data/code-of-conduct/load';
+
+interface Props {
+  coc: CodeOfConductData;
+}
+
+const { coc } = Astro.props;
+---
+
+<section class="coc section" aria-labelledby="coc-title">
+  <div class="container coc-inner">
+    <p class="heading-command" aria-hidden="true">$ cat ./conduct.md</p>
+    <h1 id="coc-title" class="coc-title">{coc.page_title}</h1>
+    <p class="coc-lead">{coc.page_intro}</p>
+
+    <article class="coc-article">
+      <h2>{coc.pledge.title}</h2>
+      {coc.pledge.paragraphs.map((p) => <p>{p}</p>)}
+
+      <h2>{coc.standards.title}</h2>
+      <p>{coc.standards.positive_intro}</p>
+      <ul>
+        {coc.standards.positive.map((item) => <li>{item}</li>)}
+      </ul>
+      <p>{coc.standards.negative_intro}</p>
+      <ul>
+        {coc.standards.negative.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <h2>{coc.enforcement_responsibilities.title}</h2>
+      {coc.enforcement_responsibilities.paragraphs.map((p) => <p>{p}</p>)}
+
+      <h2>{coc.scope.title}</h2>
+      {coc.scope.paragraphs.map((p) => <p>{p}</p>)}
+
+      <h2>{coc.enforcement.title}</h2>
+      {coc.enforcement.paragraphs.map((p) => <p>{p}</p>)}
+
+      <h2>{coc.guidelines.title}</h2>
+      <p>{coc.guidelines.intro}</p>
+      <ol class="coc-guidelines">
+        {coc.guidelines.items.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.community_impact}</p>
+            <p>{item.consequence}</p>
+          </li>
+        ))}
+      </ol>
+    </article>
+  </div>
+</section>

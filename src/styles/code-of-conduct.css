@@ -1,0 +1,89 @@
+.coc {
+  padding-top: calc(3.5rem + var(--section-padding));
+}
+
+.coc-inner {
+  max-width: 42rem;
+}
+
+.coc-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  margin-bottom: 1rem;
+}
+
+.coc-lead {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.65;
+}
+
+.coc-article h2 {
+  font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.coc-article h2:first-of-type {
+  margin-top: 0;
+}
+
+.coc-article h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+
+.coc-article p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.coc-article p:last-child {
+  margin-bottom: 0;
+}
+
+.coc-article ul,
+.coc-article ol {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+  color: var(--text-secondary);
+}
+
+.coc-article li {
+  margin-bottom: 0.5rem;
+}
+
+.coc-article li:last-child {
+  margin-bottom: 0;
+}
+
+.coc-article a {
+  color: var(--accent-brand);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.coc-article a:hover {
+  color: var(--accent-brand-dim);
+}
+
+.coc-guidelines {
+  list-style: decimal;
+  margin-left: 1.5rem;
+}
+
+.coc-guidelines > li {
+  margin-bottom: 1.5rem;
+  padding-left: 0.35rem;
+}
+
+.coc-guidelines > li:last-child {
+  margin-bottom: 0;
+}
+
+.coc-guidelines p {
+  margin-bottom: 0.5rem;
+}
