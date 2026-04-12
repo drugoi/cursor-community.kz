@@ -21,18 +21,13 @@ interface Props {
 const { locale, dict } = Astro.props;
 const allEvents = await getCollection('events');
 const filtered = allEvents.filter((e) => e.data.lang === locale || e.data.lang === 'ru');
-const upcomingEvents = filtered
-  .filter((e) => e.data.status === 'upcoming')
-  .sort(() => 0);
+const upcomingEvents = filtered.filter((e) => e.data.status === 'upcoming').sort(() => 0);
 const pastEvents = filtered
   .filter((e) => e.data.status === 'past')
   .sort((a, b) => (b.data.date < a.data.date ? -1 : b.data.date > a.data.date ? 1 : 0));
 const hasUpcoming = upcomingEvents.length > 0;
 
-const cityNameMap: Record<string, string> = {
-  almaty: 'Алматы',
-  astana: 'Астана',
-};
+const cityNameMap: Record<string, string> = { almaty: 'Алматы', astana: 'Астана' };
 
 function formatEventDate(isoDate: string): string {
   if (isoDate === 'TBD') return isoDate;
@@ -49,57 +44,32 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     location: {
       '@type': 'Place',
       name: event.data.location,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: cityNameMap[event.data.city] ?? event.data.city,
-        addressCountry: 'KZ',
-      },
+      address: { '@type': 'PostalAddress', addressLocality: cityNameMap[event.data.city] ?? event.data.city, addressCountry: 'KZ' },
     },
-    organizer: {
-      '@type': 'Organization',
-      name: 'Cursor Community Kazakhstan',
-      url: 'https://cursor-community.kz',
-    },
-    eventStatus:
-      event.data.status === 'past'
-        ? 'https://schema.org/EventCompleted'
-        : 'https://schema.org/EventScheduled',
+    organizer: { '@type': 'Organization', name: 'Cursor Community Kazakhstan', url: 'https://cursor-community.kz' },
+    eventStatus: event.data.status === 'past' ? 'https://schema.org/EventCompleted' : 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   };
-
-  if (event.data.date !== 'TBD') {
-    jsonLd.startDate = event.data.date;
-  }
-
+  if (event.data.date !== 'TBD') jsonLd.startDate = event.data.date;
   if (event.data.registrationUrl) {
-    jsonLd.offers = {
-      '@type': 'Offer',
-      url: event.data.registrationUrl,
-      price: '0',
-      priceCurrency: 'KZT',
-      availability: 'https://schema.org/InStock',
-    };
+    jsonLd.offers = { '@type': 'Offer', url: event.data.registrationUrl, price: '0', priceCurrency: 'KZT', availability: 'https://schema.org/InStock' };
   }
-
   return jsonLd;
 });
 ---
 
 <section id="events" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.events.command}</p>
-    <h2 class="heading-sub">{dict.events.heading}</h2>
+    <div class="section-header">
+      <p class="heading-command" aria-hidden="true">{dict.events.command}</p>
+      <h2 class="section-title">{dict.events.heading}</h2>
+    </div>
 
     {!hasUpcoming && (
       <div class="empty-state">
-        <p class="empty-state-mono">// next event: TBD</p>
+        <span class="empty-state-mono">// next event: TBD</span>
         <p class="empty-state-message">{dict.events.no_upcoming}</p>
-        <a
-          href="https://t.me/+IQDkySGNoCVkMTUy"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="empty-state-cta"
-        >
+        <a href="https://t.me/+IQDkySGNoCVkMTUy" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           {dict.events.no_upcoming_cta}
         </a>
       </div>
@@ -111,20 +81,20 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
         <div class="events-grid">
           {upcomingEvents.map((event) => (
             <article class="event-card">
-              <h3>{event.data.title}</h3>
-              <p class="event-location">📍 {event.data.location}</p>
-              <p class="event-date">{formatEventDate(event.data.date)}</p>
-              <p class="event-format">{event.data.format}</p>
-              {event.data.registrationUrl ? (
-                <a
-                  href={event.data.registrationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-register"
-                >
-                  {dict.events.register}
-                </a>
-              ) : null}
+              <div class="event-card-inner">
+                <div class="event-meta">
+                  <span class="event-badge event-badge--upcoming">{dict.events.upcoming}</span>
+                  <span class="event-format">{event.data.format}</span>
+                </div>
+                <h3 class="event-title">{event.data.title}</h3>
+                <p class="event-location">📍 {event.data.location}</p>
+                <p class="event-date">{formatEventDate(event.data.date)}</p>
+                {event.data.registrationUrl && (
+                  <a href={event.data.registrationUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary event-btn">
+                    {dict.events.register}
+                  </a>
+                )}
+              </div>
             </article>
           ))}
         </div>
@@ -133,15 +103,19 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
 
     {pastEvents.length > 0 && (
       <>
-        <h3 class="events-subheading">{dict.events.past_heading}</h3>
-        <div class="events-grid">
+        <h3 class="events-subheading events-subheading--past">{dict.events.past_heading}</h3>
+        <div class="events-grid events-grid--past">
           {pastEvents.map((event) => (
-            <article class:list={['event-card', 'event-card--past']}>
-              <h3>{event.data.title}</h3>
-              <p class="event-location">📍 {event.data.location}</p>
-              <p class="event-date">{formatEventDate(event.data.date)}</p>
-              <p class="event-format">{event.data.format}</p>
-              <span class="badge-past">{dict.events.past}</span>
+            <article class="event-card event-card--past">
+              <div class="event-card-inner">
+                <div class="event-meta">
+                  <span class="event-badge event-badge--past">{dict.events.past}</span>
+                  <span class="event-format">{event.data.format}</span>
+                </div>
+                <h3 class="event-title">{event.data.title}</h3>
+                <p class="event-location">📍 {event.data.location}</p>
+                <p class="event-date">{formatEventDate(event.data.date)}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -149,202 +123,155 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
     )}
   </div>
 
-    {eventsJsonLd.map((jsonLd) => (
-      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-    ))}
+  {eventsJsonLd.map((jsonLd) => (
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  ))}
 </section>
 
 <style>
-  .section {
-    padding: var(--section-padding) 0;
+  .section-header {
+    margin-bottom: 2.5rem;
   }
 
-  .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-  }
-
-  h2:not(.heading-command):not(.heading-sub) {
+  .section-title {
     font-family: var(--font-heading);
-    margin-bottom: 2rem;
-  }
-
-  .no-upcoming {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    margin-top: 0.5rem;
   }
 
   .empty-state {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 2rem 2.5rem;
-    margin-bottom: 2rem;
+    padding: 2.5rem;
     text-align: center;
-    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   .empty-state-mono {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--accent-brand-dim);
-    margin-bottom: 1rem;
   }
 
   .empty-state-message {
     color: var(--text-secondary);
-    margin-bottom: 1.25rem;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .empty-state-cta {
-    display: inline-block;
-    padding: 0.6rem 1.25rem;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    border: 1px solid var(--accent-brand);
-    border-radius: var(--radius-md);
-    transition:
-      background-color 0.2s var(--ease-standard),
-      border-color 0.2s var(--ease-standard);
-  }
-
-  .empty-state-cta:hover {
-    background: var(--accent-brand-glow);
-    border-color: var(--accent-brand);
+    max-width: 320px;
   }
 
   .events-subheading {
     font-family: var(--font-heading);
-    font-size: 1.1rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .events-subheading--past {
+    margin-top: 3rem;
+    color: var(--text-muted);
   }
 
   .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .event-card {
     background: var(--bg-card);
-    border-radius: var(--radius-lg);
     border: 1px solid var(--border);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-card);
-    transition:
-      border-color 0.2s var(--ease-standard),
-      background-color 0.2s var(--ease-standard),
-      box-shadow 0.25s var(--ease-out),
-      transform 0.2s var(--ease-out);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
   .event-card:hover {
-    border-color: var(--accent-brand-dim);
-    background: var(--bg-card-hover);
-    box-shadow: var(--shadow-card-hover), 0 0 28px var(--accent-brand-glow);
-    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-card-hover);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .event-card:hover {
-      transform: none;
-    }
-  }
-
-  .event-card--past {
+  .event-card-inner {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    background: var(--bg-card-01);
-    border-style: dashed;
-    border-color: var(--border-hover);
+    gap: 0.5rem;
   }
 
-  .event-card--past:hover {
-    border-color: var(--accent-brand-dim);
-    border-style: solid;
-    background: var(--bg-card-hover);
-    box-shadow: var(--shadow-card);
-    transform: translateY(-1px);
+  .event-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
 
-  .event-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-primary);
+  .event-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
   }
 
-  .event-location {
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
+  .event-badge--upcoming {
+    background: var(--accent-brand);
+    color: #fff;
   }
 
-  .event-date {
-    font-family: var(--font-mono);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .event-format {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-
-  .btn-register {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    border: 1px solid var(--accent-brand);
-    border-radius: var(--radius-md);
-    transition:
-      background-color 0.2s var(--ease-standard),
-      border-color 0.2s var(--ease-standard);
-  }
-
-  @media (max-width: 640px) {
-    .btn-register,
-    .empty-state-cta {
-      min-height: 2.75rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .empty-state {
-      padding: 1.5rem 1.25rem;
-    }
-  }
-
-  .btn-register:hover {
-    background: var(--accent-brand-glow);
-    border-color: var(--accent-brand);
-  }
-
-  .badge-past {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-sm);
-    background: var(--accent-brand-glow);
+  .event-badge--past {
+    background: var(--bg-card-elevated);
+    color: var(--text-muted);
     border: 1px solid var(--border);
   }
 
-  .event-card--past .badge-past {
-    margin-top: auto;
+  .event-format {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-top: 0.25rem;
+    line-height: 1.3;
+  }
+
+  .event-location,
+  .event-date {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .event-btn {
+    margin-top: 0.5rem;
     align-self: flex-start;
+    padding: 0.45rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .event-card--past {
+    opacity: 0.65;
+    border-style: dashed;
+  }
+
+  .event-card--past:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .events-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .empty-state {
+      padding: 2rem 1.5rem;
+    }
   }
 </style>

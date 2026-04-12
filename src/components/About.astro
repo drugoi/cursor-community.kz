@@ -9,19 +9,24 @@ const faq = dict.about.faq ?? [];
 
 <section id="about" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.about.command}</p>
-    <h2 class="heading-sub">{dict.about.heading}</h2>
-    <p class="body-text">{dict.about.description}</p>
-    <p class="body-text ambassador">{dict.about.ambassador}</p>
+    <div class="section-header">
+      <p class="heading-command" aria-hidden="true">{dict.about.command}</p>
+      <h2 class="section-title">{dict.about.heading}</h2>
+    </div>
 
-    <div class="faq">
-      <h3>{dict.about.faq_title}</h3>
-      {faq.map((item: { q: string; a: string }) => (
-        <details class="faq-item">
-          <summary>{item.q}</summary>
-          <div class="faq-answer">{item.a}</div>
-        </details>
-      ))}
+    <div class="about-content">
+      <p class="body-text">{dict.about.description}</p>
+      <p class="body-text ambassador">{dict.about.ambassador}</p>
+
+      <div class="faq">
+        <h3 class="faq-title">{dict.about.faq_title}</h3>
+        {faq.map((item: { q: string; a: string }) => (
+          <details class="faq-item">
+            <summary class="faq-question">{item.q}</summary>
+            <div class="faq-answer">{item.a}</div>
+          </details>
+        ))}
+      </div>
     </div>
   </div>
 
@@ -31,93 +36,105 @@ const faq = dict.about.faq ?? [];
     "mainEntity": faq.map((item: { q: string; a: string }) => ({
       "@type": "Question",
       "name": item.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.a
-      }
+      "acceptedAnswer": { "@type": "Answer", "text": item.a }
     }))
   })} />
 </section>
 
 <style>
-  .section {
-    padding: var(--section-padding) 0;
+  .section-header {
+    margin-bottom: 2.5rem;
   }
 
-  .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-  }
-
-  h2:not(.heading-command):not(.heading-sub) {
+  .section-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
   .body-text {
-    max-width: 700px;
-    color: var(--text-primary);
-    line-height: 1.6;
+    color: var(--text-secondary);
+    line-height: 1.7;
     font-size: 1rem;
+    margin-bottom: 1rem;
   }
 
   .body-text.ambassador {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-primary);
+    font-weight: 500;
   }
 
   .faq {
-    margin-top: 2.5rem;
+    margin-top: 2rem;
   }
 
-  .faq h3 {
+  .faq-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   .faq-item {
     border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    margin-bottom: 0.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 0.5rem;
     overflow: hidden;
-    transition: border-color 0.2s var(--ease-standard);
+    transition: border-color 0.15s;
   }
 
   .faq-item[open] {
-    border-left: 3px solid var(--accent-brand);
+    border-color: var(--border-hover);
   }
 
-  .faq-item summary {
+  .faq-question {
     font-weight: 600;
     padding: 1rem 1.25rem;
     cursor: pointer;
     list-style: none;
-    transition: background-color 0.2s var(--ease-standard);
+    color: var(--text-primary);
+    transition: background-color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
-  .faq-item summary::-webkit-details-marker {
-    display: none;
-  }
+  .faq-question::-webkit-details-marker { display: none; }
 
-  .faq-item summary::after {
+  .faq-question::after {
     content: '+';
-    float: right;
-    color: var(--accent-ink);
+    color: var(--accent-brand);
+    font-weight: 400;
+    font-size: 1.1rem;
+    flex-shrink: 0;
   }
 
-  .faq-item[open] summary::after {
+  .faq-item[open] .faq-question::after {
     content: '−';
   }
 
-  .faq-item summary:hover {
-    background-color: var(--bg-card);
+  .faq-question:hover {
+    background: var(--bg-card);
   }
 
   .faq-answer {
     padding: 0 1.25rem 1rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 0.9375rem;
   }
 </style>

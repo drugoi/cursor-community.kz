@@ -32,23 +32,20 @@ const GITHUB_ISSUE_URL =
 
 <section id="builtwithcursor" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
-    {headingLevel === 'h1' ? (
-      <h1 class="heading-sub">{dict.builtwithcursor.heading}</h1>
-    ) : (
-      <h2 class="heading-sub">{dict.builtwithcursor.heading}</h2>
-    )}
+    <div class="section-header">
+      <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
+      {headingLevel === 'h1' ? (
+        <h1 class="section-title">{dict.builtwithcursor.heading}</h1>
+      ) : (
+        <h2 class="section-title">{dict.builtwithcursor.heading}</h2>
+      )}
+    </div>
 
     {!hasProjects && (
       <div class="empty-state">
-        <p class="empty-state-mono">// projects: []</p>
+        <span class="empty-state-mono">// projects: []</span>
         <p class="empty-state-message">{dict.builtwithcursor.no_projects}</p>
-        <a
-          href={GITHUB_ISSUE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="empty-state-cta"
-        >
+        <a href={GITHUB_ISSUE_URL} target="_blank" rel="noopener noreferrer" class="btn btn-primary">
           {dict.builtwithcursor.submit_cta}
         </a>
       </div>
@@ -61,12 +58,7 @@ const GITHUB_ISSUE_URL =
         </div>
         <div class="submit-block">
           <p class="submit-description">{dict.builtwithcursor.submit_description}</p>
-          <a
-            href={GITHUB_ISSUE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="submit-cta"
-          >
+          <a href={GITHUB_ISSUE_URL} target="_blank" rel="noopener noreferrer" class="submit-cta">
             {dict.builtwithcursor.submit_cta}
           </a>
         </div>

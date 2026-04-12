@@ -6,28 +6,26 @@ interface Props {
 const { dict } = Astro.props;
 
 const links = [
-  { href: "https://t.me/+IQDkySGNoCVkMTUy", name: "Telegram", emoji: "✈️", descKey: "telegram_desc" },
-  { href: "https://lu.ma/cursorcommunity", name: "Luma", emoji: "📅", descKey: "luma_desc" },
-  { href: "https://forum.cursor.com", name: "Cursor Forum", emoji: "💻", descKey: "forum_desc" },
-  { href: "https://discord.gg/cursor", name: "Discord", emoji: "🎮", descKey: "discord_desc" },
+  { href: "https://t.me/+IQDkySGNoCVkMTUy", name: "Telegram", emoji: "✈", descKey: "telegram_desc" },
+  { href: "https://lu.ma/cursorcommunity", name: "Luma", emoji: "◈", descKey: "luma_desc" },
+  { href: "https://forum.cursor.com", name: "Cursor Forum", emoji: "⤷", descKey: "forum_desc" },
+  { href: "https://discord.gg/cursor", name: "Discord", emoji: "◈", descKey: "discord_desc" },
 ];
 ---
 
 <section id="community" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.community.command}</p>
-    <h2 class="heading-sub">{dict.community.heading}</h2>
-    <div class="grid">
+    <div class="section-header">
+      <p class="heading-command" aria-hidden="true">{dict.community.command}</p>
+      <h2 class="section-title">{dict.community.heading}</h2>
+    </div>
+    <div class="community-grid">
       {links.map((link) => (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="card"
-        >
-          <span class="card-emoji" aria-hidden="true">{link.emoji}</span>
-          <h3>{link.name}</h3>
-          <p>{dict.community[link.descKey]}</p>
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="community-card">
+          <div class="card-body">
+            <h3>{link.name}</h3>
+            <p>{dict.community[link.descKey]}</p>
+          </div>
         </a>
       ))}
     </div>
@@ -35,75 +33,56 @@ const links = [
 </section>
 
 <style>
-  .section {
-    padding: var(--section-padding) 0;
+  .section-header {
+    margin-bottom: 2.5rem;
   }
 
-  .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
-  }
-
-  h2:not(.heading-command):not(.heading-sub) {
+  .section-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    margin-top: 0.5rem;
   }
 
-  .grid {
+  .community-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
   }
 
-  .card {
-    display: block;
+  .community-card {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-card);
-    transition:
-      border-color 0.2s var(--ease-standard),
-      background-color 0.2s var(--ease-standard),
-      box-shadow 0.25s var(--ease-out),
-      transform 0.2s var(--ease-out);
+    text-decoration: none;
+    transition: border-color 0.15s, background-color 0.15s;
   }
 
-  .card:hover {
-    border-color: var(--accent-brand-dim);
+  .community-card:hover {
+    border-color: var(--accent-brand);
     background: var(--bg-card-hover);
-    box-shadow: var(--shadow-card-hover), 0 0 28px var(--accent-brand-glow);
-    transform: translateY(-2px);
   }
 
-  .card:active {
-    transform: translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .card:hover,
-    .card:active {
-      transform: none;
-    }
-  }
-
-  .card-emoji {
-    display: block;
-    font-size: 2rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .card h3 {
+  .card-body h3 {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
   }
 
-  .card p {
+  .card-body p {
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 480px) {
+    .community-card {
+      padding: 1rem 1.25rem;
+    }
   }
 </style>

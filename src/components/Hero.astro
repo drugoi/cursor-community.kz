@@ -15,40 +15,84 @@ const { dict } = Astro.props;
 ---
 
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-content">
-    <h1 class="hero-title">{dict.hero.title}</h1>
-    <p class="hero-subtitle">{dict.hero.subtitle}</p>
-    <div class="hero-typewriter">
-      <span class="prompt">&gt;&nbsp;</span><span id="typewriter" data-phrases={JSON.stringify(dict.hero.typewriter)}></span><span class="cursor-blink"></span>
-    </div>
-    <div class="hero-ctas">
-      <a
-        href="https://t.me/+IQDkySGNoCVkMTUy"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-primary"
-      >
-        {dict.hero.cta_join}
-      </a>
-      <a href="#events" class="btn btn-secondary">
-        {dict.hero.cta_events}
-      </a>
+  <!-- Ambient background glow -->
+  <div class="hero-bg-glow" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <div class="hero-layout">
+    <div class="hero-content">
+      <!-- Gradient title -->
+      <h1 class="hero-title">
+        <span class="title-cursor">Cursor</span> Community Kazakhstan
+      </h1>
+
+      <!-- Muted subtitle -->
+      <p class="hero-subtitle">{dict.hero.subtitle}</p>
+
+      <!-- Terminal input block -->
+      <div class="hero-terminal" aria-label="Terminal input">
+        <span class="terminal-prompt">&gt;</span>
+        <span
+          id="typewriter"
+          class="terminal-text"
+          data-phrases={JSON.stringify(dict.hero.typewriter)}></span>
+        <span class="terminal-cursor" aria-hidden="true"></span>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="hero-ctas">
+        <a
+          href="https://t.me/+IQDkySGNoCVkMTUy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-glow"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 5v14M5 12h14"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"></path>
+          </svg>
+          {dict.hero.cta_join}
+        </a>
+        <a href="#events" class="btn btn-ghost">
+          {dict.hero.cta_events}
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M19 9l-7 7-7-7"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
-  const el = document.getElementById('typewriter');
+  const el = document.getElementById("typewriter");
   if (el) {
-    const phrases = JSON.parse(el.dataset.phrases || '[]');
-    let current = 0;
-    let charIdx = 0;
-    let isDeleting = false;
-
+    const phrases = JSON.parse(el.dataset.phrases || "[]");
+    let current = 0,
+      charIdx = 0,
+      isDeleting = false;
     function tick() {
-      const text = phrases[current] || '';
-
+      const text = phrases[current] || "";
       if (!isDeleting) {
         el.textContent = text.slice(0, charIdx + 1);
         charIdx++;
@@ -78,7 +122,6 @@ const { dict } = Astro.props;
         setTimeout(tick, 40);
       }
     }
-
     if (phrases.length) tick();
   }
 </script>
@@ -86,145 +129,258 @@ const { dict } = Astro.props;
 <style>
   .hero {
     position: relative;
-    min-height: min(100vh, 100dvh);
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-top: 80px;
+    padding: 8rem var(--container-padding) 5rem;
     overflow: hidden;
   }
 
-  @media (max-width: 640px) {
-    .hero {
-      padding-top: 6rem;
-    }
-  }
-
-  .hero-bg {
+  /* ── Background ── */
+  .hero-bg-glow {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 50%, var(--hero-mesh-a) 0%, transparent 52%),
-      radial-gradient(ellipse at 80% 20%, var(--hero-mesh-b) 0%, transparent 48%),
-      var(--bg-primary);
-    animation: gradient-mesh 12s ease-in-out infinite;
+      radial-gradient(
+        ellipse 80% 60% at 70% 40%,
+        rgba(245, 78, 0, 0.06) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 20% 80%,
+        rgba(245, 78, 0, 0.04) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+    z-index: 0;
   }
 
-  @keyframes gradient-mesh {
-    0%, 100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.9;
-      transform: scale(1.05);
-    }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(
+      ellipse 80% 70% at 50% 50%,
+      black 30%,
+      transparent 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 70% at 50% 50%,
+      black 30%,
+      transparent 80%
+    );
+    pointer-events: none;
+    z-index: 0;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero-bg {
-      animation: none;
-    }
+  /* ── Layout ── */
+  .hero-layout {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
   }
 
   .hero-content {
-    position: relative;
-    z-index: 1;
+    max-width: 640px;
     text-align: center;
-    max-width: var(--container-max);
-    padding: 0 var(--container-padding);
   }
 
+  /* ── Title with gradient ── */
   .hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    animation: fadeSlideUp 0.8s var(--ease-out) both;
+    text-align: center;
   }
 
+  /* ── Subtitle ── */
   .hero-subtitle {
-    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
     color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.6;
-  }
-
-  .hero-typewriter {
-    font-family: var(--font-mono);
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: var(--text-primary);
+    max-width: 480px;
     margin: 0 auto 2rem;
-    min-height: 1.5em;
-    max-width: 500px;
-    text-align: left;
+    line-height: 1.7;
+    font-weight: 400;
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.1s both;
   }
 
+  /* ── Terminal block ── */
+  .hero-terminal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 22px;
+    font-family: var(--font-mono);
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+    color: var(--text-secondary);
+    padding: 0.75rem 1rem;
+    margin: 0 auto 2.5rem;
+    max-width: fit-content;
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.2s both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-prompt {
+    font-family: var(--font-mono);
+    color: var(--accent-brand);
+    opacity: 0.8;
+    margin-right: 0.25rem;
+  }
+
+  .terminal-text {
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
+    min-height: 1.1em;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background-color: var(--accent-brand);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+    border-radius: 1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── CTA Buttons ── */
   .hero-ctas {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
     justify-content: center;
+    gap: 1rem;
+    animation: fadeSlideUp 0.8s var(--ease-out) 0.3s both;
   }
 
-  .btn {
-    display: inline-block;
+  .btn-glow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     font-family: var(--font-body);
-    font-size: 1.125rem;
-    font-weight: 700;
+    font-size: 0.9375rem;
+    font-weight: 600;
     text-decoration: none;
     border-radius: var(--radius-md);
-    transition:
-      background-color 0.2s var(--ease-out),
-      color 0.2s var(--ease-out),
-      border-color 0.2s var(--ease-out),
-      box-shadow 0.2s var(--ease-out),
-      transform 0.2s var(--ease-out),
-      filter 0.2s var(--ease-out);
-    cursor: pointer;
+    background: var(--accent-brand);
+    color: #ffffff;
+    border: 1px solid var(--accent-brand);
+    transition: all 0.2s var(--ease-out);
+    position: relative;
+    overflow: hidden;
   }
 
-  .btn-primary {
-    background-color: var(--accent-brand-strong);
-    color: var(--accent-on-accent);
-    border: 2px solid var(--accent-brand-strong);
-    box-shadow: 0 1px 2px color-mix(in srgb, var(--accent-brand-strong) 40%, transparent);
+  .btn-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.2s;
   }
 
-  .btn-primary:hover {
-    filter: brightness(1.06);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px color-mix(in srgb, var(--accent-brand-strong) 40%, transparent);
+  .btn-glow:hover {
+    background: var(--accent-brand-strong);
+    border-color: var(--accent-brand-strong);
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 20px rgba(245, 78, 0, 0.3),
+      0 0 40px rgba(245, 78, 0, 0.15),
+      0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-  .btn-primary:active {
-    transform: translateY(0);
-    filter: brightness(0.98);
+  .btn-glow:hover::before {
+    opacity: 1;
   }
 
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--accent-ink);
-    border: 2px solid var(--accent-brand);
-  }
-
-  .btn-secondary:hover {
-    background-color: var(--accent-brand);
-    color: var(--accent-on-accent);
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-card);
-  }
-
-  .btn-secondary:active {
+  .btn-glow:active {
     transform: translateY(0);
   }
 
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s var(--ease-out);
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-primary);
+  }
+
+  .btn-ghost:active {
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 7rem 1.25rem 4rem;
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn-glow,
+    .btn-ghost {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  /* ── Reduced motion ── */
   @media (prefers-reduced-motion: reduce) {
-    .btn:hover,
-    .btn:active {
+    .hero-title,
+    .hero-subtitle,
+    .hero-terminal,
+    .hero-ctas {
+      animation: none;
+      opacity: 1;
+    }
+
+    .terminal-cursor {
+      animation: none;
+    }
+
+    .btn-glow:hover,
+    .btn-ghost:hover {
       transform: none;
     }
   }

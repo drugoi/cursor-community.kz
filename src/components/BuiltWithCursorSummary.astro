@@ -20,89 +20,82 @@ interface Props {
 
 const { locale, dict } = Astro.props;
 const projectsCount = getShowcaseProjectsCount();
-const projectsAddedLabel = getProjectsAddedLabel(
-  projectsCount,
-  locale,
-  dict.builtwithcursor.projects_added
-);
+const projectsAddedLabel = getProjectsAddedLabel(projectsCount, locale, dict.builtwithcursor.projects_added);
 const projectsPageHref = locale === 'ru' ? '/projects/' : `/${locale}/projects/`;
 ---
 
 <section id="builtwithcursor" class="section">
   <div class="container">
-    <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
-    <h2 class="heading-sub">{dict.builtwithcursor.heading}</h2>
+    <div class="section-header">
+      <p class="heading-command" aria-hidden="true">{dict.builtwithcursor.command}</p>
+      <h2 class="section-title">{dict.builtwithcursor.heading}</h2>
+    </div>
     <div class="summary-card">
-      <p class="summary-text">{dict.builtwithcursor.summary}</p>
-      <p class="summary-count">
-        <span class="summary-count-number">{projectsCount}</span>
-        <span class="summary-count-label">{projectsAddedLabel}</span>
-      </p>
-      <div class="summary-actions">
-        <a href={projectsPageHref} class="summary-link">{dict.builtwithcursor.view_all_cta}</a>
+      <div class="summary-left">
+        <span class="summary-count">{projectsCount}</span>
+        <p class="summary-text">{dict.builtwithcursor.summary}</p>
       </div>
+      <a href={projectsPageHref} class="btn btn-primary">
+        {dict.builtwithcursor.view_all_cta}
+      </a>
     </div>
   </div>
 </section>
 
 <style>
-  .section {
-    padding: var(--section-padding) 0;
+  .section-header {
+    margin-bottom: 2rem;
   }
 
-  .container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    margin-top: 0.5rem;
   }
 
   .summary-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 1.5rem 2rem;
-    box-shadow: var(--shadow-card);
+    flex-wrap: wrap;
+  }
+
+  .summary-left {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .summary-count {
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-brand);
+    line-height: 1;
   }
 
   .summary-text {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    max-width: 400px;
+    line-height: 1.5;
+    font-size: 0.9375rem;
   }
 
-  .summary-count {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin: 0 0 1rem 0;
-  }
+  @media (max-width: 600px) {
+    .summary-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.5rem;
+    }
 
-  .summary-count-number {
-    font-family: var(--font-mono);
-    font-size: 1.5rem;
-    color: var(--accent-ink);
-  }
-
-  .summary-count-label {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-  }
-
-  .summary-link {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    border: 1px solid var(--accent-brand);
-    border-radius: var(--radius-md);
-    transition:
-      background-color 0.2s var(--ease-standard),
-      border-color 0.2s var(--ease-standard);
-  }
-
-  .summary-link:hover {
-    background: var(--accent-brand-glow);
-    border-color: var(--accent-brand);
+    .summary-count {
+      font-size: 1.75rem;
+    }
   }
 </style>
