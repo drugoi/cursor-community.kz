@@ -20,7 +20,20 @@ interface Props {
 
 const { locale, dict } = Astro.props;
 const allEvents = await getCollection('events');
-const filtered = allEvents.filter((e) => e.data.lang === locale || e.data.lang === 'ru');
+
+function eventGroupKey(event: (typeof allEvents)[number]): string {
+  return event.data.registrationUrl ?? event.data.lumaUrl ?? event.id;
+}
+
+const localizedGroupKeys = new Set(
+  allEvents.filter((event) => event.data.lang === locale).map(eventGroupKey),
+);
+
+const filtered = allEvents.filter((event) => {
+  if (event.data.lang === locale) return true;
+  if (event.data.lang === 'ru' && !localizedGroupKeys.has(eventGroupKey(event))) return true;
+  return false;
+});
 const upcomingEvents = filtered
   .filter((e) => e.data.status === 'upcoming')
   .sort(() => 0);
@@ -29,9 +42,10 @@ const pastEvents = filtered
   .sort((a, b) => (b.data.date < a.data.date ? -1 : b.data.date > a.data.date ? 1 : 0));
 const hasUpcoming = upcomingEvents.length > 0;
 
-const cityNameMap: Record<string, string> = {
-  almaty: 'Алматы',
-  astana: 'Астана',
+const cityNameMap: Record<'ru' | 'kk' | 'en', Record<string, string>> = {
+  ru: { almaty: 'Алматы', astana: 'Астана' },
+  kk: { almaty: 'Алматы', astana: 'Астана' },
+  en: { almaty: 'Almaty', astana: 'Astana' },
 };
 
 function formatEventDate(isoDate: string): string {
@@ -51,7 +65,7 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
       name: event.data.location,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: cityNameMap[event.data.city] ?? event.data.city,
+        addressLocality: cityNameMap[locale][event.data.city] ?? event.data.city,
         addressCountry: 'KZ',
       },
     },
