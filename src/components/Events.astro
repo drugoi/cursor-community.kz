@@ -21,6 +21,17 @@ interface Props {
 const { locale, dict } = Astro.props;
 const allEvents = await getCollection('events');
 
+function getTodayDateString(): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Almaty' }).format(new Date());
+}
+
+function getEffectiveStatus(event: (typeof allEvents)[number]): 'upcoming' | 'past' {
+  if (event.data.date === 'TBD') {
+    return event.data.status;
+  }
+  return event.data.date < getTodayDateString() ? 'past' : 'upcoming';
+}
+
 function eventGroupKey(event: (typeof allEvents)[number]): string {
   return event.data.registrationUrl ?? event.data.lumaUrl ?? event.id;
 }
@@ -35,10 +46,10 @@ const filtered = allEvents.filter((event) => {
   return false;
 });
 const upcomingEvents = filtered
-  .filter((e) => e.data.status === 'upcoming')
+  .filter((e) => getEffectiveStatus(e) === 'upcoming')
   .sort(() => 0);
 const pastEvents = filtered
-  .filter((e) => e.data.status === 'past')
+  .filter((e) => getEffectiveStatus(e) === 'past')
   .sort((a, b) => (b.data.date < a.data.date ? -1 : b.data.date > a.data.date ? 1 : 0));
 const hasUpcoming = upcomingEvents.length > 0;
 
@@ -75,7 +86,7 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
       url: 'https://cursor-community.kz',
     },
     eventStatus:
-      event.data.status === 'past'
+      getEffectiveStatus(event) === 'past'
         ? 'https://schema.org/EventCompleted'
         : 'https://schema.org/EventScheduled',
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
@@ -129,7 +140,7 @@ const eventsJsonLd = [...upcomingEvents, ...pastEvents].map((event) => {
               <p class="event-location">📍 {event.data.location}</p>
               <p class="event-date">{formatEventDate(event.data.date)}</p>
               <p class="event-format">{event.data.format}</p>
-              {event.data.registrationUrl ? (
+              {getEffectiveStatus(event) === 'upcoming' && event.data.registrationUrl ? (
                 <a
                   href={event.data.registrationUrl}
                   target="_blank"
