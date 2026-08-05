@@ -8,7 +8,7 @@ const events = defineCollection({
     title: z.string(),
     date: z.string(),
     location: z.string(),
-    city: z.enum(['almaty', 'astana']),
+    city: z.enum(['almaty', 'astana', 'pavlodar']),
     format: z.string(),
     status: z.enum(['upcoming', 'past']),
     registrationUrl: z.string().url().optional(),
