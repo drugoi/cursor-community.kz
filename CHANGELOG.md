@@ -2,6 +2,13 @@
 
 Формат основан на [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.2.1] — 2026-08-05
+
+### Добавлено
+
+- Событие Cursor Meetup Pavlodar (ru / kk / en) — [Luma](https://luma.com/0c87snx5)
+- Город `pavlodar` в схеме событий и JSON-LD
+
 ## [0.2.0] — 2026-07-13
 
 Первый опубликованный релиз сайта [cursor-community.kz](https://cursor-community.kz).
@@ -29,4 +36,5 @@
 - Обновлён стек Astro 6 и workflow FTP-деплоя
 - Обновлены GitHub Actions (checkout, setup-node, pnpm, FTP-Deploy-Action)
 
+[0.2.1]: https://github.com/drugoi/cursor-community.kz/releases/tag/v0.2.1
 [0.2.0]: https://github.com/drugoi/cursor-community.kz/releases/tag/v0.2.0
