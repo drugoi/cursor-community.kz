@@ -8,5 +8,16 @@
     "startingDate": "2026-03-09",
     "builtWithTools": ["cursor"],
     "tags": ["tooling", "open-source"]
+  },
+  {
+    "id": "five-rush",
+    "title": "Five Rush - 5x5 football arcade",
+    "description": "Быстрый футбол 5×5 без установок: открыл — играешь. Короткие матчи, живая динамика, закрутка мяча после удара. Зови друга в онлайн или проходи ЧМ за сборную. В браузере или прямо в Telegram — старт в один клик.",
+    "url": "https://nervesearch.ai/fufa",
+    "author": "Alex",
+    "startingDate": "2026-07-10",
+    "builtWithTools": ["cursor", "codex"],
+    "tags": ["prototype"],
+    "image": "/images/showcase/five-rush.webp"
   }
 ]
