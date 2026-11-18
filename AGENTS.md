@@ -8,7 +8,7 @@
 ## Learned Workspace Facts
 
 - The site is a static Astro project (MDX, sitemap); production output is `dist/`.
-- Astro 6 expects Node 22.12 or newer; `.nvmrc` and CI use that line.
+- Astro 7 and MDX require Node 22.23.4 or newer. CI reads the pinned version from `.nvmrc`.
 - Dependencies are managed with pnpm; `package.json` pins pnpm via `packageManager`, and CI uses `pnpm install --frozen-lockfile`.
 - Deployment is FTP via `.github/workflows/ftp-deploy.yml`, uploading `dist/`.
 - The UI is localized for Russian (default), Kazakh, and English under `src/i18n/`.

@@ -4,7 +4,7 @@
 
 ## Требования
 
-- **Node.js** 22.12+ (см. `.nvmrc`)
+- **Node.js** 22.23.4+ (см. `.nvmrc`)
 - **pnpm** — версия из поля `packageManager` в `package.json`
 
 ## Команды
